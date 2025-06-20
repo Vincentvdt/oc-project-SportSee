@@ -1,4 +1,4 @@
-export const handleNoUserData = (res: any, userData: unknown) => {
+const handleNoUserData = (res: any, userData: unknown) => {
     res.setHeader('Content-Type', 'application/json')
     if (!userData) {
         res.statusCode = 404
