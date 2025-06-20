@@ -7,6 +7,12 @@ import DailyActivityChart from '@/components/charts/DailyActivityChart.tsx'
 import AverageSessionChart from '@/components/charts/AverageSessionChart.tsx'
 import PerformanceChart from '@/components/charts/PerformanceChart.tsx'
 import GoalChart from '@/components/charts/GoalChart.tsx'
+import {
+  getUserActivity,
+  getUserAverageSessions,
+  getUserInfo,
+  getUserPerformance,
+} from '@/services/userService.ts'
 
 
 const LoaderIcon = () => (
