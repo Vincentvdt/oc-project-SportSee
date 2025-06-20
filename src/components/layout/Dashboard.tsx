@@ -1,19 +1,11 @@
-import { useEffect, useState } from 'react'
-import userInfo from '@/assets/data/mocks/userMock.ts'
-import type { UserAPIResponse, UserData, UserInfo } from "@/types/global"
+import { useState } from 'react'
 import styled from 'styled-components'
 import MacroCard from '../MacroCard.tsx'
 import DailyActivityChart from '@/components/charts/DailyActivityChart.tsx'
 import AverageSessionChart from '@/components/charts/AverageSessionChart.tsx'
 import PerformanceChart from '@/components/charts/PerformanceChart.tsx'
 import GoalChart from '@/components/charts/GoalChart.tsx'
-import {
-  getUserActivity,
-  getUserAverageSessions,
-  getUserInfo,
-  getUserPerformance,
-} from '@/services/userService.ts'
-
+import useUserData from '@/hooks/useUserData.ts'
 
 const LoaderIcon = () => (
   <svg width="60" height="15" viewBox="0 0 120 30" xmlns="http://www.w3.org/2000/svg" fill="#000">
@@ -180,66 +172,9 @@ const MacrosLayout = styled.div`
   }
 `
 
-const standardizeUser = (user: UserAPIResponse): UserData => {
-  return {
-    id: user.id,
-    userInfos: {
-      firstName: user.userInfos.firstName,
-      lastName: user.userInfos.lastName,
-      age: user.userInfos.age,
-    },
-    score: user.score ?? user.todayScore,
-    keyData: {
-      calorieCount: user.keyData.calorieCount,
-      proteinCount: user.keyData.proteinCount,
-      carbohydrateCount: user.keyData.carbohydrateCount,
-      lipidCount: user.keyData.lipidCount,
-    },
-  }
-}
-
 const Dashboard = () => {
   const [userId, setUserId] = useState(12)
-  const [userData, setUserData] = useState<UserInfo>({
-    ...userInfo,
-    user: standardizeUser(userInfo.user),
-  })
-  const [mock, isMock] = useState(true)
-
-  const [isLoading, setLoading] = useState(false)
-  useEffect(() => {
-    setLoading(true)
-
-    const fetchUserData = async () => {
-      try {
-        const [userInfoData, activityData, performanceData, averageSessionsData] =
-          await Promise.all([
-            getUserInfo(userId),
-            getUserActivity(userId),
-            getUserPerformance(userId),
-            getUserAverageSessions(userId),
-          ])
-
-        setUserData({
-          user: standardizeUser(userInfoData),
-          activity: activityData,
-          performance: performanceData,
-          averageSessions: averageSessionsData,
-        })
-        isMock(false)
-      } catch (error) {
-        console.error(error)
-        setUserData({
-          ...userInfo,
-          user: standardizeUser(userInfo.user),
-        })
-        isMock(true)
-      } finally {
-        setLoading(false)
-      }
-    }
-    fetchUserData().catch()
-  }, [userId])
+  const { data: userData, loading: isLoading, isMock } = useUserData(userId)
 
   return (
     <DashboardContainer>
@@ -249,7 +184,7 @@ const Dashboard = () => {
           <span onClick={() => (userId === 12 ? setUserId(18) : setUserId(12))}>
             {isLoading ? <LoaderIcon /> : userData.user.userInfos.firstName}
           </span>{' '}
-          {mock ? <small>mock data</small> : null}
+          {isMock ? <small>mock data</small> : null}
         </h1>
         <h2>Félicitation ! Vous avez explosé vos objectifs hier 👏</h2>
       </DashboardHeader>
