@@ -53,7 +53,7 @@ export default function useUserData(userId: number): UseUserDataReturn {
       })
       setIsMock(false)
     } catch (error) {
-      console.error(error)
+      console.warn("[EXPECTED] API error, using mock data instead:", error);
       setData({
         ...mockUser,
         user: standardizeUser(mockUser.user),
