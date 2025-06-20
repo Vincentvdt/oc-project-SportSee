@@ -1,8 +1,8 @@
 import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis } from 'recharts'
 import styled from 'styled-components'
 import ChartContainer from './ChartContainer.tsx'
-import { ActivityData } from '@/types/global'
-import { NameType, Payload, ValueType } from 'recharts/types/component/DefaultTooltipContent'
+import type { ActivityData } from "@/types/global";
+import type { NameType, Payload, ValueType } from "recharts/types/component/DefaultTooltipContent";
 
 const BarChartTitle = styled.div`
   color: #20253a;

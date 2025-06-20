@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { JSX, ReactElement, ReactNode } from 'react'
+import type { JSX, ReactElement, ReactNode } from "react";
 import { ResponsiveContainer } from 'recharts'
 
 interface ChartContainerProps {

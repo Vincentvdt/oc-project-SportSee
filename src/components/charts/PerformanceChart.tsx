@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import ChartContainer from './ChartContainer.tsx'
 import { PolarAngleAxis, PolarGrid, Radar, RadarChart, Tooltip } from 'recharts'
-import { PerformanceData } from '@/types/global'
+import type { PerformanceData } from "@/types/global";
 
 interface PerformanceChartProps {
   data: PerformanceData

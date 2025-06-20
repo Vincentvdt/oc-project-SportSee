@@ -1,8 +1,8 @@
 import ChartContainer from './ChartContainer.tsx'
 import styled from 'styled-components'
-import { AverageSessionData } from '@/types/global'
+import type { AverageSessionData } from "@/types/global";
 import { Line, LineChart, Tooltip, XAxis, YAxis } from 'recharts'
-import { NameType, Payload, ValueType } from 'recharts/types/component/DefaultTooltipContent'
+import type { NameType, Payload, ValueType } from "recharts/types/component/DefaultTooltipContent";
 
 const CustomTitle = styled.p`
   width: 100%;
