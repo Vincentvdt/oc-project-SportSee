@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 
-import armIcon from '../assets/arm.svg'
-import bikeIcon from '../assets/bike.svg'
-import swimIcon from '../assets/swim.svg'
-import zenIcon from '../assets/zen.svg'
+import armIcon from '../../assets/icons/arm.svg'
+import bikeIcon from '../../assets/icons/bike.svg'
+import swimIcon from '../../assets/icons/swim.svg'
+import zenIcon from '../../assets/icons/zen.svg'
 
 const SidebarContainer = styled.aside`
   display: grid;
@@ -69,16 +69,16 @@ const Sidebar = () => {
       <NavigationMenu>
         <ul>
           <li>
-            <img src={zenIcon} alt="icon" />
+            <img src={zenIcon} alt="Yoga icon" />
           </li>
           <li>
-            <img src={swimIcon} alt="icon" />
+            <img src={swimIcon} alt="Swimming icon" />
           </li>
           <li>
-            <img src={bikeIcon} alt="icon" />
+            <img src={bikeIcon} alt="Cycling icon" />
           </li>
           <li>
-            <img src={armIcon} alt="icon" />
+            <img src={armIcon} alt="Workout icon" />
           </li>
         </ul>
       </NavigationMenu>
