@@ -11,6 +11,7 @@ const Layout = styled.div`
   min-height: fit-content;
   height: calc(100dvh - 91px);
   background: white;
+    color: #222;
 `
 
 const App = () => {
