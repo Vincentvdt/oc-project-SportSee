@@ -44,7 +44,7 @@ const HeaderContainer = styled.header`
 const Header = () => {
   return (
     <HeaderContainer>
-      <img src={logo} className="logo" alt="Vite logo" />
+      <img src={logo} className="logo" alt="SportSee logo" />
       <nav>
         <ul>
           <li>

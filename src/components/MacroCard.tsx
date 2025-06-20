@@ -3,6 +3,7 @@ import GlucIcon from '../assets/icons/GlucIcon.svg'
 import LipIcon from '../assets/icons/LipIcon.svg'
 import CalIcon from '../assets/icons/CalIcon.svg'
 import styled from 'styled-components'
+import { memo, useMemo } from 'react'
 
 const MacroContainer = styled.div<{ $angle: number }>`
   display: flex;
@@ -88,7 +89,8 @@ interface MacroCardProps {
 
 const MacroCard = ({ name, value }: MacroCardProps) => {
   const { unit, displayName, icon } = macroData[name]
-  const rotationAngle = Math.floor(Math.random() * (10 - -10) + -10)
+  // useMemo to avoid recalculating random angle on every render
+  const rotationAngle = useMemo(() => Math.floor(Math.random() * 21) - 10, [])
 
   return (
     <MacroContainer $angle={rotationAngle}>
@@ -104,4 +106,4 @@ const MacroCard = ({ name, value }: MacroCardProps) => {
   )
 }
 
-export default MacroCard
+export default memo(MacroCard)

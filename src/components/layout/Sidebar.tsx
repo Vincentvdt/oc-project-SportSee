@@ -69,16 +69,16 @@ const Sidebar = () => {
       <NavigationMenu>
         <ul>
           <li>
-            <img src={zenIcon} alt="icon" />
+            <img src={zenIcon} alt="Yoga icon" />
           </li>
           <li>
-            <img src={swimIcon} alt="icon" />
+            <img src={swimIcon} alt="Swimming icon" />
           </li>
           <li>
-            <img src={bikeIcon} alt="icon" />
+            <img src={bikeIcon} alt="Cycling icon" />
           </li>
           <li>
-            <img src={armIcon} alt="icon" />
+            <img src={armIcon} alt="Workout icon" />
           </li>
         </ul>
       </NavigationMenu>
