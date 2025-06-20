@@ -1,0 +1,32 @@
+# .prettierignore
+
+# Build output
+dist
+build
+node_modules
+
+# Logs
+*.log
+
+# Vite cache
+.vite
+
+# Env vars
+.env*
+*.env
+
+# Ignore lock files if you're formatting JSON
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+
+# IDE config
+.idea
+.vscode
+
+# TypeScript metadata
+*.tsbuildinfo
+
+# Optional: if you're formatting Markdown or JSON
+*.md
+*.json
