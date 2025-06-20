@@ -1,7 +1,7 @@
-import ProtIcon from '../assets/ProtIcon.svg'
-import GlucIcon from '../assets/GlucIcon.svg'
-import LipIcon from '../assets/LipIcon.svg'
-import CalIcon from '../assets/CalIcon.svg'
+import ProtIcon from '../assets/icons/ProtIcon.svg'
+import GlucIcon from '../assets/icons/GlucIcon.svg'
+import LipIcon from '../assets/icons/LipIcon.svg'
+import CalIcon from '../assets/icons/CalIcon.svg'
 import styled from 'styled-components'
 
 const MacroContainer = styled.div<{ $angle: number }>`

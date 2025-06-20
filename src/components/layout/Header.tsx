@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import logo from '../assets/logo.svg'
+import logo from '../../assets/icons/logo.svg'
 
 const HeaderContainer = styled.header`
   background: #020203;

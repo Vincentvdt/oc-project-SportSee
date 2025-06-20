@@ -1,18 +1,13 @@
 import { useEffect, useState } from 'react'
-import userInfo from '../mocks/userMock.ts'
-import type { UserAPIResponse, UserData, UserInfo } from "@/interfaces"
+import userInfo from '@/assets/data/mocks/userMock.ts'
+import type { UserAPIResponse, UserData, UserInfo } from "@/types/global"
 import styled from 'styled-components'
-import MacroCard from './MacroCard.tsx'
-import DailyActivityChart from './Charts/DailyActivityChart.tsx'
-import AverageSessionChart from './Charts/AverageSessionChart.tsx'
-import PerformanceChart from './Charts/PerformanceChart.tsx'
-import GoalChart from './Charts/GoalChart.tsx'
-import {
-  getUserActivity,
-  getUserAverageSessions,
-  getUserInfo,
-  getUserPerformance,
-} from '../services/userService.tsx'
+import MacroCard from '../MacroCard.tsx'
+import DailyActivityChart from '@/components/charts/DailyActivityChart.tsx'
+import AverageSessionChart from '@/components/charts/AverageSessionChart.tsx'
+import PerformanceChart from '@/components/charts/PerformanceChart.tsx'
+import GoalChart from '@/components/charts/GoalChart.tsx'
+
 
 const LoaderIcon = () => (
   <svg width="60" height="15" viewBox="0 0 120 30" xmlns="http://www.w3.org/2000/svg" fill="#000">

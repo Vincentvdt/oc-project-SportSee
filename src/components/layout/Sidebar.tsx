@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 
-import armIcon from '../assets/arm.svg'
-import bikeIcon from '../assets/bike.svg'
-import swimIcon from '../assets/swim.svg'
-import zenIcon from '../assets/zen.svg'
+import armIcon from '../../assets/icons/arm.svg'
+import bikeIcon from '../../assets/icons/bike.svg'
+import swimIcon from '../../assets/icons/swim.svg'
+import zenIcon from '../../assets/icons/zen.svg'
 
 const SidebarContainer = styled.aside`
   display: grid;

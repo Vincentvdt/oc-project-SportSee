@@ -1,8 +1,8 @@
 import './App.css'
-import Header from './components/Header.tsx'
-import Sidebar from './components/Sidebar.tsx'
+import Header from './components/layout/Header.tsx'
+import Sidebar from './components/layout/Sidebar.tsx'
 import styled from 'styled-components'
-import Dashboard from './components/Dashboard.tsx'
+import Dashboard from './components/layout/Dashboard.tsx'
 
 const Layout = styled.div`
   display: flex;
