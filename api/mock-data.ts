@@ -130,7 +130,13 @@ export const USER_PERFORMANCE: UserPerformance[] = [
 ]
 
 export const USERS_DATA: UserData[] = USER_MAIN_DATA.map((user) => ({
-  ...user,
+  id: user.id,
+  firstName: user.userInfos.firstName,
+  lastName: user.userInfos.lastName,
+  age: user.userInfos.age,
+  todayScore: user.todayScore,
+  score: user.score,
+  keyData: user.keyData,
   activity: USER_ACTIVITY.find((a) => a.userId === user.id)?.sessions ?? [],
   averageSessions: USER_AVERAGE_SESSIONS.find((s) => s.userId === user.id)?.sessions ?? [],
   performance: USER_PERFORMANCE.find((p) => p.userId === user.id) ?? {

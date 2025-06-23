@@ -55,7 +55,14 @@ export interface UserPerformance {
   data: PerformanceEntry[]
 }
 
-export interface UserData extends UserMainData {
+export interface UserData {
+  id: number
+  firstName: string
+  lastName: string
+  age: number
+  todayScore?: number
+  score?: number
+  keyData: KeyData
   activity: ActivitySession[]
   averageSessions: AverageSession[]
   performance: {
