@@ -1,22 +1,65 @@
-export interface UserData {
+export interface UserInfo {
+  firstName: string
+  lastName: string
+  age: number
+}
+
+export interface KeyData {
+  calorieCount: number
+  proteinCount: number
+  carbohydrateCount: number
+  lipidCount: number
+}
+
+export interface ActivitySession {
+  day: string
+  kilogram: number
+  calories: number
+}
+
+export interface AverageSession {
+  day: number
+  sessionLength: number
+}
+
+export interface PerformanceEntry {
+  value: number
+  kind: number
+}
+
+export interface PerformanceKind {
+  [key: number]: string
+}
+
+export interface UserMainData {
   id: number
-  userInfos: {
-    firstName: string
-    lastName: string
-    age: number
-  }
+  userInfos: UserInfo
   todayScore?: number
   score?: number
-  keyData: {
-    calorieCount: number
-    proteinCount: number
-    carbohydrateCount: number
-    lipidCount: number
-  }
-  activity: { day: string; kilogram: number; calories: number }[]
-  averageSessions: { day: number; sessionLength: number }[]
+  keyData: KeyData
+}
+
+export interface UserActivity {
+  userId: number
+  sessions: ActivitySession[]
+}
+
+export interface UserAverage {
+  userId: number
+  sessions: AverageSession[]
+}
+
+export interface UserPerformance {
+  userId: number
+  kind: PerformanceKind
+  data: PerformanceEntry[]
+}
+
+export interface UserData extends UserMainData {
+  activity: ActivitySession[]
+  averageSessions: AverageSession[]
   performance: {
-    kind: Record<number, string>
-    data: { value: number; kind: number }[]
+    kind: PerformanceKind
+    data: PerformanceEntry[]
   }
 }

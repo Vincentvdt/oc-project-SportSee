@@ -1,6 +1,7 @@
 // Mock data derived from the provided real data
+import type { UserActivity, UserAverage, UserMainData, UserPerformance, UserData } from './my-types'
 
-export const USER_MAIN_DATA = [
+export const USER_MAIN_DATA: UserMainData[] = [
   {
     id: 12,
     userInfos: {
@@ -33,7 +34,7 @@ export const USER_MAIN_DATA = [
   },
 ]
 
-export const USER_ACTIVITY = [
+export const USER_ACTIVITY: UserActivity[] = [
   {
     userId: 12,
     sessions: [
@@ -60,7 +61,7 @@ export const USER_ACTIVITY = [
   },
 ]
 
-export const USER_AVERAGE_SESSIONS = [
+export const USER_AVERAGE_SESSIONS: UserAverage[] = [
   {
     userId: 12,
     sessions: [
@@ -87,7 +88,7 @@ export const USER_AVERAGE_SESSIONS = [
   },
 ]
 
-export const USER_PERFORMANCE = [
+export const USER_PERFORMANCE: UserPerformance[] = [
   {
     userId: 12,
     kind: {
@@ -127,29 +128,6 @@ export const USER_PERFORMANCE = [
     ],
   },
 ]
-
-export interface UserData {
-  id: number
-  userInfos: {
-    firstName: string
-    lastName: string
-    age: number
-  }
-  todayScore?: number
-  score?: number
-  keyData: {
-    calorieCount: number
-    proteinCount: number
-    carbohydrateCount: number
-    lipidCount: number
-  }
-  activity: { day: string; kilogram: number; calories: number }[]
-  averageSessions: { day: number; sessionLength: number }[]
-  performance: {
-    kind: Record<number, string>
-    data: { value: number; kind: number }[]
-  }
-}
 
 export const USERS_DATA: UserData[] = USER_MAIN_DATA.map((user) => ({
   ...user,
