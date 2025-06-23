@@ -26,8 +26,7 @@
     /* Additional options */
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
-      "@api/*": ["api/*"]
+      "@/*": ["src/*"]
     },
     "allowJs": false,
     "esModuleInterop": true,
