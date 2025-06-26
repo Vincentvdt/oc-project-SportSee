@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { BellIcon, LightningBoltIcon } from '@radix-ui/react-icons'
+import { useState } from 'react'
 
 const DashboardContainer = styled.div`
   display: flex;
@@ -30,20 +31,18 @@ const NotificationContainer = styled.div`
 
 const NotificationPopup = styled.div`
   display: flex;
+  min-width: 240px;
   gap: 8px;
   padding: 16px 24px;
   justify-content: space-between;
   align-items: center;
-  flex-shrink: 0;
   border-radius: 16px;
   background: #d6fde4;
 
   span {
     color: #0f462b;
     font-size: 16px;
-    font-style: normal;
     font-weight: 400;
-    line-height: 19px; /* 118.75% */
     text-align: left;
   }
 
@@ -77,6 +76,11 @@ const NotificationButton = styled.button`
 `
 
 const DashboardHeader = ({ name }: { name: string }) => {
+  const [alertOpen, setAlertOpen] = useState<boolean>(true)
+
+  const handleOnClick = () => {
+    setAlertOpen((prev) => !prev)
+  }
   return (
     <DashboardContainer>
       <h1>
@@ -84,11 +88,13 @@ const DashboardHeader = ({ name }: { name: string }) => {
         Quoi de beau aujourd'hui ?
       </h1>
       <NotificationContainer>
-        <NotificationPopup>
-          <LightningBoltIcon />
-          <span>Félicitation ! Vous avez explosé vos objectifs hier 👏</span>
-        </NotificationPopup>
-        <NotificationButton>
+        {alertOpen && (
+          <NotificationPopup>
+            <LightningBoltIcon />
+            <span>Félicitation ! Vous avez explosé vos objectifs hier 👏</span>
+          </NotificationPopup>
+        )}
+        <NotificationButton onClick={handleOnClick} aria-label="Notification">
           <BellIcon />
         </NotificationButton>
       </NotificationContainer>
