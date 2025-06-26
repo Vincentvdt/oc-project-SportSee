@@ -17,6 +17,7 @@ const MacroCardContainer = styled.section`
   gap: 16px;
   background: #fff;
   border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(32, 32, 56, 0.06);
 `
 
 const CardTitle = styled.h3`

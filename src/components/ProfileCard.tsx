@@ -17,6 +17,7 @@ const Card = styled.article`
   gap: 24px;
   background: #fff;
   border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(32, 32, 56, 0.06);
 `
 
 const AvatarContainer = styled.figure`
@@ -57,14 +58,14 @@ const Header = styled.header`
   button {
     border: none;
     background: none;
-    width: 16px;
-    height: 16px;
+    width: 22px;
+    height: 22px;
     padding: 0;
     cursor: pointer;
     display: flex;
     align-items: center;
     transition: color 80ms ease-in-out;
-
+    color: #c1c1c1;
     svg {
       width: 100%;
       height: 100%;
