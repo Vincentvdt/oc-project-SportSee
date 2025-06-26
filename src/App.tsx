@@ -5,7 +5,7 @@ import Header from '@/components/Header.tsx'
 import styled from 'styled-components'
 import Dashboard from '@/components/Dashboard/Dashboard.tsx'
 import Footer from '@/components/Footer.tsx'
-import { useQuery, useQueryClient } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 import { fetchUserData } from '@/hooks/user.tsx'
 import type { UserData } from '../api/my-types'
 

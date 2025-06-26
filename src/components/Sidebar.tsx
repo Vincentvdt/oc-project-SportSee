@@ -4,7 +4,6 @@ import SwimmingIcon from '@/assets/icons/swimming.svg?react'
 import CyclingIcon from '@/assets/icons/cycling.svg?react'
 import WorkoutIcon from '@/assets/icons/workout.svg?react'
 import { GearIcon } from '@radix-ui/react-icons'
-import { useEffect } from 'react'
 
 const HeaderIcon = styled.button`
   display: flex;
@@ -104,10 +103,6 @@ interface SidebarProps {
 }
 
 const Sidebar = ({ picture, loading, firstName }: SidebarProps) => {
-  useEffect(() => {
-    console.log(picture)
-  }, [picture])
-
   return (
     <SidebarWrapper>
       <nav>
