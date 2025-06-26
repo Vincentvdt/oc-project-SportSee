@@ -6,10 +6,11 @@ const FooterContainer = styled.footer`
   gap: 20px;
   align-self: stretch;
   padding: 24px 40px;
+  font-size: 14px;
 `
 const Copyright = styled.p`
   color: #979797;
-  font-size: 12px;
+
   font-style: normal;
   font-weight: 500;
   line-height: 24px;
@@ -28,10 +29,14 @@ const MandatoryLinks = styled.ul`
 
   > li a {
     color: #979797;
-    font-size: 12px;
+
     font-style: normal;
     font-weight: 500;
     line-height: 24px;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 `
 
