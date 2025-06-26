@@ -1,5 +1,13 @@
 // Mock data derived from the provided real data
-import type { UserActivity, UserAverage, UserMainData, UserPerformance, UserData } from './my-types'
+import type {
+  UserActivity,
+  UserAverage,
+  UserMainData,
+  UserPerformance,
+  UserData,
+  UserGoal,
+  Goal,
+} from './types.ts'
 
 export const USER_MAIN_DATA: UserMainData[] = [
   {
@@ -141,6 +149,75 @@ export const USER_PERFORMANCE: UserPerformance[] = [
   },
 ]
 
+export const USER_GOALS: UserGoal[] = [
+  {
+    userId: 12,
+    goals: [
+      {
+        type: 'workout',
+        objectif: { value: '1', unit: 'h' },
+        title: 'Squat',
+        details: '8x15 rep, 30s',
+        done: false,
+      },
+      {
+        type: 'cycling',
+        objectif: { value: '10', unit: 'km' },
+        title: "Parc de l'étoile",
+        details: 'Parcoure extérieur',
+        done: true,
+      },
+      {
+        type: 'swimming',
+        objectif: { value: '30', unit: 'min' },
+        title: 'Piscine municipale',
+        details: 'Nager crawl et brasse',
+        done: false,
+      },
+      {
+        type: 'yoga',
+        objectif: { value: '45', unit: 'min' },
+        title: 'Vinyasa Flow',
+        details: 'Étirements et respiration',
+        done: false,
+      },
+    ],
+  },
+  {
+    userId: 18,
+    goals: [
+      {
+        type: 'workout',
+        objectif: { value: '1', unit: 'h' },
+        title: 'Squat',
+        details: '8x15 rep, 30s',
+        done: false,
+      },
+      {
+        type: 'cycling',
+        objectif: { value: '10', unit: 'km' },
+        title: "Parc de l'étoile",
+        details: 'Parcoure extérieur',
+        done: true,
+      },
+      {
+        type: 'swimming',
+        objectif: { value: '30', unit: 'min' },
+        title: 'Piscine municipale',
+        details: 'Nager crawl et brasse',
+        done: false,
+      },
+      {
+        type: 'yoga',
+        objectif: { value: '45', unit: 'min' },
+        title: 'Vinyasa Flow',
+        details: 'Étirements et respiration',
+        done: false,
+      },
+    ],
+  },
+]
+
 export const USERS_DATA: UserData[] = USER_MAIN_DATA.map((user) => ({
   id: user.id,
   firstName: user.userInfos.firstName,
@@ -161,6 +238,7 @@ export const USERS_DATA: UserData[] = USER_MAIN_DATA.map((user) => ({
     kind: {},
     data: [],
   },
+  goals: USER_GOALS.find((g) => g.userId === user.id)?.goals ?? [],
 }))
 
 export default USERS_DATA
