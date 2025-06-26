@@ -2,6 +2,7 @@ export interface UserInfo {
   firstName: string
   lastName: string
   age: number
+  picture: string
 }
 
 export interface KeyData {
@@ -60,6 +61,7 @@ export interface UserData {
   firstName: string
   lastName: string
   age: number
+  picture: string
   todayScore?: number
   score?: number
   keyData: KeyData

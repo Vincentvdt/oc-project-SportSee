@@ -76,11 +76,11 @@ const NotificationButton = styled.button`
   }
 `
 
-const DashboardHeader = () => {
+const DashboardHeader = ({ name }: { name: string }) => {
   return (
     <DashboardContainer>
       <h1>
-        Bonjour, <span>Thomas</span> <br />
+        Bonjour, <span>{name}</span> <br />
         Quoi de beau aujourd'hui ?
       </h1>
       <NotificationContainer>

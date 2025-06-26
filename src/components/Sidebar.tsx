@@ -4,6 +4,7 @@ import SwimmingIcon from '@/assets/icons/swimming.svg?react'
 import CyclingIcon from '@/assets/icons/cycling.svg?react'
 import WorkoutIcon from '@/assets/icons/workout.svg?react'
 import { GearIcon } from '@radix-ui/react-icons'
+import { useEffect } from 'react'
 
 const HeaderIcon = styled.button`
   display: flex;
@@ -96,40 +97,39 @@ const ProfilPictureWrapper = styled.button`
   }
 `
 
-const Sidebar = () => {
+interface SidebarProps {
+  picture?: string
+  firstName?: string
+  loading: boolean
+}
+
+const Sidebar = ({ picture, loading, firstName }: SidebarProps) => {
+  useEffect(() => {
+    console.log(picture)
+  }, [picture])
+
   return (
     <SidebarWrapper>
       <nav>
         <ul>
-          <li key="yoga">
-            <HeaderIcon>
-              <YogaIcon />
-            </HeaderIcon>
-          </li>
-          <li key="swimming">
-            <HeaderIcon>
-              <SwimmingIcon />
-            </HeaderIcon>
-          </li>
-          <li key="cycling">
-            <HeaderIcon>
-              <CyclingIcon />
-            </HeaderIcon>
-          </li>
-          <li key="workout">
-            <HeaderIcon>
-              <WorkoutIcon />
-            </HeaderIcon>
-          </li>
+          {[YogaIcon, SwimmingIcon, CyclingIcon, WorkoutIcon].map((Icon, i) => (
+            <li key={i}>
+              <HeaderIcon>
+                <Icon />
+              </HeaderIcon>
+            </li>
+          ))}
         </ul>
       </nav>
       <SideBarFooter>
         <GearIconWrapper>
           <GearIcon />
         </GearIconWrapper>
-        <ProfilPictureWrapper>
-          <img src="/pp.jpg" alt="Profile Picture" />
-        </ProfilPictureWrapper>
+        {!loading && picture && (
+          <ProfilPictureWrapper>
+            <img src={`/${picture}`} alt={`Profile Picture of ${firstName} `} />
+          </ProfilPictureWrapper>
+        )}
       </SideBarFooter>
     </SidebarWrapper>
   )

@@ -6,6 +6,7 @@ import MacroCard from '@/components/MacroCard.tsx'
 import DailyGoal from '@/components/charts/DailyGoal.tsx'
 import DailyActivityChart from '@/components/charts/DailyActivityChart.tsx'
 import AverageSessionChart from '@/components/charts/AverageSessionChart.tsx'
+import type { UserData } from '../../../api/my-types'
 
 const DashboardContainer = styled.section`
   display: flex;
@@ -24,26 +25,29 @@ const ChartsContainer = styled.div`
 
 const ChartsGridContainer = styled.div`
   display: grid;
-  min-height: 263px;
+
   align-self: stretch;
   grid-template-rows: repeat(1, minmax(0, 1fr));
   grid-template-columns: repeat(3, minmax(0, 1fr));
 `
 
-const Dashboard = () => {
+interface DashboardProps {
+  user: UserData
+}
+const Dashboard = ({ user }: DashboardProps) => {
   return (
     <DashboardContainer>
-      <DashboardHeader />
+      <DashboardHeader name={user.firstName} />
       <div>
         <ChartsContainer>
-          <DailyActivityChart data={} />
-          <div>
-            <AverageSessionChart data={} />
-            <DailyGoal />
-            <AverageSessionChart data={} />
-          </div>
+          {/*<DailyActivityChart data={} />*/}
+          <ChartsGridContainer>
+            {/*<AverageSessionChart data={} />*/}
+            {/*<DailyGoal />*/}
+            {/*<AverageSessionChart data={} />*/}
+          </ChartsGridContainer>
         </ChartsContainer>
-        <ChartsGridContainer>
+        <div>
           <ProfileCard
             name="Thomas Monsouri"
             bio="Be stronger than your excuses"
@@ -54,7 +58,7 @@ const Dashboard = () => {
           />
           <MacroCard />
           <DailyGoal />
-        </ChartsGridContainer>
+        </div>
       </div>
     </DashboardContainer>
   )

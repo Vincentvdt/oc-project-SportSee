@@ -8,6 +8,7 @@ export const USER_MAIN_DATA: UserMainData[] = [
       firstName: 'Karl',
       lastName: 'Dovineau',
       age: 31,
+      picture: 'pp.jpg',
     },
     todayScore: 0.12,
     keyData: {
@@ -23,6 +24,7 @@ export const USER_MAIN_DATA: UserMainData[] = [
       firstName: 'Cecilia',
       lastName: 'Ratorez',
       age: 34,
+      picture: 'pp2.png',
     },
     score: 0.3,
     keyData: {
@@ -134,6 +136,7 @@ export const USERS_DATA: UserData[] = USER_MAIN_DATA.map((user) => ({
   firstName: user.userInfos.firstName,
   lastName: user.userInfos.lastName,
   age: user.userInfos.age,
+  picture: user.userInfos.picture,
   todayScore: user.todayScore,
   score: user.score,
   keyData: user.keyData,
