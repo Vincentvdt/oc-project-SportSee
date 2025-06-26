@@ -1,29 +1,75 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
-const App = () => {
-  const [count, setCount] = useState(0)
+import Sidebar from '@/components/Sidebar.tsx'
+import Header from '@/components/Header.tsx'
+import styled from 'styled-components'
+import { BellIcon, DotFilledIcon, LightningBoltIcon } from '@radix-ui/react-icons'
+import ProfileCard from '@/components/ProfileCard.tsx'
+import MacroCard from '@/components/MacroCard.tsx'
 
+const Layout = styled.main`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  padding: 30px 40px;
+  align-items: flex-start;
+  gap: 40px;
+`
+const Dashboard = styled.section``
+
+const App = () => {
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
+      <Header />
+      <Layout>
+        <Sidebar />
+        <Dashboard>
+          <div>
+            <h1>
+              Bonjour, <span>Thomas</span> <br />
+              Quoi de beau aujourd'hui ?
+            </h1>
+            <div>
+              <article>
+                <LightningBoltIcon />
+                <span>Félicitation ! Vous avez explosé vos objectifs hier 👏</span>
+              </article>
+              <button>
+                <BellIcon />
+              </button>
+            </div>
+          </div>
+          <div>
+            <div>
+              <div>{/*Charts*/}</div>
+              <footer>
+                <p>© 2025 SportSee — Bouge mieux, vis plus fort. Tous droits réservés.</p>
+                <ul>
+                  <li>Mentions légales</li>
+                  <DotFilledIcon />
+                  <li>Confidentialité</li>
+                  <DotFilledIcon />
+                  <li>CGU</li>
+                  <DotFilledIcon />
+                  <li>Politique de cookies</li>
+                </ul>
+              </footer>
+            </div>
+            <div>
+              <ProfileCard
+                name="Thomas Monsouri"
+                bio="Be stronger than your excuses"
+                height="173cm"
+                weight="63kg"
+                pictureUrl="/pp.jpg"
+                onEdit={() => console.log('Edit clicked')}
+              />
+              <MacroCard />
+              <div></div>
+            </div>
+          </div>
+        </Dashboard>
+      </Layout>
     </>
   )
 }
