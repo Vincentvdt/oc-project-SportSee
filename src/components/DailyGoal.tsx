@@ -5,48 +5,11 @@ import YogaIcon from '@/assets/icons/yoga.svg?react'
 import SwimmingIcon from '@/assets/icons/swimming.svg?react'
 import CyclingIcon from '@/assets/icons/cycling.svg?react'
 import WorkoutIcon from '@/assets/icons/workout.svg?react'
+import type { Goal } from '../../api/types'
 
-interface Goal {
-  type: 'workout' | 'cycling' | 'swimming' | 'yoga'
-  objectif: {
-    value: string
-    unit: string
-  }
-  title: string
-  details: string
-  done: boolean
+interface DailyGoalProps {
+  goals: Goal[]
 }
-
-const initialGoals: Goal[] = [
-  {
-    type: 'workout',
-    objectif: { value: '1', unit: 'h' },
-    title: 'Squat',
-    details: '8x15 rep, 30s',
-    done: false,
-  },
-  {
-    type: 'cycling',
-    objectif: { value: '10', unit: 'km' },
-    title: "Parc de l'étoile",
-    details: 'Parcoure extérieur',
-    done: true,
-  },
-  {
-    type: 'swimming',
-    objectif: { value: '30', unit: 'min' },
-    title: 'Piscine municipale',
-    details: 'Nager crawl et brasse',
-    done: false,
-  },
-  {
-    type: 'yoga',
-    objectif: { value: '45', unit: 'min' },
-    title: 'Vinyasa Flow',
-    details: 'Étirements et respiration',
-    done: false,
-  },
-]
 
 const goalTheme = {
   workout: {
@@ -271,8 +234,8 @@ const GoalProgress = styled.div<{ $completed: boolean }>`
   gap: 4px;
 `
 
-const DailyGoal = () => {
-  const [userGoals, setUserGoals] = useState(initialGoals)
+const DailyGoal = ({ goals }: DailyGoalProps) => {
+  const [userGoals, setUserGoals] = useState(goals)
 
   const handleToggle = (idx: number) => {
     setUserGoals((goals) => goals.map((g, i) => (i === idx ? { ...g, done: !g.done } : g)))
@@ -285,7 +248,7 @@ const DailyGoal = () => {
     }
   }
 
-  const getCompletedGoalsCount = (goals: typeof userGoals) =>
+  const getCompletedGoalsCount = (goals: Goal[]) =>
     goals.filter((goal) => goal.done).length
 
   const completedGoals = getCompletedGoalsCount(userGoals)

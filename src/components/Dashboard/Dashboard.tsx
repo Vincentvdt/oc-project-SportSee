@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import ProfileCard from '@/components/ProfileCard.tsx'
 import MacroCard from '@/components/MacroCard.tsx'
 import DailyGoal from '@/components/DailyGoal.tsx'
-import type { UserData } from '../../../api/my-types'
+import type { UserData } from '../../../api/types'
 
 const DashboardContainer = styled.section`
   display: flex;
@@ -48,7 +48,7 @@ const Dashboard = ({ user }: DashboardProps) => {
         <div>
           <ProfileCard user={user} onEdit={() => console.log('Edit clicked')} />
           <MacroCard />
-          <DailyGoal />
+          <DailyGoal goals={user.goals} />
         </div>
       </div>
     </DashboardContainer>

@@ -61,6 +61,24 @@ export interface UserPerformance {
   data: PerformanceEntry[]
 }
 
+export interface GoalObjectif {
+  value: string
+  unit: string
+}
+
+export interface Goal {
+  type: 'workout' | 'cycling' | 'swimming' | 'yoga'
+  objectif: GoalObjectif
+  title: string
+  details: string
+  done: boolean
+}
+
+export interface UserGoal {
+  userId: number
+  goals: Goal[]
+}
+
 export interface UserData {
   id: number
   firstName: string
@@ -81,4 +99,5 @@ export interface UserData {
     kind: PerformanceKind
     data: PerformanceEntry[]
   }
+  goals: Goal[]
 }
