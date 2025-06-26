@@ -2,6 +2,11 @@ export interface UserInfo {
   firstName: string
   lastName: string
   age: number
+  bio: string
+  height: number
+  weight: number
+  gender: string
+  birthday: string
   picture: string
 }
 
@@ -61,6 +66,11 @@ export interface UserData {
   firstName: string
   lastName: string
   age: number
+  bio: string
+  height: number
+  weight: number
+  gender: string
+  birthday: string
   picture: string
   todayScore?: number
   score?: number

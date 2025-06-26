@@ -1,31 +1,37 @@
 import styled from 'styled-components'
 import { Pencil2Icon } from '@radix-ui/react-icons'
+import type { UserData } from '../../api/my-types'
 
 export interface UserProfile {
-  name: string
-  bio: string
-  height: number | string
-  weight: number | string
-  pictureUrl: string
+  user: UserData
   onEdit?: () => void
 }
 
 const Card = styled.article`
   display: flex;
+  flex-direction: row;
   padding: 32px 24px;
   align-items: flex-start;
   gap: 24px;
   background: #fff;
   border-radius: 16px;
   box-shadow: 0 2px 12px rgba(32, 32, 56, 0.06);
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden;
 `
 
 const AvatarContainer = styled.figure`
+  flex-shrink: 0;
   width: 110px;
   height: 110px;
   border-radius: 16px;
   overflow: hidden;
   margin: 0;
+  background: #f3f3f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   img {
     width: 100%;
@@ -38,21 +44,28 @@ const AvatarContainer = styled.figure`
 const InfoSection = styled.section`
   display: flex;
   flex-direction: column;
-  gap: 11px;
-  flex: 1 0 0;
-  height: 131px;
+  gap: 16px;
+  flex: 1 1 0;
+  min-width: 0; /* key for text ellipsis! */
   justify-content: space-between;
 `
 
 const Header = styled.header`
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+  min-width: 0;
 
   h3 {
     color: #1e1f24;
     font-size: 24px;
     font-weight: 500;
     margin: 0;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   button {
@@ -79,16 +92,20 @@ const Header = styled.header`
 
 const Bio = styled.p`
   color: #62636c;
-  font-size: 16px;
   font-weight: 500;
-  margin: 0;
-  flex: 1 0 0;
   text-align: left;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  white-space: normal;
 `
 
 const DataGroup = styled.div`
   display: flex;
   gap: 32px;
+  min-width: 0;
 
   > div {
     display: flex;
@@ -100,6 +117,7 @@ const DataGroup = styled.div`
       color: #1e1f24;
       font-weight: 500;
       text-align: center;
+      word-break: break-word;
     }
 
     > span:nth-child(2) {
@@ -110,15 +128,13 @@ const DataGroup = styled.div`
   }
 `
 
-const ProfileCard = ({ name, bio, height, weight, pictureUrl, onEdit }: UserProfile) => {
-  const [firstName, lastName] = name.split(' ')
-
+const ProfileCard = ({ user, onEdit }: UserProfile) => {
   return (
     <Card>
       <InfoSection>
         <Header>
-          <h3>
-            {firstName} {lastName && `${lastName.slice(0, 1)}.`}
+          <h3 title={`${user.firstName} ${user.lastName}`}>
+            {user.firstName} {user.lastName.slice(0, 1)}.
           </h3>
           {onEdit && (
             <button aria-label="Edit profile" onClick={onEdit}>
@@ -126,20 +142,28 @@ const ProfileCard = ({ name, bio, height, weight, pictureUrl, onEdit }: UserProf
             </button>
           )}
         </Header>
-        <Bio>{bio}</Bio>
+        <Bio title={user.bio}>{user.bio}</Bio>
         <DataGroup>
           <div>
-            <span>{height}</span>
+            <span>{user.age}</span>
+            <span>Age</span>
+          </div>
+          <div>
+            <span>{user.gender}</span>
+            <span>Genre</span>
+          </div>
+          <div>
+            <span>{user.height}cm</span>
             <span>Taille</span>
           </div>
           <div>
-            <span>{weight}</span>
+            <span>{user.weight}kg</span>
             <span>Poids</span>
           </div>
         </DataGroup>
       </InfoSection>
       <AvatarContainer>
-        <img src={pictureUrl} alt={`${name} profile`} />
+        <img src={user.picture} alt={`${user.firstName} profile`} />
       </AvatarContainer>
     </Card>
   )

@@ -46,14 +46,7 @@ const Dashboard = ({ user }: DashboardProps) => {
           </ChartsGridContainer>
         </ChartsContainer>
         <div>
-          <ProfileCard
-            name="Thomas Monsouri"
-            bio="Be stronger than your excuses"
-            height="173cm"
-            weight="63kg"
-            pictureUrl="/pp.jpg"
-            onEdit={() => console.log('Edit clicked')}
-          />
+          <ProfileCard user={user} onEdit={() => console.log('Edit clicked')} />
           <MacroCard />
           <DailyGoal />
         </div>
