@@ -6,7 +6,6 @@ import type {
   UserPerformance,
   UserData,
   UserGoal,
-  Goal,
 } from './types.ts'
 
 export const USER_MAIN_DATA: UserMainData[] = [
@@ -179,7 +178,7 @@ export const USER_GOALS: UserGoal[] = [
         objectif: { value: '45', unit: 'min' },
         title: 'Vinyasa Flow',
         details: 'Étirements et respiration',
-        done: false,
+        done: true,
       },
     ],
   },
