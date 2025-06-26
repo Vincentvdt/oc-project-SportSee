@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
-import ChartContainer from './charts/ChartContainer.tsx'
+import ChartContainer from './ChartContainer.tsx'
 import { PolarAngleAxis, PolarGrid, Radar, RadarChart, Tooltip } from 'recharts'
-import { PerformanceData } from '../../../../Documents/Programmation/OpenClassroom/Project_OC_SportSee/frontend/src/interfaces'
+import { PerformanceData } from '../../../../../Documents/Programmation/OpenClassroom/Project_OC_SportSee/frontend/src/interfaces'
 
 interface PerformanceChartProps {
   data: PerformanceData

@@ -93,6 +93,11 @@ const CardHeader = styled.header`
   align-items: center;
   align-self: stretch;
 
+  > div {
+    display: flex;
+    gap: 8px;
+  }
+
   h3 {
     color: #1e1f24;
 
@@ -257,6 +262,15 @@ const CheckboxLabel = styled.label<{ $main: string }>`
   }
 `
 
+const GoalProgress = styled.div<{ $completed: boolean }>`
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: ${({ $completed }) => ($completed ? '#099f55' : 'black')};
+  font-weight: 500;
+  gap: 4px;
+`
+
 const DailyGoal = () => {
   const [userGoals, setUserGoals] = useState(initialGoals)
 
@@ -271,10 +285,23 @@ const DailyGoal = () => {
     }
   }
 
+  const getCompletedGoalsCount = (goals: typeof userGoals) =>
+    goals.filter((goal) => goal.done).length
+
+  const completedGoals = getCompletedGoalsCount(userGoals)
+  const totalGoals = userGoals.length
+
   return (
     <Card aria-label="Objectifs quotidiens">
       <CardHeader>
-        <h3>Objectif du jour</h3>
+        <div>
+          <h3>Objectifs du jour</h3>
+
+          <GoalProgress $completed={userGoals.every((goal) => goal.done)}>
+            {completedGoals}/{totalGoals}
+          </GoalProgress>
+        </div>
+
         <DotsHorizontalIcon />
       </CardHeader>
       <GoalList>

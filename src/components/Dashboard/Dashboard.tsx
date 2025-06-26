@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import ProfileCard from '@/components/ProfileCard.tsx'
 import MacroCard from '@/components/MacroCard.tsx'
-import DailyGoal from '@/components/charts/DailyGoal.tsx'
+import DailyGoal from '@/components/DailyGoal.tsx'
 import DailyActivityChart from '@/components/charts/DailyActivityChart.tsx'
 import AverageSessionChart from '@/components/charts/AverageSessionChart.tsx'
 import type { UserData } from '../../../api/my-types'
