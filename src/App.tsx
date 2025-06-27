@@ -12,10 +12,15 @@ import type { UserData } from '../api/types'
 const Layout = styled.main`
   width: 100%;
   height: 100%;
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr;
   padding: 32px 40px;
-  align-items: flex-start;
   gap: 2.5rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    padding: 16px;
+  }
 `
 
 const App = () => {

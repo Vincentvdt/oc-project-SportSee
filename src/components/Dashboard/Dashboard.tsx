@@ -1,5 +1,5 @@
 import DashboardHeader from '@/components/Dashboard/DashboardHeader.tsx'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import ProfileCard from '@/components/ProfileCard.tsx'
 import MacroCard from '@/components/MacroCard.tsx'
@@ -14,43 +14,28 @@ import MealPrepCard from '@/components/MealPrepCard.tsx'
 const DashboardContainer = styled.section`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   gap: 2rem;
-  flex: 1 0 0;
+  flex: 1;
+  width: 100%;
 `
-const DashboardCharts = styled.div`
+
+const DashboardGrid = styled.div`
   display: grid;
+  width: 100%;
   gap: 1.5rem;
-  flex: 1 0 0;
-  align-self: stretch;
-  grid-template-columns: 3fr 1fr;
-  @media (max-width: 900px) {
-    grid-template-columns: 1fr;
-  }
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  align-items: stretch;
 `
 
-const ChartsContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1.5rem;
-`
-
-const ChartsGridContainer = styled.div`
-  display: grid;
-  gap: 1.5rem;
-  align-self: stretch;
-  grid-template-rows: repeat(1, minmax(0, 1fr));
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-`
-
-const DashboardAside = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1rem;
-  flex: 1 0 0;
-  align-self: stretch;
+const Item = styled.div<{ $span?: number }>`
+  width: 100%;
+  ${(p) =>
+    p.$span &&
+    css`
+      @media (min-width: 1024px) {
+        grid-column: span ${p.$span};
+      }
+    `}
 `
 
 interface DashboardProps {
@@ -60,22 +45,32 @@ const Dashboard = ({ user }: DashboardProps) => {
   return (
     <DashboardContainer>
       <DashboardHeader name={user.firstName} />
-      <DashboardCharts>
-        <ChartsContainer>
+      <DashboardGrid>
+        <Item $span={2}>
           <DailyActivityChart data={user.activity} />
-          <ChartsGridContainer>
-            <PerformanceChart data={user.performance} />
-            <GoalChart data={user.score || user.todayScore || null} />
-            <AverageSessionChart data={user.averageSessions} />
-          </ChartsGridContainer>
+        </Item>
+        <Item>
+          <PerformanceChart data={user.performance} />
+        </Item>
+        <Item>
+          <GoalChart data={user.score || user.todayScore || null} />
+        </Item>
+        <Item>
+          <AverageSessionChart data={user.averageSessions} />
+        </Item>
+        <Item $span={2}>
           <MealPrepCard />
-        </ChartsContainer>
-        <DashboardAside>
+        </Item>
+        <Item $span={2}>
           <ProfileCard user={user} />
+        </Item>
+        <Item>
           <MacroCard macros={user.keyData} />
+        </Item>
+        <Item>
           <DailyGoal goals={user.goals} />
-        </DashboardAside>
-      </DashboardCharts>
+        </Item>
+      </DashboardGrid>
     </DashboardContainer>
   )
 }
