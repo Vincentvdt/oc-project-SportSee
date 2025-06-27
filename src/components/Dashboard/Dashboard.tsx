@@ -53,7 +53,6 @@ interface DashboardProps {
   user: UserData
 }
 const Dashboard = ({ user }: DashboardProps) => {
-  console.log(user.performance)
   return (
     <DashboardContainer>
       <DashboardHeader name={user.firstName} />
@@ -67,7 +66,7 @@ const Dashboard = ({ user }: DashboardProps) => {
           </ChartsGridContainer>
         </ChartsContainer>
         <DashboardAside>
-          <ProfileCard user={user} onEdit={() => console.log('Edit clicked')} />
+          <ProfileCard user={user} />
           <MacroCard macros={user.keyData} />
           <DailyGoal goals={user.goals} />
         </DashboardAside>
