@@ -2,13 +2,17 @@ export interface UserInfo {
   firstName: string
   lastName: string
   age: number
+  bio: string
+  height: number
+  weight: number
+  gender: string
+  birthday: string
+  picture: string
 }
-
-export interface KeyData {
-  calorieCount: number
-  proteinCount: number
-  carbohydrateCount: number
-  lipidCount: number
+export interface MacroData {
+  quantity: number
+  unit?: string
+  macro: 'kCal' | 'Proteines' | 'Glucides' | 'Lipides'
 }
 
 export interface ActivitySession {
@@ -30,13 +34,16 @@ export interface PerformanceEntry {
 export interface PerformanceKind {
   [key: number]: string
 }
-
+export interface Performance {
+  data: PerformanceEntry[]
+  kind: PerformanceKind
+}
 export interface UserMainData {
   id: number
   userInfos: UserInfo
   todayScore?: number
   score?: number
-  keyData: KeyData
+  keyData: MacroData[]
 }
 
 export interface UserActivity {
@@ -55,18 +62,40 @@ export interface UserPerformance {
   data: PerformanceEntry[]
 }
 
+export interface GoalObjectif {
+  value: string
+  unit: string
+}
+
+export interface Goal {
+  type: 'workout' | 'cycling' | 'swimming' | 'yoga'
+  objectif: GoalObjectif
+  title: string
+  details: string
+  done: boolean
+}
+
+export interface UserGoal {
+  userId: number
+  goals: Goal[]
+}
+
 export interface UserData {
   id: number
   firstName: string
   lastName: string
   age: number
+  bio: string
+  height: number
+  weight: number
+  gender: string
+  birthday: string
+  picture: string
   todayScore?: number
   score?: number
-  keyData: KeyData
+  keyData: MacroData[]
   activity: ActivitySession[]
   averageSessions: AverageSession[]
-  performance: {
-    kind: PerformanceKind
-    data: PerformanceEntry[]
-  }
+  performance: Performance
+  goals: Goal[]
 }

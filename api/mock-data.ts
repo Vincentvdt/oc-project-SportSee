@@ -1,5 +1,12 @@
 // Mock data derived from the provided real data
-import type { UserActivity, UserAverage, UserMainData, UserPerformance, UserData } from './my-types'
+import type {
+  UserActivity,
+  UserAverage,
+  UserMainData,
+  UserPerformance,
+  UserData,
+  UserGoal,
+} from './types.ts'
 
 export const USER_MAIN_DATA: UserMainData[] = [
   {
@@ -8,14 +15,20 @@ export const USER_MAIN_DATA: UserMainData[] = [
       firstName: 'Karl',
       lastName: 'Dovineau',
       age: 31,
+      bio: 'Fitness addict, coffee lover, and tech enthusiast. Living life one squat at a time.',
+      height: 182,
+      weight: 78,
+      gender: 'male',
+      birthday: '1993-02-15',
+      picture: 'pp.jpg',
     },
     todayScore: 0.12,
-    keyData: {
-      calorieCount: 1930,
-      proteinCount: 155,
-      carbohydrateCount: 290,
-      lipidCount: 50,
-    },
+    keyData: [
+      { quantity: 1930, macro: 'kCal' },
+      { quantity: 155, macro: 'Proteines', unit: 'g' },
+      { quantity: 290, macro: 'Glucides', unit: 'g' },
+      { quantity: 50, macro: 'Lipides', unit: 'g' },
+    ],
   },
   {
     id: 18,
@@ -23,14 +36,20 @@ export const USER_MAIN_DATA: UserMainData[] = [
       firstName: 'Cecilia',
       lastName: 'Ratorez',
       age: 34,
+      bio: 'Marathon runner & plant-based foodie. Loves dogs, data, and early morning yoga.',
+      height: 168,
+      weight: 61,
+      gender: 'female',
+      birthday: '1990-06-22',
+      picture: 'pp2.png',
     },
     score: 0.3,
-    keyData: {
-      calorieCount: 2500,
-      proteinCount: 90,
-      carbohydrateCount: 150,
-      lipidCount: 120,
-    },
+    keyData: [
+      { quantity: 1930, macro: 'kCal' },
+      { quantity: 155, macro: 'Proteines', unit: 'g' },
+      { quantity: 290, macro: 'Glucides', unit: 'g' },
+      { quantity: 50, macro: 'Lipides', unit: 'g' },
+    ],
   },
 ]
 
@@ -92,57 +111,138 @@ export const USER_PERFORMANCE: UserPerformance[] = [
   {
     userId: 12,
     kind: {
-      1: 'cardio',
-      2: 'energy',
-      3: 'endurance',
-      4: 'strength',
-      5: 'speed',
-      6: 'intensity',
+      1: 'Cardio',
+      2: 'Énergie',
+      3: 'Endurance',
+      4: 'Force',
+      5: 'Vitesse',
+      6: 'Intensité',
     },
     data: [
-      { value: 80, kind: 1 },
-      { value: 120, kind: 2 },
-      { value: 140, kind: 3 },
-      { value: 50, kind: 4 },
-      { value: 200, kind: 5 },
-      { value: 90, kind: 6 },
+      { value: 80, kind: 1 }, // Cardio
+      { value: 120, kind: 2 }, // Énergie
+      { value: 50, kind: 4 }, // Force
+      { value: 140, kind: 3 }, // Endurance
+      { value: 200, kind: 5 }, // Vitesse
+      { value: 90, kind: 6 }, // Intensité
     ],
   },
   {
     userId: 18,
     kind: {
-      1: 'cardio',
-      2: 'energy',
-      3: 'endurance',
-      4: 'strength',
-      5: 'speed',
-      6: 'intensity',
+      1: 'Cardio',
+      2: 'Énergie',
+      3: 'Endurance',
+      4: 'Force',
+      5: 'Vitesse',
+      6: 'Intensité',
     },
     data: [
-      { value: 200, kind: 1 },
-      { value: 240, kind: 2 },
-      { value: 80, kind: 3 },
-      { value: 80, kind: 4 },
-      { value: 220, kind: 5 },
-      { value: 110, kind: 6 },
+      { value: 200, kind: 1 }, // Cardio
+      { value: 240, kind: 2 }, // Énergie
+      { value: 80, kind: 4 }, // Force
+      { value: 80, kind: 3 }, // Endurance
+      { value: 220, kind: 5 }, // Vitesse
+      { value: 110, kind: 6 }, // Intensité
     ],
   },
 ]
 
-export const USERS_DATA: UserData[] = USER_MAIN_DATA.map((user) => ({
+export const USER_GOALS: UserGoal[] = [
+  {
+    userId: 12,
+    goals: [
+      {
+        type: 'workout',
+        objectif: { value: '1', unit: 'h' },
+        title: 'Squat',
+        details: '8x15 rep, 30s',
+        done: false,
+      },
+      {
+        type: 'cycling',
+        objectif: { value: '10', unit: 'km' },
+        title: "Parc de l'étoile",
+        details: 'Parcoure extérieur',
+        done: true,
+      },
+      {
+        type: 'swimming',
+        objectif: { value: '30', unit: 'min' },
+        title: 'Piscine municipale',
+        details: 'Nager crawl et brasse',
+        done: false,
+      },
+      {
+        type: 'yoga',
+        objectif: { value: '45', unit: 'min' },
+        title: 'Vinyasa Flow',
+        details: 'Étirements et respiration',
+        done: true,
+      },
+    ],
+  },
+  {
+    userId: 18,
+    goals: [
+      {
+        type: 'workout',
+        objectif: { value: '1', unit: 'h' },
+        title: 'Squat',
+        details: '8x15 rep, 30s',
+        done: false,
+      },
+      {
+        type: 'cycling',
+        objectif: { value: '10', unit: 'km' },
+        title: "Parc de l'étoile",
+        details: 'Parcoure extérieur',
+        done: true,
+      },
+      {
+        type: 'swimming',
+        objectif: { value: '30', unit: 'min' },
+        title: 'Piscine municipale',
+        details: 'Nager crawl et brasse',
+        done: false,
+      },
+      {
+        type: 'yoga',
+        objectif: { value: '45', unit: 'min' },
+        title: 'Vinyasa Flow',
+        details: 'Étirements et respiration',
+        done: false,
+      },
+    ],
+  },
+]
+
+const USERS_DATA: UserData[] = USER_MAIN_DATA.map((user) => ({
   id: user.id,
   firstName: user.userInfos.firstName,
   lastName: user.userInfos.lastName,
   age: user.userInfos.age,
+  bio: user.userInfos.bio,
+  height: user.userInfos.height,
+  weight: user.userInfos.weight,
+  gender: user.userInfos.gender,
+  birthday: user.userInfos.birthday,
+  picture: user.userInfos.picture,
   todayScore: user.todayScore,
   score: user.score,
   keyData: user.keyData,
   activity: USER_ACTIVITY.find((a) => a.userId === user.id)?.sessions ?? [],
   averageSessions: USER_AVERAGE_SESSIONS.find((s) => s.userId === user.id)?.sessions ?? [],
-  performance: USER_PERFORMANCE.find((p) => p.userId === user.id) ?? {
-    kind: {},
-    data: [],
-  },
+  performance: USER_PERFORMANCE.find((p) => p.userId === user.id)
+    ? {
+        data: USER_PERFORMANCE.find((p) => p.userId === user.id)!.data,
+        kind: USER_PERFORMANCE.find((p) => p.userId === user.id)!.kind,
+      }
+    : {
+        data: [],
+        kind: {},
+      },
+  goals: USER_GOALS.find((g) => g.userId === user.id)?.goals ?? [],
 }))
 
 export default USERS_DATA

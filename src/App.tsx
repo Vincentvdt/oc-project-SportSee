@@ -1,29 +1,62 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
+import Sidebar from '@/components/Sidebar.tsx'
+import Header from '@/components/Header.tsx'
+import styled from 'styled-components'
+import Dashboard from '@/components/Dashboard/Dashboard.tsx'
+import Footer from '@/components/Footer.tsx'
+import { useQuery } from '@tanstack/react-query'
+import { fetchUserData } from '@/hooks/user.tsx'
+import type { UserData } from '../api/types'
+
+const Layout = styled.main`
+  display: flex;
+  padding: 0 40px;
+  width: 100vw;
+  box-sizing: border-box;
+  justify-content: flex-start;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    padding: 16px;
+  }
+`
+const DashboardOuter = styled.div`
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  min-width: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+`
+
 const App = () => {
-  const [count, setCount] = useState(0)
+  const {
+    data: userData,
+    isPending,
+    isError,
+  } = useQuery<UserData>({
+    queryKey: ['user', 12],
+    queryFn: fetchUserData,
+  })
+
+  if (isError) return <div>Error</div>
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
+      <Header />
+      <Layout>
+        <Sidebar picture={userData?.picture} firstName={userData?.firstName} loading={isPending} />
+        {isPending ? (
+          <div>Chargement ...</div>
+        ) : (
+          <DashboardOuter>
+            <Dashboard user={userData} />
+          </DashboardOuter>
+        )}
+      </Layout>
+      <Footer />
     </>
   )
 }
