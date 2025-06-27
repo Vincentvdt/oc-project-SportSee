@@ -1,151 +1,130 @@
-import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis } from 'recharts'
+import type { ActivitySession } from '@api/types.ts'
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  Legend,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from 'recharts'
 import styled from 'styled-components'
-import ChartContainer from './ChartContainer.tsx'
-import type { NameType, Payload, ValueType } from 'recharts/types/component/DefaultTooltipContent'
+const CustomTooltip = ({ active, payload }: { active?: boolean; payload?: any[] }) => {
+  if (active && payload && payload.length > 0) {
+    const data = payload[0].payload
 
-const BarChartTitle = styled.div`
-  color: #20253a;
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 24px;
-  text-align: left;
-`
+    // French date "7 juil.24"
+    let dateLabel = data.day
+    if (typeof data.day === 'string') {
+      const date = new Date(data.day)
+      dateLabel =
+        date.getDate() +
+        ' ' +
+        date.toLocaleString('fr-FR', { month: 'short' }) +
+        ' ' +
+        String(date.getFullYear()).slice(-2)
+    }
 
-const LegendText = styled.span`
-  color: #74798c;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 24px;
-  margin-left: 4px;
-`
-
-const TooltipWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: #e60000;
-  gap: 7px;
-  padding: 4px 6px;
-  color: #fff;
-  text-align: center;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 24px;
-`
-
-interface TooltipProps {
-  active?: boolean
-  payload?: Payload<ValueType, NameType>[]
-}
-
-const CustomTooltip = ({ active, payload }: TooltipProps) => {
-  if (active && payload?.length) {
     return (
-      <TooltipWrapper>
-        {payload.map((entry, index) => (
-          <span key={index}>{`${entry?.value}${entry?.unit}`}</span>
-        ))}
-      </TooltipWrapper>
+      <div
+        style={{
+          background: '#fff',
+          padding: 12,
+          borderRadius: 10,
+          fontWeight: 600,
+          boxShadow: '0 2px 8px #1112',
+          minWidth: 80,
+        }}
+      >
+        <div style={{ fontWeight: 700, marginBottom: 10, color: '#313131' }}>{dateLabel}</div>
+        {payload.map((p, i) => {
+          const pillBg = p.color || p.fill || '#ccc'
+          return (
+            <div
+              key={i}
+              style={{
+                color: pillBg,
+                fontSize: 15,
+                letterSpacing: '0.5px',
+                fontWeight: 700,
+                textAlign: 'center',
+              }}
+            >
+              {p.dataKey === 'kilogram' && `${p.value} kg`}
+              {p.dataKey === 'calories' && `${p.value} kCal`}
+            </div>
+          )
+        })}
+      </div>
     )
   }
-
   return null
 }
 
-interface ActivitySession {
-  day: string
-  kilogram: number
-  calories: number
-}
-
-interface ActivityData {
-  userId: number
-  sessions: ActivitySession[]
-}
-
+const ChartWrapper = styled.div`
+  background: #fff;
+  border-radius: 20px;
+  padding: 16px;
+  width: 835px;
+  height: 320px;
+  box-sizing: border-box; /* Important for padding math */
+  display: flex;
+  flex-direction: column;
+`
+const ChartTitle = styled.h3`
+  color: rgba(0, 0, 0, 0.85);
+  text-align: left;
+  font-size: 15px;
+  margin: 0 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  position: relative;
+`
 interface DailyActivityChartProps {
-  data: ActivityData
-}
-
-interface PayloadType extends Payload<ValueType, NameType> {
-  unit: string
+  data: ActivitySession[]
 }
 
 const DailyActivityChart = ({ data }: DailyActivityChartProps) => {
   return (
-    <ChartContainer
-      width={'100%'}
-      height={320}
-      chartWidth={100}
-      chartHeight={92}
-      color={'#FBFBFB'}
-      padding={{
-        top: 23,
-        right: 30,
-        bottom: 23,
-        left: 30,
-      }}
-      title={<BarChartTitle>Activité quotidienne</BarChartTitle>}
-    >
-      <BarChart data={data.sessions} barGap={8}>
-        <CartesianGrid strokeDasharray="3 3" vertical={false} />
-        <XAxis
-          tickFormatter={(index) => ((index as number) + 1).toString()}
-          tickMargin={10}
-          tickSize={14}
-          tickLine={false}
-          tick={{
-            fill: '#9B9EAC',
-            fontWeight: '500',
-          }}
-        />
-        <YAxis
-          orientation={'right'}
-          tickMargin={10}
-          tickSize={14}
-          tick={{
-            fill: '#9B9EAC',
-            fontWeight: '500',
-          }}
-          axisLine={false}
-          tickLine={false}
-        />
-        <Tooltip content={<CustomTooltip />} />
-        <Legend
-          wrapperStyle={{ top: -24 }}
-          align="right"
-          verticalAlign="top"
-          iconType="circle"
-          iconSize={12}
-          formatter={(value, entry) => (
-            <LegendText>
-              {' '}
-              {value} ({(entry.payload as PayloadType).unit}){' '}
-            </LegendText>
-          )}
-        />
-        <Bar
-          name="Poids"
-          unit="kg"
-          dataKey="kilogram"
-          fill="#282D30"
-          barSize={7}
-          radius={[10, 10, 0, 0]}
-        />
-        <Bar
-          name="Calories brûlées"
-          unit="kCal"
-          dataKey="calories"
-          fill="#E60000"
-          barSize={7}
-          radius={[10, 10, 0, 0]}
-        />
-      </BarChart>
-    </ChartContainer>
+    <ChartWrapper>
+      <ChartTitle>Activité quotidienne</ChartTitle>
+      <ResponsiveContainer width="100%" height="100%">
+        <BarChart data={data} margin={{ right: 16, left: 16, top: 16, bottom: 32 }}>
+          <CartesianGrid vertical={false} />
+          <XAxis
+            dataKey="day"
+            tickMargin={16}
+            tickLine={false}
+            tickFormatter={(date) => new Date(date).getDate().toString()}
+          />
+          <YAxis orientation="right" tickMargin={16} tickLine={false} axisLine={false} />
+          <Tooltip
+            allowEscapeViewBox={{ x: true, y: true }}
+            content={<CustomTooltip />}
+            cursor={{ fill: '#fde2e4', opacity: 1 }}
+          />
+          <Legend align="right" verticalAlign="top" wrapperStyle={{ top: -24 }} />
+          <Bar
+            dataKey="kilogram"
+            name="Poids (kg)"
+            fill="#282D30"
+            legendType="circle"
+            barSize={8}
+            radius={[8, 8, 0, 0]}
+          />
+          <Bar
+            dataKey="calories"
+            name="Calories brûlées (kCal)"
+            fill="#E60000"
+            legendType="circle"
+            barSize={8}
+            radius={[8, 8, 0, 0]}
+          />
+        </BarChart>
+      </ResponsiveContainer>
+    </ChartWrapper>
   )
 }
 
