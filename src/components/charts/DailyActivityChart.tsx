@@ -79,7 +79,6 @@ const ChartWrapper = styled.div`
   border-radius: 24px;
   padding: 1rem;
   align-self: stretch;
-  height: 100%;
   width: 100%;
   box-sizing: border-box;
   display: flex;
@@ -103,7 +102,7 @@ const DailyActivityChart = ({ data }: DailyActivityChartProps) => {
   return (
     <ChartWrapper role="img" aria-label="Activité quotidienne">
       <ChartTitle>Activité quotidienne</ChartTitle>
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer width="100%" height={260}>
         <BarChart data={data} margin={{ right: 16, left: 16, top: 16, bottom: 32 }}>
           <CartesianGrid vertical={false} />
           <XAxis

@@ -9,6 +9,7 @@ const Card = styled.section`
   background: #fff;
   border-radius: 16px;
   box-shadow: 0 2px 12px rgba(32, 32, 56, 0.06);
+  align-self: stretch;
 `
 
 const CardTitle = styled.h3`
@@ -24,6 +25,15 @@ const CardTitle = styled.h3`
     font-weight: 500;
     margin-left: 0.5rem;
   }
+`
+
+const CardGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 `
 
 const MealItem = styled.div`
@@ -69,35 +79,37 @@ const Info = styled.div`
 const MealPrepCard = () => (
   <Card>
     <CardTitle>
-      Préparation des repas <span>(configurée repas végé)</span>
+      Préparation des repas <span>végétarien</span>
     </CardTitle>
-    <MealItem>
-      <IconBox>
-        <AppleIcon aria-hidden="true" />
-      </IconBox>
-      <Info>
-        <span>Salade quinoa</span>
-        <span>350kCal • 15g prot • 10min</span>
-      </Info>
-    </MealItem>
-    <MealItem>
-      <IconBox>
-        <AppleIcon aria-hidden="true" />
-      </IconBox>
-      <Info>
-        <span>Pâtes aux légumes</span>
-        <span>600kCal • 25g prot • 25min</span>
-      </Info>
-    </MealItem>
-    <MealItem>
-      <IconBox>
-        <AppleIcon aria-hidden="true" />
-      </IconBox>
-      <Info>
-        <span>Smoothie protéiné</span>
-        <span>250kCal • 20g prot • 5min</span>
-      </Info>
-    </MealItem>
+    <CardGrid>
+      <MealItem>
+        <IconBox>
+          <AppleIcon aria-hidden="true" />
+        </IconBox>
+        <Info>
+          <span>Salade quinoa</span>
+          <span>350kCal • 15g prot • 10min</span>
+        </Info>
+      </MealItem>
+      <MealItem>
+        <IconBox>
+          <AppleIcon aria-hidden="true" />
+        </IconBox>
+        <Info>
+          <span>Pâtes aux légumes</span>
+          <span>600kCal • 25g prot • 25min</span>
+        </Info>
+      </MealItem>
+      <MealItem>
+        <IconBox>
+          <AppleIcon aria-hidden="true" />
+        </IconBox>
+        <Info>
+          <span>Smoothie protéiné</span>
+          <span>250kCal • 20g prot • 5min</span>
+        </Info>
+      </MealItem>
+    </CardGrid>
   </Card>
 )
 
