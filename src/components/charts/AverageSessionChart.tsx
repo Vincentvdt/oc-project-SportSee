@@ -1,108 +1,104 @@
-import ChartContainer from './ChartContainer.tsx'
+import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
+import type { AverageSession } from '../../../api/types.ts'
 import styled from 'styled-components'
-import { AverageSessionData } from '../../../../../Documents/Programmation/OpenClassroom/Project_OC_SportSee/frontend/src/interfaces'
-import { Line, LineChart, Tooltip, XAxis, YAxis } from 'recharts'
-import { NameType, Payload, ValueType } from 'recharts/types/component/DefaultTooltipContent'
-
-const CustomTitle = styled.p`
-  width: 100%;
-  text-align: left;
-  color: #fff;
-  font-size: 15px;
-  font-weight: 500;
-  line-height: 24px; /* 160% */
-  opacity: 0.504;
-  height: 30%;
-`
-
-const TooltipWrapper = styled.div`
-  width: 39px;
-  height: 25px;
-  flex-shrink: 0;
-  background: #fff;
-
-  p {
-    color: #000;
-    text-align: center;
-    font-size: 8px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 24px;
-  }
-`
-
-interface TooltipProps {
-  active?: boolean
-  payload?: Payload<ValueType, NameType>[]
-}
-
-const CustomTooltip = ({ active, payload }: TooltipProps) => {
-  if (active && payload) {
-    return (
-      <TooltipWrapper>
-        <p className="label">{`${payload[0].value} min`}</p>
-      </TooltipWrapper>
-    )
-  } else {
-    return null
-  }
-}
 
 interface AverageSessionChartProps {
-  data: AverageSessionData
+  data: AverageSession[]
 }
 
-const formatDayTick = (day: number) => {
-  const daysOfWeek = ['L', 'M', 'M', 'J', 'V', 'S', 'D'] // Corresponding first letters
-  return daysOfWeek[day - 1] // Adjust day to zero-based index
+const renderCustomAxisTick = ({
+  x,
+  y,
+  payload,
+}: {
+  x?: number
+  y?: number
+  payload: { value: number | string }
+}) => {
+  const dayNum = Number(payload.value)
+  const dayLetters = ['L', 'M', 'M', 'J', 'V', 'S', 'D']
+  const letter = dayNum >= 1 && dayNum <= 7 ? dayLetters[dayNum - 1] : ''
+
+  return (
+    <g transform={`translate(${x},${y})`}>
+      <text x={0} y={0} dy={16} textAnchor="middle" fill="#FFFFFF" fontSize={16} fontWeight="bold">
+        {letter}
+      </text>
+    </g>
+  )
 }
+
+const CustomTooltip = ({
+  active,
+  payload,
+}: {
+  active?: boolean
+  payload?: { value: number }[]
+}) => {
+  if (active && payload && payload.length > 0 && payload[0]?.value !== undefined) {
+    return (
+      <div style={{ background: '#fff', padding: 8, borderRadius: 8, fontWeight: 600 }}>
+        {payload[0].value} min
+      </div>
+    )
+  }
+  return null
+}
+
+const ChartWrapper = styled.div`
+  background: red;
+  border-radius: 20px;
+  padding: 16px;
+`
+
+const ChartTitle = styled.h3`
+  color: rgba(255, 255, 255, 0.85);
+  text-align: left;
+  font-size: 15px;
+  margin: 0 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+
+  position: relative;
+`
+
 const AverageSessionChart = ({ data }: AverageSessionChartProps) => {
   return (
-    <ChartContainer
-      width={258}
-      height={263}
-      color={'#f00'}
-      chartWidth={100}
-      chartHeight={70}
-      title={<CustomTitle>Durée moyenne des sessions</CustomTitle>}
-      titlePadding={{
-        top: 29,
-        right: 34,
-        left: 33,
-      }}
-    >
-      <LineChart data={data.sessions}>
-        <XAxis
-          allowDataOverflow={true}
-          dataKey="day"
-          axisLine={false}
-          tickLine={false}
-          tickFormatter={formatDayTick}
-          tick={{ fontSize: 12, fontWeight: 500, fill: 'rgba(255, 255, 255, 1)' }}
-          padding={{ left: 12, right: 12 }}
-        />
-        <YAxis
-          hide={true}
-          tickCount={60}
-          domain={['dataMin - 5', 'dataMax + 5']}
-          allowDecimals={false}
-        />
-        <Tooltip cursor={false} content={<CustomTooltip />} />
-        <Line
-          type="bump"
-          dot={false}
-          activeDot={{
-            fill: 'rgba(255,255,255,1)',
-            stroke: 'rgba(255,255,255,0.5)',
-            strokeWidth: 5,
-            r: 4,
-          }}
-          dataKey="sessionLength"
-          stroke="#ffffff"
-          strokeWidth={2}
-        />
-      </LineChart>
-    </ChartContainer>
+    <ChartWrapper>
+      <ChartTitle>Durée moyenne des sessions</ChartTitle>
+      <ResponsiveContainer width="100%" aspect={1}>
+        <LineChart data={data} margin={{ right: 16, left: 16, top: 16 }}>
+          <Line
+            type="monotone"
+            dataKey="sessionLength"
+            stroke="#fff"
+            strokeWidth={2}
+            dot={false}
+            activeDot={{
+              r: 6,
+              fill: '#fff',
+              stroke: 'rgba(255,255,255,0.5)',
+              strokeWidth: 10,
+              style: { filter: 'drop-shadow(0px 0px 8px rgba(255,255,255,0.4))' },
+            }}
+          />
+          <YAxis padding={{ bottom: 25 }} hide={true} type="number" includeHidden />
+          <XAxis
+            dataKey="day"
+            type="category"
+            tick={renderCustomAxisTick}
+            axisLine={false}
+            tickLine={false}
+          />
+          <Tooltip
+            cursor={false}
+            allowEscapeViewBox={{ x: true, y: true }}
+            content={<CustomTooltip />}
+          />
+        </LineChart>
+      </ResponsiveContainer>
+    </ChartWrapper>
   )
 }
 
