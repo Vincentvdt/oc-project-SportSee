@@ -11,11 +11,22 @@ import {
 } from 'recharts'
 import styled from 'styled-components'
 
-const CustomTooltip = ({ active, payload }: { active?: boolean; payload?: any[] }) => {
+const CustomTooltip = ({
+  active,
+  payload,
+}: {
+  active?: boolean
+  payload?: Array<{
+    dataKey: string
+    value: number
+    color?: string
+    fill?: string
+    payload: ActivitySession
+  }>
+}) => {
   if (active && payload && payload.length > 0) {
     const data = payload[0].payload
 
-    // French date "7 juil.24"
     let dateLabel = data.day
     if (typeof data.day === 'string') {
       const date = new Date(data.day)
@@ -65,18 +76,18 @@ const CustomTooltip = ({ active, payload }: { active?: boolean; payload?: any[] 
 
 const ChartWrapper = styled.div`
   background: #fff;
-  border-radius: 20px;
+  border-radius: 24px;
   padding: 16px;
   align-self: stretch;
   height: 320px;
-  box-sizing: border-box; /* Important for padding math */
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
 `
 const ChartTitle = styled.h3`
   color: rgba(0, 0, 0, 0.85);
   text-align: left;
-  font-size: 15px;
+  font-size: 0.9375rem;
   margin: 0 16px;
   font-style: normal;
   font-weight: 500;
@@ -89,7 +100,7 @@ interface DailyActivityChartProps {
 
 const DailyActivityChart = ({ data }: DailyActivityChartProps) => {
   return (
-    <ChartWrapper>
+    <ChartWrapper role="img" aria-label="Activité quotidienne">
       <ChartTitle>Activité quotidienne</ChartTitle>
       <ResponsiveContainer width="100%" height="100%">
         <BarChart data={data} margin={{ right: 16, left: 16, top: 16, bottom: 32 }}>

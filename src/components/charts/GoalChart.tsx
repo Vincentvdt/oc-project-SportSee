@@ -7,7 +7,7 @@ interface GoalChartProps {
 
 const ChartWrapper = styled.div`
   background: #fff;
-  border-radius: 20px;
+  border-radius: 16px;
   padding: 16px;
   position: relative;
 `
@@ -15,7 +15,7 @@ const ChartWrapper = styled.div`
 const ChartTitle = styled.h3`
   color: rgb(32, 37, 58);
   text-align: left;
-  font-size: 15px;
+  font-size: 0.9375rem;
   margin: 0 16px;
   font-style: normal;
   font-weight: 500;
@@ -33,15 +33,15 @@ const CenterLabel = styled.div`
   align-items: center;
 
   font-weight: bold;
-  font-size: 32px;
+  font-size: 2rem;
   color: #282d30;
 
   font-style: normal;
   span {
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 500;
     color: #74798c;
-    margin-top: 2px;
+    margin-top: 4px;
   }
 `
 
@@ -57,7 +57,7 @@ const GoalChart = ({ data }: GoalChartProps) => {
   ]
 
   return (
-    <ChartWrapper>
+    <ChartWrapper role="img" aria-label="Score de l'objectif">
       <ChartTitle>Score</ChartTitle>
       <ResponsiveContainer width="100%" aspect={1} height="100%">
         <RadialBarChart

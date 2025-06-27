@@ -13,9 +13,9 @@ const Layout = styled.main`
   width: 100%;
   height: 100%;
   display: flex;
-  padding: 30px 40px;
+  padding: 32px 40px;
   align-items: flex-start;
-  gap: 40px;
+  gap: 2.5rem;
 `
 
 const App = () => {

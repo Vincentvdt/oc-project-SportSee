@@ -11,12 +11,11 @@ import {
 
 const ChartWrapper = styled.div`
   background: #282d30;
-  border-radius: 20px;
+  border-radius: 16px;
   padding: 16px;
   position: relative;
 `
 
-// Type for the recharts tooltip payload
 interface TooltipPayload {
   value: number
   payload: PerformanceEntry & { kindLabel?: string }
@@ -58,7 +57,7 @@ const PerformanceChart = ({ data }: PerformanceChartProps) => {
   }))
 
   return (
-    <ChartWrapper>
+    <ChartWrapper role="img" aria-label="Performance">
       <ResponsiveContainer width="100%" height="100%">
         <RadarChart
           data={chartData}

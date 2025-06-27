@@ -38,7 +38,7 @@ const HeaderIcon = styled.button`
 
 const SidebarWrapper = styled.aside`
   height: 100%;
-  border-radius: 85px;
+  border-radius: 80px;
   background: #fff;
   display: flex;
   padding: 32px 16px;
@@ -50,7 +50,7 @@ const SidebarWrapper = styled.aside`
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 40px;
+    gap: 2.5rem;
   }
 `
 const SideBarFooter = styled.div`
@@ -58,7 +58,7 @@ const SideBarFooter = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 16px;
+  gap: 1rem;
 `
 
 const GearIconWrapper = styled.button`
@@ -102,27 +102,34 @@ interface SidebarProps {
   loading: boolean
 }
 
+const navIcons = [
+  { Icon: YogaIcon, label: 'Yoga' },
+  { Icon: SwimmingIcon, label: 'Natation' },
+  { Icon: CyclingIcon, label: 'Cyclisme' },
+  { Icon: WorkoutIcon, label: 'Musculation' },
+] as const
+
 const Sidebar = ({ picture, loading, firstName }: SidebarProps) => {
   return (
     <SidebarWrapper>
       <nav>
         <ul>
-          {[YogaIcon, SwimmingIcon, CyclingIcon, WorkoutIcon].map((Icon, i) => (
-            <li key={i}>
-              <HeaderIcon>
-                <Icon />
+          {navIcons.map(({ Icon, label }) => (
+            <li key={label}>
+              <HeaderIcon aria-label={label}>
+                <Icon aria-hidden="true" />
               </HeaderIcon>
             </li>
           ))}
         </ul>
       </nav>
       <SideBarFooter>
-        <GearIconWrapper>
-          <GearIcon />
+        <GearIconWrapper aria-label="Paramètres">
+          <GearIcon aria-hidden="true" />
         </GearIconWrapper>
         {!loading && picture && (
-          <ProfilPictureWrapper>
-            <img src={`/${picture}`} alt={`Profile Picture of ${firstName} `} />
+          <ProfilPictureWrapper aria-label="Profil">
+            <img src={`/${picture}`} alt={`Photo de profil de ${firstName}`} />
           </ProfilPictureWrapper>
         )}
       </SideBarFooter>

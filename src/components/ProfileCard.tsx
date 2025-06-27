@@ -12,7 +12,7 @@ const Card = styled.article`
   flex-direction: row;
   padding: 32px 24px;
   align-items: flex-start;
-  gap: 24px;
+  gap: 1.5rem;
   background: #fff;
   border-radius: 16px;
   box-shadow: 0 2px 12px rgba(32, 32, 56, 0.06);
@@ -23,8 +23,8 @@ const Card = styled.article`
 
 const AvatarContainer = styled.figure`
   flex-shrink: 0;
-  width: 110px;
-  height: 110px;
+  width: 112px;
+  height: 112px;
   border-radius: 16px;
   overflow: hidden;
   margin: 0;
@@ -44,9 +44,9 @@ const AvatarContainer = styled.figure`
 const InfoSection = styled.section`
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 1rem;
   flex: 1 1 0;
-  min-width: 0; /* key for text ellipsis! */
+  min-width: 0;
   justify-content: space-between;
 `
 
@@ -54,12 +54,12 @@ const Header = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 8px;
+  gap: 0.5rem;
   min-width: 0;
 
   h3 {
     color: #1e1f24;
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: 500;
     margin: 0;
     min-width: 0;
@@ -71,8 +71,8 @@ const Header = styled.header`
   button {
     border: none;
     background: none;
-    width: 22px;
-    height: 22px;
+    width: 24px;
+    height: 24px;
     padding: 0;
     cursor: pointer;
     display: flex;
@@ -104,14 +104,14 @@ const Bio = styled.p`
 
 const DataGroup = styled.div`
   display: flex;
-  gap: 32px;
+  gap: 2rem;
   min-width: 0;
 
   > div {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 4px;
+    gap: 0.25rem;
 
     > span {
       color: #1e1f24;
@@ -122,7 +122,7 @@ const DataGroup = styled.div`
 
     > span:nth-child(2) {
       color: #979797;
-      font-size: 14px;
+      font-size: 0.875rem;
       font-weight: 400;
     }
   }
@@ -138,7 +138,7 @@ const ProfileCard = ({ user, onEdit }: UserProfile) => {
           </h3>
           {onEdit && (
             <button aria-label="Edit profile" onClick={onEdit}>
-              <Pencil2Icon />
+              <Pencil2Icon aria-hidden="true" />
             </button>
           )}
         </Header>

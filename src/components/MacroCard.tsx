@@ -9,7 +9,7 @@ const MacroCardContainer = styled.section`
   display: flex;
   flex-direction: column;
   padding: 32px 24px;
-  gap: 16px;
+  gap: 1rem;
   background: #fff;
   border-radius: 16px;
   box-shadow: 0 2px 12px rgba(32, 32, 56, 0.06);
@@ -17,7 +17,7 @@ const MacroCardContainer = styled.section`
 
 const CardTitle = styled.h3`
   color: #1e1f24;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 500;
   margin: 0;
   text-align: left;
@@ -27,15 +27,13 @@ const MacroList = styled.ul`
   display: grid;
   grid-template-rows: repeat(2, minmax(0, 1fr));
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 8px;
+  gap: 0.5rem;
   list-style: none;
   margin: 0;
   padding: 0;
 `
 
-const MacroListItem = styled.li`
-  /* nothing extra needed here, all handled by MacroItemContainer */
-`
+const MacroListItem = styled.li``
 const macroStyles = {
   kCal: { Icon: EnergyIcon, bg: '#FF00001A' },
   Proteines: { Icon: ChickenIcon, bg: '#4AB8FF1A' },
@@ -46,7 +44,7 @@ const macroStyles = {
 const MacroItemContainer = styled.article<{ $bg: string }>`
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 1.5rem;
   padding: 16px;
   background: ${({ $bg }) => $bg};
   border-radius: 16px;
@@ -78,13 +76,13 @@ const MacroInfo = styled.div`
 
   > span:first-child {
     color: #1e1f24;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 700;
   }
 
   > span:nth-child(2) {
     color: #62636c;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 500;
     line-height: 24px;
   }
@@ -94,7 +92,7 @@ const MacroItem = ({ quantity, unit, macro }: MacroData) => {
   return (
     <MacroItemContainer $bg={bg}>
       <MacroIconBox>
-        <Icon />
+        <Icon aria-hidden="true" />
       </MacroIconBox>
       <MacroInfo>
         <span>

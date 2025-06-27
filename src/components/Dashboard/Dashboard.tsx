@@ -14,27 +14,30 @@ const DashboardContainer = styled.section`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 32px;
+  gap: 2rem;
   flex: 1 0 0;
 `
 const DashboardCharts = styled.div`
-  display: flex;
-  align-items: flex-start;
-  gap: 24px;
+  display: grid;
+  gap: 1.5rem;
   flex: 1 0 0;
   align-self: stretch;
+  grid-template-columns: 3fr 1fr;
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
 `
 
 const ChartsContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 24px;
+  gap: 1.5rem;
 `
 
 const ChartsGridContainer = styled.div`
   display: grid;
-  gap: 24px;
+  gap: 1.5rem;
   align-self: stretch;
   grid-template-rows: repeat(1, minmax(0, 1fr));
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -44,7 +47,7 @@ const DashboardAside = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 16px;
+  gap: 1rem;
   flex: 1 0 0;
   align-self: stretch;
 `

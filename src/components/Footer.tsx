@@ -3,10 +3,10 @@ import styled from 'styled-components'
 const FooterContainer = styled.footer`
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 1.25rem;
   align-self: stretch;
   padding: 24px 40px;
-  font-size: 14px;
+  font-size: 0.875rem;
 `
 const Copyright = styled.p`
   color: #979797;
@@ -18,7 +18,7 @@ const Copyright = styled.p`
 const MandatoryLinks = styled.ul`
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 0.25rem;
 
   > svg {
     width: 12px;
@@ -49,15 +49,15 @@ const Footer = () => {
         <li>
           <a href="#">Mentions légales</a>
         </li>
-        <DotFilledIcon />
+        <DotFilledIcon aria-hidden="true" />
         <li>
           <a href="#">Confidentialité</a>
         </li>
-        <DotFilledIcon />
+        <DotFilledIcon aria-hidden="true" />
         <li>
           <a href="#">CGU</a>
         </li>
-        <DotFilledIcon />
+        <DotFilledIcon aria-hidden="true" />
         <li>
           <a href="#">Politique de cookies</a>
         </li>

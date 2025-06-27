@@ -11,7 +11,7 @@ const DashboardContainer = styled.div`
   h1 {
     color: #1e1f24;
     text-align: left;
-    font-size: 32px;
+    font-size: 2rem;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
@@ -26,13 +26,13 @@ const NotificationContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: flex-start;
-  gap: 16px;
+  gap: 1rem;
 `
 
 const NotificationPopup = styled.div`
   display: flex;
   min-width: 240px;
-  gap: 8px;
+  gap: 0.5rem;
   padding: 16px 24px;
   justify-content: space-between;
   align-items: center;
@@ -41,7 +41,7 @@ const NotificationPopup = styled.div`
 
   span {
     color: #0f462b;
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 400;
     text-align: left;
   }
@@ -69,8 +69,8 @@ const NotificationButton = styled.button`
   cursor: pointer;
 
   svg {
-    width: 15px;
-    height: 15px;
+    width: 16px;
+    height: 16px;
     flex-shrink: 0;
   }
 `
@@ -90,12 +90,12 @@ const DashboardHeader = ({ name }: { name: string }) => {
       <NotificationContainer>
         {alertOpen && (
           <NotificationPopup>
-            <LightningBoltIcon />
+            <LightningBoltIcon aria-hidden="true" />
             <span>Félicitation ! Vous avez explosé vos objectifs hier 👏</span>
           </NotificationPopup>
         )}
         <NotificationButton onClick={handleOnClick} aria-label="Notification">
-          <BellIcon />
+          <BellIcon aria-hidden="true" />
         </NotificationButton>
       </NotificationContainer>
     </DashboardContainer>

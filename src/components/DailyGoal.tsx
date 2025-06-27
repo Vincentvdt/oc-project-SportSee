@@ -1,4 +1,4 @@
-import { useState, type KeyboardEvent } from 'react'
+import { useCallback, useMemo, useState, type KeyboardEvent } from 'react'
 import styled from 'styled-components'
 import { DotsHorizontalIcon, LapTimerIcon, TargetIcon } from '@radix-ui/react-icons'
 import YogaIcon from '@/assets/icons/yoga.svg?react'
@@ -43,7 +43,7 @@ const Card = styled.section`
   padding: 32px 24px;
   flex-direction: column;
   align-items: flex-start;
-  gap: 24px;
+  gap: 1.5rem;
   align-self: stretch;
   background: #fff;
   border-radius: 16px;
@@ -58,21 +58,21 @@ const CardHeader = styled.header`
 
   > div {
     display: flex;
-    gap: 8px;
+    gap: 0.5rem;
   }
 
   h3 {
     color: #1e1f24;
 
-    font-size: 16px;
+    font-size: 1rem;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
   }
 
   svg {
-    width: 22px;
-    height: 22px;
+    width: 24px;
+    height: 24px;
     color: #c1c1c1;
     cursor: pointer;
 
@@ -88,13 +88,13 @@ const GoalList = styled.ul`
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 1rem;
   align-self: stretch;
 `
 
 const GoalItem = styled.li`
   display: flex;
-  gap: 20px;
+  gap: 1rem;
   align-items: flex-start;
 `
 
@@ -127,21 +127,21 @@ const GoalInfo = styled.article`
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 0.5rem;
   align-items: flex-start;
 `
 
 const GoalHeader = styled.div`
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 15px;
+  gap: 8px;
+  font-size: 0.9375rem;
   color: #232326;
   font-weight: 600;
 `
 
 const GoalObjectif = styled.span`
-  font-size: 15px;
+  font-size: 0.9375rem;
   color: #62636c;
   font-weight: 500;
 `
@@ -149,10 +149,10 @@ const GoalObjectif = styled.span`
 const GoalDetails = styled.div<{ $pastel: string }>`
   display: flex;
   align-items: center;
-  padding: 10px 14px;
-  border-radius: 14px;
+  padding: 8px 16px;
+  border-radius: 16px;
   background: ${({ $pastel }) => $pastel};
-  gap: 18px;
+  gap: 1rem;
   width: 100%;
   cursor: pointer;
   user-select: none;
@@ -172,13 +172,13 @@ const GoalDetailText = styled.div`
 
 const GoalTitle = styled.span`
   color: #232326;
-  font-size: 15px;
+  font-size: 0.9375rem;
   font-weight: 500;
   text-align: left;
 `
 const GoalDesc = styled.span`
   color: #62636c;
-  font-size: 13px;
+  font-size: 0.8125rem;
   font-weight: 400;
   text-align: left;
 `
@@ -197,7 +197,7 @@ const CheckboxLabel = styled.label<{ $main: string }>`
     width: 20px;
     height: 20px;
     border: 2px solid ${({ $main }) => $main};
-    border-radius: 6px;
+    border-radius: 8px;
     background: #fff;
     transition:
       background 0.15s,
@@ -228,7 +228,7 @@ const CheckboxLabel = styled.label<{ $main: string }>`
 const GoalProgress = styled.div<{ $completed: boolean }>`
   display: flex;
   align-items: center;
-  font-size: 14px;
+  font-size: 0.875rem;
   color: ${({ $completed }) => ($completed ? '#099f55' : 'black')};
   font-weight: 500;
   gap: 4px;
@@ -237,21 +237,21 @@ const GoalProgress = styled.div<{ $completed: boolean }>`
 const DailyGoal = ({ goals }: DailyGoalProps) => {
   const [userGoals, setUserGoals] = useState(goals)
 
-  const handleToggle = (idx: number) => {
+  const handleToggle = useCallback((idx: number) => {
     setUserGoals((goals) => goals.map((g, i) => (i === idx ? { ...g, done: !g.done } : g)))
-  }
+  }, [])
 
-  const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>, idx: number) => {
-    if (e.key === ' ' || e.key === 'Enter') {
-      e.preventDefault()
-      handleToggle(idx)
-    }
-  }
+  const handleKeyDown = useCallback(
+    (e: KeyboardEvent<HTMLDivElement>, idx: number) => {
+      if (e.key === ' ' || e.key === 'Enter') {
+        e.preventDefault()
+        handleToggle(idx)
+      }
+    },
+    [handleToggle]
+  )
 
-  const getCompletedGoalsCount = (goals: Goal[]) =>
-    goals.filter((goal) => goal.done).length
-
-  const completedGoals = getCompletedGoalsCount(userGoals)
+  const completedGoals = useMemo(() => userGoals.filter((goal) => goal.done).length, [userGoals])
   const totalGoals = userGoals.length
 
   return (
@@ -273,11 +273,11 @@ const DailyGoal = ({ goals }: DailyGoalProps) => {
           return (
             <GoalItem key={goal.title + idx}>
               <GoalIconBox $main={main}>
-                <MainIcon />
+                <MainIcon aria-hidden="true" />
               </GoalIconBox>
               <GoalInfo>
                 <GoalHeader>
-                  <ProgressIcon style={{ color: main }} />
+                  <ProgressIcon style={{ color: main }} aria-hidden="true" />
                   <GoalObjectif>
                     {goal.objectif.value}
                     {goal.objectif.unit}

@@ -5,7 +5,7 @@ const HeaderContainer = styled.header`
   display: flex;
   padding: 24px 40px;
   align-items: center;
-  gap: 120px;
+  gap: 7.5rem;
 `
 const LogoWrapper = styled.button`
   background: none;
@@ -18,17 +18,17 @@ const NavWrapper = styled.nav`
   ul {
     display: flex;
     align-items: center;
-    gap: 24px;
+    gap: 1.5rem;
 
     a {
       font-weight: 700;
       text-transform: uppercase;
       display: flex;
-      padding: 10px;
+      padding: 8px;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      gap: 10px;
+      gap: 0.5rem;
       color: #282d30;
 
       &:hover {

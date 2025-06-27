@@ -29,7 +29,7 @@ const CustomTooltip = ({
   payload,
 }: {
   active?: boolean
-  payload?: { value: number }[]
+  payload?: Array<{ value: number }>
 }) => {
   if (active && payload && payload.length > 0 && payload[0]?.value !== undefined) {
     return (
@@ -43,14 +43,14 @@ const CustomTooltip = ({
 
 const ChartWrapper = styled.div`
   background: red;
-  border-radius: 20px;
+  border-radius: 16px;
   padding: 16px;
 `
 
 const ChartTitle = styled.h3`
   color: rgba(255, 255, 255, 0.85);
   text-align: left;
-  font-size: 15px;
+  font-size: 0.9375rem;
   margin: 0 16px;
   font-style: normal;
   font-weight: 500;
@@ -64,7 +64,7 @@ interface AverageSessionChartProps {
 
 const AverageSessionChart = ({ data }: AverageSessionChartProps) => {
   return (
-    <ChartWrapper>
+    <ChartWrapper role="img" aria-label="Durée moyenne des sessions">
       <ChartTitle>Durée moyenne des sessions</ChartTitle>
       <ResponsiveContainer width="100%" aspect={1}>
         <LineChart data={data} margin={{ right: 16, left: 16, top: 16 }}>
