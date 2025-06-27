@@ -9,6 +9,7 @@ import AverageSessionChart from '@/components/charts/AverageSessionChart.tsx'
 import DailyActivityChart from '@/components/charts/DailyActivityChart.tsx'
 import GoalChart from '@/components/charts/GoalChart.tsx'
 import PerformanceChart from '@/components/charts/PerformanceChart.tsx'
+import MealPrepCard from '@/components/MealPrepCard.tsx'
 
 const DashboardContainer = styled.section`
   display: flex;
@@ -67,6 +68,7 @@ const Dashboard = ({ user }: DashboardProps) => {
             <GoalChart data={user.score || user.todayScore || null} />
             <AverageSessionChart data={user.averageSessions} />
           </ChartsGridContainer>
+          <MealPrepCard />
         </ChartsContainer>
         <DashboardAside>
           <ProfileCard user={user} />
