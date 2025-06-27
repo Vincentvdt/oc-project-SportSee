@@ -94,7 +94,7 @@ const MacroItem = ({ quantity, unit, macro }: MacroData) => {
   return (
     <MacroItemContainer $bg={bg}>
       <MacroIconBox>
-        <Icon />
+        <Icon aria-hidden="true" />
       </MacroIconBox>
       <MacroInfo>
         <span>

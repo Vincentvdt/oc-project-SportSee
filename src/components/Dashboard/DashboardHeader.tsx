@@ -90,12 +90,12 @@ const DashboardHeader = ({ name }: { name: string }) => {
       <NotificationContainer>
         {alertOpen && (
           <NotificationPopup>
-            <LightningBoltIcon />
+            <LightningBoltIcon aria-hidden="true" />
             <span>Félicitation ! Vous avez explosé vos objectifs hier 👏</span>
           </NotificationPopup>
         )}
         <NotificationButton onClick={handleOnClick} aria-label="Notification">
-          <BellIcon />
+          <BellIcon aria-hidden="true" />
         </NotificationButton>
       </NotificationContainer>
     </DashboardContainer>

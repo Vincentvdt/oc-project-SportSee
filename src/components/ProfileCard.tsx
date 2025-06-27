@@ -138,7 +138,7 @@ const ProfileCard = ({ user, onEdit }: UserProfile) => {
           </h3>
           {onEdit && (
             <button aria-label="Edit profile" onClick={onEdit}>
-              <Pencil2Icon />
+              <Pencil2Icon aria-hidden="true" />
             </button>
           )}
         </Header>

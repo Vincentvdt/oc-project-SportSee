@@ -49,15 +49,15 @@ const Footer = () => {
         <li>
           <a href="#">Mentions légales</a>
         </li>
-        <DotFilledIcon />
+        <DotFilledIcon aria-hidden="true" />
         <li>
           <a href="#">Confidentialité</a>
         </li>
-        <DotFilledIcon />
+        <DotFilledIcon aria-hidden="true" />
         <li>
           <a href="#">CGU</a>
         </li>
-        <DotFilledIcon />
+        <DotFilledIcon aria-hidden="true" />
         <li>
           <a href="#">Politique de cookies</a>
         </li>

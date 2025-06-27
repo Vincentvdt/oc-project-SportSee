@@ -18,11 +18,14 @@ const DashboardContainer = styled.section`
   flex: 1 0 0;
 `
 const DashboardCharts = styled.div`
-  display: flex;
-  align-items: flex-start;
+  display: grid;
   gap: 24px;
   flex: 1 0 0;
   align-self: stretch;
+  grid-template-columns: 3fr 1fr;
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
 `
 
 const ChartsContainer = styled.div`

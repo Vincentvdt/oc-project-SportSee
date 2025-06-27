@@ -11,7 +11,19 @@ import {
 } from 'recharts'
 import styled from 'styled-components'
 
-const CustomTooltip = ({ active, payload }: { active?: boolean; payload?: any[] }) => {
+const CustomTooltip = ({
+  active,
+  payload,
+}: {
+  active?: boolean
+  payload?: Array<{
+    dataKey: string
+    value: number
+    color?: string
+    fill?: string
+    payload: ActivitySession
+  }>
+}) => {
   if (active && payload && payload.length > 0) {
     const data = payload[0].payload
 
@@ -89,7 +101,7 @@ interface DailyActivityChartProps {
 
 const DailyActivityChart = ({ data }: DailyActivityChartProps) => {
   return (
-    <ChartWrapper>
+    <ChartWrapper role="img" aria-label="Activité quotidienne">
       <ChartTitle>Activité quotidienne</ChartTitle>
       <ResponsiveContainer width="100%" height="100%">
         <BarChart data={data} margin={{ right: 16, left: 16, top: 16, bottom: 32 }}>

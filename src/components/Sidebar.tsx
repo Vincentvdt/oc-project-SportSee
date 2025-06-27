@@ -102,27 +102,34 @@ interface SidebarProps {
   loading: boolean
 }
 
+const navIcons = [
+  { Icon: YogaIcon, label: 'Yoga' },
+  { Icon: SwimmingIcon, label: 'Natation' },
+  { Icon: CyclingIcon, label: 'Cyclisme' },
+  { Icon: WorkoutIcon, label: 'Musculation' },
+] as const
+
 const Sidebar = ({ picture, loading, firstName }: SidebarProps) => {
   return (
     <SidebarWrapper>
       <nav>
         <ul>
-          {[YogaIcon, SwimmingIcon, CyclingIcon, WorkoutIcon].map((Icon, i) => (
-            <li key={i}>
-              <HeaderIcon>
-                <Icon />
+          {navIcons.map(({ Icon, label }) => (
+            <li key={label}>
+              <HeaderIcon aria-label={label}>
+                <Icon aria-hidden="true" />
               </HeaderIcon>
             </li>
           ))}
         </ul>
       </nav>
       <SideBarFooter>
-        <GearIconWrapper>
-          <GearIcon />
+        <GearIconWrapper aria-label="Paramètres">
+          <GearIcon aria-hidden="true" />
         </GearIconWrapper>
         {!loading && picture && (
-          <ProfilPictureWrapper>
-            <img src={`/${picture}`} alt={`Profile Picture of ${firstName} `} />
+          <ProfilPictureWrapper aria-label="Profil">
+            <img src={`/${picture}`} alt={`Photo de profil de ${firstName}`} />
           </ProfilPictureWrapper>
         )}
       </SideBarFooter>

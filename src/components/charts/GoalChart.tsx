@@ -57,7 +57,7 @@ const GoalChart = ({ data }: GoalChartProps) => {
   ]
 
   return (
-    <ChartWrapper>
+    <ChartWrapper role="img" aria-label="Score de l'objectif">
       <ChartTitle>Score</ChartTitle>
       <ResponsiveContainer width="100%" aspect={1} height="100%">
         <RadialBarChart

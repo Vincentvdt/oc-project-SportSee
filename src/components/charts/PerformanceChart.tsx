@@ -58,7 +58,7 @@ const PerformanceChart = ({ data }: PerformanceChartProps) => {
   }))
 
   return (
-    <ChartWrapper>
+    <ChartWrapper role="img" aria-label="Performance">
       <ResponsiveContainer width="100%" height="100%">
         <RadarChart
           data={chartData}

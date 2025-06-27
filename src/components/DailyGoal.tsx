@@ -1,4 +1,4 @@
-import { useState, type KeyboardEvent } from 'react'
+import { useCallback, useMemo, useState, type KeyboardEvent } from 'react'
 import styled from 'styled-components'
 import { DotsHorizontalIcon, LapTimerIcon, TargetIcon } from '@radix-ui/react-icons'
 import YogaIcon from '@/assets/icons/yoga.svg?react'
@@ -237,21 +237,21 @@ const GoalProgress = styled.div<{ $completed: boolean }>`
 const DailyGoal = ({ goals }: DailyGoalProps) => {
   const [userGoals, setUserGoals] = useState(goals)
 
-  const handleToggle = (idx: number) => {
+  const handleToggle = useCallback((idx: number) => {
     setUserGoals((goals) => goals.map((g, i) => (i === idx ? { ...g, done: !g.done } : g)))
-  }
+  }, [])
 
-  const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>, idx: number) => {
-    if (e.key === ' ' || e.key === 'Enter') {
-      e.preventDefault()
-      handleToggle(idx)
-    }
-  }
+  const handleKeyDown = useCallback(
+    (e: KeyboardEvent<HTMLDivElement>, idx: number) => {
+      if (e.key === ' ' || e.key === 'Enter') {
+        e.preventDefault()
+        handleToggle(idx)
+      }
+    },
+    [handleToggle]
+  )
 
-  const getCompletedGoalsCount = (goals: Goal[]) =>
-    goals.filter((goal) => goal.done).length
-
-  const completedGoals = getCompletedGoalsCount(userGoals)
+  const completedGoals = useMemo(() => userGoals.filter((goal) => goal.done).length, [userGoals])
   const totalGoals = userGoals.length
 
   return (
@@ -273,11 +273,11 @@ const DailyGoal = ({ goals }: DailyGoalProps) => {
           return (
             <GoalItem key={goal.title + idx}>
               <GoalIconBox $main={main}>
-                <MainIcon />
+                <MainIcon aria-hidden="true" />
               </GoalIconBox>
               <GoalInfo>
                 <GoalHeader>
-                  <ProgressIcon style={{ color: main }} />
+                  <ProgressIcon style={{ color: main }} aria-hidden="true" />
                   <GoalObjectif>
                     {goal.objectif.value}
                     {goal.objectif.unit}
