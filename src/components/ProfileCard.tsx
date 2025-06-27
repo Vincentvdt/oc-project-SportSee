@@ -117,7 +117,6 @@ const DataGroup = styled.div`
       color: #1e1f24;
       font-weight: 500;
       text-align: center;
-      word-break: break-word;
     }
 
     > span:nth-child(2) {
