@@ -4,8 +4,9 @@ import styled from 'styled-components'
 import ProfileCard from '@/components/ProfileCard.tsx'
 import MacroCard from '@/components/MacroCard.tsx'
 import DailyGoal from '@/components/DailyGoal.tsx'
-import type { UserData } from '../../../api/types'
+import type { UserData } from '@api/types.ts'
 import AverageSessionChart from '@/components/charts/AverageSessionChart.tsx'
+import DailyActivityChart from '@/components/charts/DailyActivityChart.tsx'
 
 const DashboardContainer = styled.section`
   display: flex;
@@ -34,12 +35,12 @@ interface DashboardProps {
   user: UserData
 }
 const Dashboard = ({ user }: DashboardProps) => {
-  console.log(user.averageSessions)
   return (
     <DashboardContainer>
       <DashboardHeader name={user.firstName} />
       <div>
         <ChartsContainer>
+          <DailyActivityChart data={user.activity} />
           <ChartsGridContainer>
             <AverageSessionChart data={user.averageSessions} />
           </ChartsGridContainer>

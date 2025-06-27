@@ -1,10 +1,6 @@
 import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
-import type { AverageSession } from '../../../api/types.ts'
+import type { AverageSession } from '@api/types.ts'
 import styled from 'styled-components'
-
-interface AverageSessionChartProps {
-  data: AverageSession[]
-}
 
 const renderCustomAxisTick = ({
   x,
@@ -59,9 +55,12 @@ const ChartTitle = styled.h3`
   font-style: normal;
   font-weight: 500;
   line-height: 24px;
-
   position: relative;
 `
+
+interface AverageSessionChartProps {
+  data: AverageSession[]
+}
 
 const AverageSessionChart = ({ data }: AverageSessionChartProps) => {
   return (
