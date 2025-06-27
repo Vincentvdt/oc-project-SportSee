@@ -9,12 +9,10 @@ export interface UserInfo {
   birthday: string
   picture: string
 }
-
-export interface KeyData {
-  calorieCount: number
-  proteinCount: number
-  carbohydrateCount: number
-  lipidCount: number
+export interface MacroData {
+  quantity: number
+  unit?: string
+  macro: 'kCal' | 'Proteines' | 'Glucides' | 'Lipides'
 }
 
 export interface ActivitySession {
@@ -42,7 +40,7 @@ export interface UserMainData {
   userInfos: UserInfo
   todayScore?: number
   score?: number
-  keyData: KeyData
+  keyData: MacroData[]
 }
 
 export interface UserActivity {
@@ -92,7 +90,7 @@ export interface UserData {
   picture: string
   todayScore?: number
   score?: number
-  keyData: KeyData
+  keyData: MacroData[]
   activity: ActivitySession[]
   averageSessions: AverageSession[]
   performance: {

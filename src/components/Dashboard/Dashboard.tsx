@@ -49,7 +49,7 @@ const Dashboard = ({ user }: DashboardProps) => {
         </ChartsContainer>
         <div>
           <ProfileCard user={user} onEdit={() => console.log('Edit clicked')} />
-          <MacroCard />
+          <MacroCard macros={user.keyData} />
           <DailyGoal goals={user.goals} />
         </div>
       </div>

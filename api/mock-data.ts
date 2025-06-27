@@ -23,12 +23,12 @@ export const USER_MAIN_DATA: UserMainData[] = [
       picture: 'pp.jpg',
     },
     todayScore: 0.12,
-    keyData: {
-      calorieCount: 1930,
-      proteinCount: 155,
-      carbohydrateCount: 290,
-      lipidCount: 50,
-    },
+    keyData: [
+      { quantity: 1930, macro: 'kCal' },
+      { quantity: 155, macro: 'Proteines', unit: 'g' },
+      { quantity: 290, macro: 'Glucides', unit: 'g' },
+      { quantity: 50, macro: 'Lipides', unit: 'g' },
+    ],
   },
   {
     id: 18,
@@ -44,12 +44,12 @@ export const USER_MAIN_DATA: UserMainData[] = [
       picture: 'pp2.png',
     },
     score: 0.3,
-    keyData: {
-      calorieCount: 2500,
-      proteinCount: 90,
-      carbohydrateCount: 150,
-      lipidCount: 120,
-    },
+    keyData: [
+      { quantity: 1930, macro: 'kCal' },
+      { quantity: 155, macro: 'Proteines', unit: 'g' },
+      { quantity: 290, macro: 'Glucides', unit: 'g' },
+      { quantity: 50, macro: 'Lipides', unit: 'g' },
+    ],
   },
 ]
 

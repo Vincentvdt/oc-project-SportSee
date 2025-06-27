@@ -3,12 +3,7 @@ import ChickenIcon from '@/assets/icons/chicken.svg?react'
 import EnergyIcon from '@/assets/icons/energy.svg?react'
 import AppleIcon from '@/assets/icons/apple.svg?react'
 import FatIcon from '@/assets/icons/fat-icon.svg?react'
-
-export interface MacroData {
-  quantity: number
-  unit?: string
-  macro: 'kCal' | 'Proteines' | 'Glucides' | 'Lipides'
-}
+import type { MacroData } from '@api/types.ts'
 
 const MacroCardContainer = styled.section`
   display: flex;
@@ -111,18 +106,16 @@ const MacroItem = ({ quantity, unit, macro }: MacroData) => {
     </MacroItemContainer>
   )
 }
-const macroList: MacroData[] = [
-  { quantity: 1930, macro: 'kCal' },
-  { quantity: 155, macro: 'Proteines', unit: 'g' },
-  { quantity: 290, macro: 'Glucides', unit: 'g' },
-  { quantity: 50, macro: 'Lipides', unit: 'g' },
-]
 
-const MacroCard = () => (
+interface MacroCardProps {
+  macros: MacroData[]
+}
+
+const MacroCard = ({ macros }: MacroCardProps) => (
   <MacroCardContainer>
     <CardTitle>Macros</CardTitle>
     <MacroList>
-      {macroList.map((item) => (
+      {macros.map((item) => (
         <MacroListItem key={item.macro}>
           <MacroItem {...item} />
         </MacroListItem>
