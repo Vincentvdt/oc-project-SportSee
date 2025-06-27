@@ -3,14 +3,14 @@ import logoSVG from '/logo-name.svg'
 
 const HeaderContainer = styled.header`
   display: flex;
-  padding: 24px 40px;
+  padding: 1.5rem 2.5rem;
   align-items: center;
   gap: 120px;
 `
 const LogoWrapper = styled.button`
   background: none;
   border: none;
-  height: 24px;
+  height: 1.5rem;
   flex-shrink: 0;
 `
 
@@ -24,11 +24,11 @@ const NavWrapper = styled.nav`
       font-weight: 700;
       text-transform: uppercase;
       display: flex;
-      padding: 10px;
+      padding: 0.5rem;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       color: #282d30;
 
       &:hover {

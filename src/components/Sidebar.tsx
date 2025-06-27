@@ -7,8 +7,8 @@ import { GearIcon } from '@radix-ui/react-icons'
 
 const HeaderIcon = styled.button`
   display: flex;
-  width: 40px;
-  height: 40px;
+  width: 2.5rem;
+  height: 2.5rem;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -16,12 +16,12 @@ const HeaderIcon = styled.button`
   border: none;
   background: none;
 
-  border-radius: 60px;
+  border-radius: 3.75rem;
   transition: 250ms ease-in-out;
 
   svg {
-    width: 24px;
-    height: 24px;
+    width: 1.5rem;
+    height: 1.5rem;
     flex-shrink: 0;
     aspect-ratio: 1/1;
 
@@ -38,10 +38,10 @@ const HeaderIcon = styled.button`
 
 const SidebarWrapper = styled.aside`
   height: 100%;
-  border-radius: 85px;
+  border-radius: 5rem;
   background: #fff;
   display: flex;
-  padding: 32px 16px;
+  padding: 2rem 1rem;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
@@ -62,8 +62,8 @@ const SideBarFooter = styled.div`
 `
 
 const GearIconWrapper = styled.button`
-  width: 24px;
-  height: 24px;
+  width: 1.5rem;
+  height: 1.5rem;
   border: none;
   background: none;
   cursor: pointer;
@@ -82,10 +82,10 @@ const GearIconWrapper = styled.button`
 `
 
 const ProfilPictureWrapper = styled.button`
-  width: 40px;
-  height: 40px;
+  width: 2.5rem;
+  height: 2.5rem;
   aspect-ratio: 1/1;
-  border-radius: 40px;
+  border-radius: 2.5rem;
   overflow: hidden;
   border: none;
   cursor: pointer;

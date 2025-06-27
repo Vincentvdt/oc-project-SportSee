@@ -76,7 +76,7 @@ const CustomTooltip = ({
 
 const ChartWrapper = styled.div`
   background: #fff;
-  border-radius: 1.25rem;
+  border-radius: 1.5rem;
   padding: 1rem;
   align-self: stretch;
   height: 20rem;
@@ -87,7 +87,7 @@ const ChartWrapper = styled.div`
 const ChartTitle = styled.h3`
   color: rgba(0, 0, 0, 0.85);
   text-align: left;
-  font-size: 0.9375rem;
+  font-size: 15px;
   margin: 0 1rem;
   font-style: normal;
   font-weight: 500;

@@ -11,8 +11,8 @@ import {
 
 const ChartWrapper = styled.div`
   background: #282d30;
-  border-radius: 20px;
-  padding: 16px;
+  border-radius: 1rem;
+  padding: 1rem;
   position: relative;
 `
 

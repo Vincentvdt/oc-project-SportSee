@@ -8,11 +8,11 @@ import type { MacroData } from '@api/types.ts'
 const MacroCardContainer = styled.section`
   display: flex;
   flex-direction: column;
-  padding: 32px 24px;
+  padding: 2rem 1.5rem;
   gap: 16px;
   background: #fff;
-  border-radius: 16px;
-  box-shadow: 0 2px 12px rgba(32, 32, 56, 0.06);
+  border-radius: 1rem;
+  box-shadow: 0 0.125rem 0.75rem rgba(32, 32, 56, 0.06);
 `
 
 const CardTitle = styled.h3`
@@ -45,25 +45,25 @@ const MacroItemContainer = styled.article<{ $bg: string }>`
   display: flex;
   align-items: center;
   gap: 24px;
-  padding: 16px;
+  padding: 1rem;
   background: ${({ $bg }) => $bg};
-  border-radius: 16px;
+  border-radius: 1rem;
   flex: 1 0 0;
   min-width: 0;
 `
 
 const MacroIconBox = styled.div`
   display: flex;
-  width: 48px;
-  height: 48px;
+  width: 3rem;
+  height: 3rem;
   justify-content: center;
   align-items: center;
   border-radius: 50%;
   background: #f9f9fb;
 
   svg {
-    width: 24px;
-    height: 24px;
+    width: 1.5rem;
+    height: 1.5rem;
     display: block;
   }
 `
@@ -84,7 +84,7 @@ const MacroInfo = styled.div`
     color: #62636c;
     font-size: 14px;
     font-weight: 500;
-    line-height: 24px;
+    line-height: 1.5rem;
   }
 `
 const MacroItem = ({ quantity, unit, macro }: MacroData) => {

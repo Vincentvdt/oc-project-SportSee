@@ -31,12 +31,12 @@ const NotificationContainer = styled.div`
 
 const NotificationPopup = styled.div`
   display: flex;
-  min-width: 240px;
+  min-width: 15rem;
   gap: 8px;
-  padding: 16px 24px;
+  padding: 1rem 1.5rem;
   justify-content: space-between;
   align-items: center;
-  border-radius: 16px;
+  border-radius: 1rem;
   background: #d6fde4;
 
   span {
@@ -47,8 +47,8 @@ const NotificationPopup = styled.div`
   }
 
   svg {
-    width: 16px;
-    height: 16px;
+    width: 1rem;
+    height: 1rem;
     flex-shrink: 0;
     color: #0f462b;
   }
@@ -56,21 +56,21 @@ const NotificationPopup = styled.div`
 
 const NotificationButton = styled.button`
   display: flex;
-  width: 40px;
-  height: 40px;
+  width: 2.5rem;
+  height: 2.5rem;
 
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
-  border-radius: 60px;
+  border-radius: 3.75rem;
   background: #f00;
   border: none;
   color: #ffffff;
   cursor: pointer;
 
   svg {
-    width: 15px;
-    height: 15px;
+    width: 1rem;
+    height: 1rem;
     flex-shrink: 0;
   }
 `

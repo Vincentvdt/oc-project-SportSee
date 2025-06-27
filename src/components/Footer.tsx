@@ -3,10 +3,10 @@ import styled from 'styled-components'
 const FooterContainer = styled.footer`
   display: flex;
   align-items: center;
-  gap: 1.25rem;
+  gap: 20px;
   align-self: stretch;
   padding: 1.5rem 2.5rem;
-  font-size: 0.875rem;
+  font-size: 14px;
 `
 const Copyright = styled.p`
   color: #979797;
@@ -18,7 +18,7 @@ const Copyright = styled.p`
 const MandatoryLinks = styled.ul`
   display: flex;
   align-items: center;
-  gap: 0.25rem;
+  gap: 4px;
 
   > svg {
     width: 0.75rem;

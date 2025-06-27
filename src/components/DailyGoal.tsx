@@ -40,14 +40,14 @@ const goalTheme = {
 
 const Card = styled.section`
   display: flex;
-  padding: 32px 24px;
+  padding: 2rem 1.5rem;
   flex-direction: column;
   align-items: flex-start;
   gap: 24px;
   align-self: stretch;
   background: #fff;
-  border-radius: 16px;
-  box-shadow: 0 2px 12px rgba(32, 32, 56, 0.06);
+  border-radius: 1rem;
+  box-shadow: 0 0.125rem 0.75rem rgba(32, 32, 56, 0.06);
 `
 
 const CardHeader = styled.header`
@@ -71,8 +71,8 @@ const CardHeader = styled.header`
   }
 
   svg {
-    width: 22px;
-    height: 22px;
+    width: 1.5rem;
+    height: 1.5rem;
     color: #c1c1c1;
     cursor: pointer;
 
@@ -88,30 +88,30 @@ const GoalList = styled.ul`
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
   align-self: stretch;
 `
 
 const GoalItem = styled.li`
   display: flex;
-  gap: 20px;
+  gap: 16px;
   align-items: flex-start;
 `
 
 const GoalIconBox = styled.div<{ $main: string }>`
-  width: 40px;
-  height: 40px;
-  min-width: 40px;
-  min-height: 40px;
+  width: 2.5rem;
+  height: 2.5rem;
+  min-width: 2.5rem;
+  min-height: 2.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 12px;
+  border-radius: 0.75rem;
   background: ${({ $main }) => $main};
 
   svg {
-    width: 24px;
-    height: 24px;
+    width: 1.5rem;
+    height: 1.5rem;
     display: block;
     fill: #fff;
     color: #fff;
@@ -127,14 +127,14 @@ const GoalInfo = styled.article`
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
   align-items: flex-start;
 `
 
 const GoalHeader = styled.div`
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   font-size: 15px;
   color: #232326;
   font-weight: 600;
@@ -149,17 +149,17 @@ const GoalObjectif = styled.span`
 const GoalDetails = styled.div<{ $pastel: string }>`
   display: flex;
   align-items: center;
-  padding: 10px 14px;
-  border-radius: 14px;
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
   background: ${({ $pastel }) => $pastel};
-  gap: 18px;
+  gap: 16px;
   width: 100%;
   cursor: pointer;
   user-select: none;
   outline: none;
 
   &:focus {
-    box-shadow: 0 0 0 2px #007aff55;
+    box-shadow: 0 0 0 0.125rem #007aff55;
   }
 `
 
@@ -194,10 +194,10 @@ const CheckboxLabel = styled.label<{ $main: string }>`
 
   span {
     display: inline-block;
-    width: 20px;
-    height: 20px;
+    width: 1.25rem;
+    height: 1.25rem;
     border: 2px solid ${({ $main }) => $main};
-    border-radius: 6px;
+    border-radius: 0.5rem;
     background: #fff;
     transition:
       background 0.15s,

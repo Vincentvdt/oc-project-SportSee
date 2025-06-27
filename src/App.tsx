@@ -13,7 +13,7 @@ const Layout = styled.main`
   width: 100%;
   height: 100%;
   display: flex;
-  padding: 30px 40px;
+  padding: 2rem 2.5rem;
   align-items: flex-start;
   gap: 40px;
 `

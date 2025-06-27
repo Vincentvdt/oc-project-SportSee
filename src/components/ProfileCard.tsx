@@ -10,12 +10,12 @@ export interface UserProfile {
 const Card = styled.article`
   display: flex;
   flex-direction: row;
-  padding: 32px 24px;
+  padding: 2rem 1.5rem;
   align-items: flex-start;
   gap: 24px;
   background: #fff;
-  border-radius: 16px;
-  box-shadow: 0 2px 12px rgba(32, 32, 56, 0.06);
+  border-radius: 1rem;
+  box-shadow: 0 0.125rem 0.75rem rgba(32, 32, 56, 0.06);
   max-width: 100%;
   min-width: 0;
   overflow: hidden;
@@ -23,9 +23,9 @@ const Card = styled.article`
 
 const AvatarContainer = styled.figure`
   flex-shrink: 0;
-  width: 110px;
-  height: 110px;
-  border-radius: 16px;
+  width: 7rem;
+  height: 7rem;
+  border-radius: 1rem;
   overflow: hidden;
   margin: 0;
   background: #f3f3f6;
@@ -71,8 +71,8 @@ const Header = styled.header`
   button {
     border: none;
     background: none;
-    width: 22px;
-    height: 22px;
+    width: 1.5rem;
+    height: 1.5rem;
     padding: 0;
     cursor: pointer;
     display: flex;
