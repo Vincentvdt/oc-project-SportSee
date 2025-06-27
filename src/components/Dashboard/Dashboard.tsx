@@ -8,6 +8,7 @@ import type { UserData } from '@api/types.ts'
 import AverageSessionChart from '@/components/charts/AverageSessionChart.tsx'
 import DailyActivityChart from '@/components/charts/DailyActivityChart.tsx'
 import GoalChart from '@/components/charts/GoalChart.tsx'
+import PerformanceChart from '@/components/charts/PerformanceChart.tsx'
 
 const DashboardContainer = styled.section`
   display: flex;
@@ -36,6 +37,7 @@ interface DashboardProps {
   user: UserData
 }
 const Dashboard = ({ user }: DashboardProps) => {
+  console.log(user.performance)
   return (
     <DashboardContainer>
       <DashboardHeader name={user.firstName} />
@@ -43,6 +45,7 @@ const Dashboard = ({ user }: DashboardProps) => {
         <ChartsContainer>
           <DailyActivityChart data={user.activity} />
           <ChartsGridContainer>
+            <PerformanceChart data={user.performance} />
             <GoalChart data={user.score || user.todayScore || null} />
             <AverageSessionChart data={user.averageSessions} />
           </ChartsGridContainer>

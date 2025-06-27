@@ -1,57 +1,81 @@
-import { useEffect, useMemo, useState } from 'react'
-import ChartContainer from './ChartContainer.tsx'
-import { PolarAngleAxis, PolarGrid, Radar, RadarChart, Tooltip } from 'recharts'
-import { PerformanceData } from '../../../../../Documents/Programmation/OpenClassroom/Project_OC_SportSee/frontend/src/interfaces'
+import type { Performance, PerformanceEntry } from '@api/types.ts'
+import styled from 'styled-components'
+import {
+  PolarAngleAxis,
+  PolarGrid,
+  Radar,
+  RadarChart,
+  ResponsiveContainer,
+  Tooltip,
+} from 'recharts'
+
+const ChartWrapper = styled.div`
+  background: #282d30;
+  border-radius: 20px;
+  padding: 16px;
+  position: relative;
+`
+
+// Type for the recharts tooltip payload
+interface TooltipPayload {
+  value: number
+  payload: PerformanceEntry & { kindLabel?: string }
+}
+
+const CustomTooltip = ({ active, payload }: { active?: boolean; payload?: TooltipPayload[] }) => {
+  if (active && payload && payload.length > 0) {
+    const item = payload[0]!
+    const kindLabel = item.payload.kindLabel ?? item.payload.kind
+
+    return (
+      <div
+        style={{
+          background: '#fff',
+          padding: 12,
+          borderRadius: 10,
+          fontWeight: 600,
+          boxShadow: '0 2px 8px #1112',
+          minWidth: 80,
+          textAlign: 'center',
+        }}
+      >
+        <div style={{ fontWeight: 700, color: '#282d30', fontSize: 16 }}>{item.value}</div>
+        <div style={{ fontSize: 13, color: '#74798c', marginTop: 4 }}>{kindLabel}</div>
+      </div>
+    )
+  }
+  return null
+}
 
 interface PerformanceChartProps {
-  data: PerformanceData
+  data: Performance
 }
 
 const PerformanceChart = ({ data }: PerformanceChartProps) => {
-  const [renderTooltip, setRenderTooltip] = useState(false)
-  const radarData = useMemo(() => {
-    if (!data) return []
-    return data.data.map((activity) => ({
-      value: activity.value,
-      kind:
-        data.kind[activity.kind as keyof typeof data.kind]?.charAt(0).toUpperCase() +
-          data.kind[activity.kind as keyof typeof data.kind]?.slice(1) || '',
-    }))
-  }, [data])
-
-  useEffect(() => {
-    shouldRenderTooltip()
-    window.addEventListener('resize', shouldRenderTooltip)
-    return () => {
-      window.removeEventListener('resize', shouldRenderTooltip)
-    }
-  }, [])
-
-  const shouldRenderTooltip = () => {
-    if (window.innerWidth <= 1024) {
-      setRenderTooltip(true)
-    } else {
-      setRenderTooltip(false)
-    }
-  }
+  const chartData: (PerformanceEntry & { kindLabel: string })[] = data.data.map((d) => ({
+    ...d,
+    kindLabel: data.kind[d.kind] || 'Inconnu',
+  }))
 
   return (
-    <ChartContainer width={258} height={263} color={'#282D30'}>
-      <RadarChart outerRadius={70} data={radarData}>
-        <PolarGrid radialLines={false} />
-        <PolarAngleAxis
-          dataKey="kind"
-          tick={{
-            fill: '#FFF',
-            fontSize: '12px',
-            fontWeight: 500,
-            opacity: renderTooltip ? 0 : 1,
-          }}
-        />
-        {renderTooltip && <Tooltip />}
-        <Radar dataKey="value" fill="#FF0101B2" fillOpacity={0.7} />
-      </RadarChart>
-    </ChartContainer>
+    <ChartWrapper>
+      <ResponsiveContainer width="100%" height="100%">
+        <RadarChart
+          data={chartData}
+          outerRadius="75%"
+          margin={{ right: 16, left: 16, top: 16, bottom: 32 }}
+        >
+          <PolarGrid />
+          <PolarAngleAxis
+            dataKey="kind"
+            tick={{ fill: '#FFF', fontSize: 12, fontWeight: 500 }}
+            tickFormatter={(kindId: number) => data.kind[kindId] || ''}
+          />
+          <Tooltip content={<CustomTooltip />} />
+          <Radar dataKey="value" fill="#FF0101" fillOpacity={0.6} />
+        </RadarChart>
+      </ResponsiveContainer>
+    </ChartWrapper>
   )
 }
 

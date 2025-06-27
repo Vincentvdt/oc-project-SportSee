@@ -111,39 +111,39 @@ export const USER_PERFORMANCE: UserPerformance[] = [
   {
     userId: 12,
     kind: {
-      1: 'cardio',
-      2: 'energy',
-      3: 'endurance',
-      4: 'strength',
-      5: 'speed',
-      6: 'intensity',
+      1: 'Cardio',
+      2: 'Énergie',
+      3: 'Endurance',
+      4: 'Force',
+      5: 'Vitesse',
+      6: 'Intensité',
     },
     data: [
-      { value: 80, kind: 1 },
-      { value: 120, kind: 2 },
-      { value: 140, kind: 3 },
-      { value: 50, kind: 4 },
-      { value: 200, kind: 5 },
-      { value: 90, kind: 6 },
+      { value: 80, kind: 1 }, // Cardio
+      { value: 120, kind: 2 }, // Énergie
+      { value: 50, kind: 4 }, // Force
+      { value: 140, kind: 3 }, // Endurance
+      { value: 200, kind: 5 }, // Vitesse
+      { value: 90, kind: 6 }, // Intensité
     ],
   },
   {
     userId: 18,
     kind: {
-      1: 'cardio',
-      2: 'energy',
-      3: 'endurance',
-      4: 'strength',
-      5: 'speed',
-      6: 'intensity',
+      1: 'Cardio',
+      2: 'Énergie',
+      3: 'Endurance',
+      4: 'Force',
+      5: 'Vitesse',
+      6: 'Intensité',
     },
     data: [
-      { value: 200, kind: 1 },
-      { value: 240, kind: 2 },
-      { value: 80, kind: 3 },
-      { value: 80, kind: 4 },
-      { value: 220, kind: 5 },
-      { value: 110, kind: 6 },
+      { value: 200, kind: 1 }, // Cardio
+      { value: 240, kind: 2 }, // Énergie
+      { value: 80, kind: 4 }, // Force
+      { value: 80, kind: 3 }, // Endurance
+      { value: 220, kind: 5 }, // Vitesse
+      { value: 110, kind: 6 }, // Intensité
     ],
   },
 ]
@@ -217,7 +217,7 @@ export const USER_GOALS: UserGoal[] = [
   },
 ]
 
-export const USERS_DATA: UserData[] = USER_MAIN_DATA.map((user) => ({
+const USERS_DATA: UserData[] = USER_MAIN_DATA.map((user) => ({
   id: user.id,
   firstName: user.userInfos.firstName,
   lastName: user.userInfos.lastName,
@@ -233,10 +233,15 @@ export const USERS_DATA: UserData[] = USER_MAIN_DATA.map((user) => ({
   keyData: user.keyData,
   activity: USER_ACTIVITY.find((a) => a.userId === user.id)?.sessions ?? [],
   averageSessions: USER_AVERAGE_SESSIONS.find((s) => s.userId === user.id)?.sessions ?? [],
-  performance: USER_PERFORMANCE.find((p) => p.userId === user.id) ?? {
-    kind: {},
-    data: [],
-  },
+  performance: USER_PERFORMANCE.find((p) => p.userId === user.id)
+    ? {
+        data: USER_PERFORMANCE.find((p) => p.userId === user.id)!.data,
+        kind: USER_PERFORMANCE.find((p) => p.userId === user.id)!.kind,
+      }
+    : {
+        data: [],
+        kind: {},
+      },
   goals: USER_GOALS.find((g) => g.userId === user.id)?.goals ?? [],
 }))
 

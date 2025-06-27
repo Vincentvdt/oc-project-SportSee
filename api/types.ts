@@ -34,7 +34,10 @@ export interface PerformanceEntry {
 export interface PerformanceKind {
   [key: number]: string
 }
-
+export interface Performance {
+  data: PerformanceEntry[]
+  kind: PerformanceKind
+}
 export interface UserMainData {
   id: number
   userInfos: UserInfo
@@ -93,9 +96,6 @@ export interface UserData {
   keyData: MacroData[]
   activity: ActivitySession[]
   averageSessions: AverageSession[]
-  performance: {
-    kind: PerformanceKind
-    data: PerformanceEntry[]
-  }
+  performance: Performance
   goals: Goal[]
 }
