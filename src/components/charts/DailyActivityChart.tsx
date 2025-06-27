@@ -117,7 +117,7 @@ const DailyActivityChart = ({ data }: DailyActivityChartProps) => {
             content={<CustomTooltip />}
             cursor={{ fill: '#fde2e4', opacity: 1 }}
           />
-          <Legend align="right" verticalAlign="top" wrapperStyle={{ top: -24 }} />
+          <Legend align="right" verticalAlign="top" wrapperStyle={{ top: -16 }} />
           <Bar
             dataKey="kilogram"
             name="Poids (kg)"
