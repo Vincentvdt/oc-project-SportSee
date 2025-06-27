@@ -10,12 +10,25 @@ import { fetchUserData } from '@/hooks/user.tsx'
 import type { UserData } from '../api/types'
 
 const Layout = styled.main`
-  width: 100%;
-  height: 100%;
   display: flex;
-  padding: 32px 40px;
-  align-items: flex-start;
-  gap: 2.5rem;
+  padding: 0 40px;
+  width: 100vw;
+  box-sizing: border-box;
+  justify-content: flex-start;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    padding: 16px;
+  }
+`
+const DashboardOuter = styled.div`
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  min-width: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
 `
 
 const App = () => {
@@ -35,7 +48,13 @@ const App = () => {
       <Header />
       <Layout>
         <Sidebar picture={userData?.picture} firstName={userData?.firstName} loading={isPending} />
-        {isPending ? <div>Chargement ...</div> : <Dashboard user={userData} />}
+        {isPending ? (
+          <div>Chargement ...</div>
+        ) : (
+          <DashboardOuter>
+            <Dashboard user={userData} />
+          </DashboardOuter>
+        )}
       </Layout>
       <Footer />
     </>

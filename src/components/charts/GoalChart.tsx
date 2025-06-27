@@ -10,6 +10,8 @@ const ChartWrapper = styled.div`
   border-radius: 16px;
   padding: 16px;
   position: relative;
+  height: 100%;
+  width: 100%;
 `
 
 const ChartTitle = styled.h3`

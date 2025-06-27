@@ -12,20 +12,35 @@ import PerformanceChart from '@/components/charts/PerformanceChart.tsx'
 import MealPrepCard from '@/components/MealPrepCard.tsx'
 
 const DashboardContainer = styled.section`
+  max-width: 1440px;
+  width: 100%;
+  margin-right: auto;
+  padding: 0 2.5rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 2rem;
-  flex: 1 0 0;
+
+  @media (max-width: 1440px) {
+    max-width: 100vw;
+    margin-left: 16px;
+    padding: 0 1rem;
+  }
+  @media (max-width: 768px) {
+    margin-left: 0;
+    padding: 0;
+  }
 `
+
 const DashboardCharts = styled.div`
   display: grid;
   gap: 1.5rem;
-  flex: 1 0 0;
-  align-self: stretch;
   grid-template-columns: 3fr 1fr;
+  align-items: stretch; /* << KEY!! both columns get full height of the tallest child */
+  min-height: 0;
   @media (max-width: 900px) {
     grid-template-columns: 1fr;
+    align-items: start;
   }
 `
 
@@ -49,7 +64,7 @@ const DashboardAside = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 1rem;
-  flex: 1 0 0;
+
   align-self: stretch;
 `
 

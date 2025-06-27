@@ -37,7 +37,10 @@ const HeaderIcon = styled.button`
 `
 
 const SidebarWrapper = styled.aside`
+  min-width: 60px;
+  max-width: 80px;
   height: 100%;
+  width: 80px;
   border-radius: 80px;
   background: #fff;
   display: flex;
@@ -45,6 +48,13 @@ const SidebarWrapper = styled.aside`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 768px) {
+    flex-direction: row;
+    width: auto;
+    height: auto;
+    border-radius: 16px;
+  }
 
   ul {
     display: flex;
