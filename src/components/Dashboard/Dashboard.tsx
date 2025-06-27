@@ -64,7 +64,7 @@ const Dashboard = ({ user }: DashboardProps) => {
         <Item $span={2}>
           <ProfileCard user={user} />
         </Item>
-        <Item>
+        <Item $span={1}>
           <MacroCard macros={user.keyData} />
         </Item>
         <Item>

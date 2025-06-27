@@ -194,10 +194,10 @@ const CheckboxLabel = styled.label<{ $main: string }>`
 
   span {
     display: inline-block;
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
     border: 2px solid ${({ $main }) => $main};
-    border-radius: 8px;
+    border-radius: 4px;
     background: #fff;
     transition:
       background 0.15s,

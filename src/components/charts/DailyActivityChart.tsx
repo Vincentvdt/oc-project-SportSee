@@ -79,7 +79,8 @@ const ChartWrapper = styled.div`
   border-radius: 24px;
   padding: 1rem;
   align-self: stretch;
-  height: 320px;
+  height: 100%;
+  width: 100%;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;

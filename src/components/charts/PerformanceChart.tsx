@@ -14,6 +14,8 @@ const ChartWrapper = styled.div`
   border-radius: 16px;
   padding: 16px;
   position: relative;
+  height: 100%;
+  width: 100%;
 `
 
 interface TooltipPayload {
@@ -58,7 +60,7 @@ const PerformanceChart = ({ data }: PerformanceChartProps) => {
 
   return (
     <ChartWrapper role="img" aria-label="Performance">
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer width="100%">
         <RadarChart
           data={chartData}
           outerRadius="75%"

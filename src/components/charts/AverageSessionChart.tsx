@@ -45,6 +45,8 @@ const ChartWrapper = styled.div`
   background: red;
   border-radius: 16px;
   padding: 16px;
+  height: 100%;
+  width: 100%;
 `
 
 const ChartTitle = styled.h3`
