@@ -37,6 +37,8 @@ const HeaderIcon = styled.button`
 `
 
 const SidebarWrapper = styled.aside`
+  min-width: 60px;
+  max-width: 80px;
   height: 100%;
   width: 80px;
   border-radius: 80px;
