@@ -43,18 +43,18 @@ const CustomTooltip = ({
 
 const ChartWrapper = styled.div`
   background: red;
-  border-radius: 1rem;
-  padding: 1rem;
+  border-radius: 16px;
+  padding: 16px;
 `
 
 const ChartTitle = styled.h3`
   color: rgba(255, 255, 255, 0.85);
   text-align: left;
-  font-size: 15px;
-  margin: 0 1rem;
+  font-size: 0.9375rem;
+  margin: 0 16px;
   font-style: normal;
   font-weight: 500;
-  line-height: 1.5rem;
+  line-height: 24px;
   position: relative;
 `
 

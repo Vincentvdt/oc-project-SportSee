@@ -8,16 +8,16 @@ import type { MacroData } from '@api/types.ts'
 const MacroCardContainer = styled.section`
   display: flex;
   flex-direction: column;
-  padding: 2rem 1.5rem;
-  gap: 16px;
+  padding: 32px 24px;
+  gap: 1rem;
   background: #fff;
-  border-radius: 1rem;
-  box-shadow: 0 0.125rem 0.75rem rgba(32, 32, 56, 0.06);
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(32, 32, 56, 0.06);
 `
 
 const CardTitle = styled.h3`
   color: #1e1f24;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 500;
   margin: 0;
   text-align: left;
@@ -27,7 +27,7 @@ const MacroList = styled.ul`
   display: grid;
   grid-template-rows: repeat(2, minmax(0, 1fr));
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 8px;
+  gap: 0.5rem;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -44,26 +44,26 @@ const macroStyles = {
 const MacroItemContainer = styled.article<{ $bg: string }>`
   display: flex;
   align-items: center;
-  gap: 24px;
-  padding: 1rem;
+  gap: 1.5rem;
+  padding: 16px;
   background: ${({ $bg }) => $bg};
-  border-radius: 1rem;
+  border-radius: 16px;
   flex: 1 0 0;
   min-width: 0;
 `
 
 const MacroIconBox = styled.div`
   display: flex;
-  width: 3rem;
-  height: 3rem;
+  width: 48px;
+  height: 48px;
   justify-content: center;
   align-items: center;
   border-radius: 50%;
   background: #f9f9fb;
 
   svg {
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 24px;
+    height: 24px;
     display: block;
   }
 `
@@ -76,15 +76,15 @@ const MacroInfo = styled.div`
 
   > span:first-child {
     color: #1e1f24;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 700;
   }
 
   > span:nth-child(2) {
     color: #62636c;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 500;
-    line-height: 1.5rem;
+    line-height: 24px;
   }
 `
 const MacroItem = ({ quantity, unit, macro }: MacroData) => {

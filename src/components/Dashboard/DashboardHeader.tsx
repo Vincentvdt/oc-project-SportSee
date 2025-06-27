@@ -11,7 +11,7 @@ const DashboardContainer = styled.div`
   h1 {
     color: #1e1f24;
     text-align: left;
-    font-size: 32px;
+    font-size: 2rem;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
@@ -26,29 +26,29 @@ const NotificationContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: flex-start;
-  gap: 16px;
+  gap: 1rem;
 `
 
 const NotificationPopup = styled.div`
   display: flex;
-  min-width: 15rem;
-  gap: 8px;
-  padding: 1rem 1.5rem;
+  min-width: 240px;
+  gap: 0.5rem;
+  padding: 16px 24px;
   justify-content: space-between;
   align-items: center;
-  border-radius: 1rem;
+  border-radius: 16px;
   background: #d6fde4;
 
   span {
     color: #0f462b;
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 400;
     text-align: left;
   }
 
   svg {
-    width: 1rem;
-    height: 1rem;
+    width: 16px;
+    height: 16px;
     flex-shrink: 0;
     color: #0f462b;
   }
@@ -56,21 +56,21 @@ const NotificationPopup = styled.div`
 
 const NotificationButton = styled.button`
   display: flex;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 40px;
+  height: 40px;
 
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
-  border-radius: 3.75rem;
+  border-radius: 60px;
   background: #f00;
   border: none;
   color: #ffffff;
   cursor: pointer;
 
   svg {
-    width: 1rem;
-    height: 1rem;
+    width: 16px;
+    height: 16px;
     flex-shrink: 0;
   }
 `

@@ -76,10 +76,10 @@ const CustomTooltip = ({
 
 const ChartWrapper = styled.div`
   background: #fff;
-  border-radius: 1.5rem;
-  padding: 1rem;
+  border-radius: 24px;
+  padding: 16px;
   align-self: stretch;
-  height: 20rem;
+  height: 320px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -87,11 +87,11 @@ const ChartWrapper = styled.div`
 const ChartTitle = styled.h3`
   color: rgba(0, 0, 0, 0.85);
   text-align: left;
-  font-size: 15px;
-  margin: 0 1rem;
+  font-size: 0.9375rem;
+  margin: 0 16px;
   font-style: normal;
   font-weight: 500;
-  line-height: 1.5rem;
+  line-height: 24px;
   position: relative;
 `
 interface DailyActivityChartProps {

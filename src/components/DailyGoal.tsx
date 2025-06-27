@@ -40,14 +40,14 @@ const goalTheme = {
 
 const Card = styled.section`
   display: flex;
-  padding: 2rem 1.5rem;
+  padding: 32px 24px;
   flex-direction: column;
   align-items: flex-start;
-  gap: 24px;
+  gap: 1.5rem;
   align-self: stretch;
   background: #fff;
-  border-radius: 1rem;
-  box-shadow: 0 0.125rem 0.75rem rgba(32, 32, 56, 0.06);
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(32, 32, 56, 0.06);
 `
 
 const CardHeader = styled.header`
@@ -58,21 +58,21 @@ const CardHeader = styled.header`
 
   > div {
     display: flex;
-    gap: 8px;
+    gap: 0.5rem;
   }
 
   h3 {
     color: #1e1f24;
 
-    font-size: 16px;
+    font-size: 1rem;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
   }
 
   svg {
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 24px;
+    height: 24px;
     color: #c1c1c1;
     cursor: pointer;
 
@@ -88,30 +88,30 @@ const GoalList = styled.ul`
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 1rem;
   align-self: stretch;
 `
 
 const GoalItem = styled.li`
   display: flex;
-  gap: 16px;
+  gap: 1rem;
   align-items: flex-start;
 `
 
 const GoalIconBox = styled.div<{ $main: string }>`
-  width: 2.5rem;
-  height: 2.5rem;
-  min-width: 2.5rem;
-  min-height: 2.5rem;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 0.75rem;
+  border-radius: 12px;
   background: ${({ $main }) => $main};
 
   svg {
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 24px;
+    height: 24px;
     display: block;
     fill: #fff;
     color: #fff;
@@ -127,7 +127,7 @@ const GoalInfo = styled.article`
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 0.5rem;
   align-items: flex-start;
 `
 
@@ -135,13 +135,13 @@ const GoalHeader = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 15px;
+  font-size: 0.9375rem;
   color: #232326;
   font-weight: 600;
 `
 
 const GoalObjectif = styled.span`
-  font-size: 15px;
+  font-size: 0.9375rem;
   color: #62636c;
   font-weight: 500;
 `
@@ -149,17 +149,17 @@ const GoalObjectif = styled.span`
 const GoalDetails = styled.div<{ $pastel: string }>`
   display: flex;
   align-items: center;
-  padding: 0.5rem 1rem;
-  border-radius: 1rem;
+  padding: 8px 16px;
+  border-radius: 16px;
   background: ${({ $pastel }) => $pastel};
-  gap: 16px;
+  gap: 1rem;
   width: 100%;
   cursor: pointer;
   user-select: none;
   outline: none;
 
   &:focus {
-    box-shadow: 0 0 0 0.125rem #007aff55;
+    box-shadow: 0 0 0 2px #007aff55;
   }
 `
 
@@ -172,13 +172,13 @@ const GoalDetailText = styled.div`
 
 const GoalTitle = styled.span`
   color: #232326;
-  font-size: 15px;
+  font-size: 0.9375rem;
   font-weight: 500;
   text-align: left;
 `
 const GoalDesc = styled.span`
   color: #62636c;
-  font-size: 13px;
+  font-size: 0.8125rem;
   font-weight: 400;
   text-align: left;
 `
@@ -194,10 +194,10 @@ const CheckboxLabel = styled.label<{ $main: string }>`
 
   span {
     display: inline-block;
-    width: 1.25rem;
-    height: 1.25rem;
+    width: 20px;
+    height: 20px;
     border: 2px solid ${({ $main }) => $main};
-    border-radius: 0.5rem;
+    border-radius: 8px;
     background: #fff;
     transition:
       background 0.15s,
@@ -228,7 +228,7 @@ const CheckboxLabel = styled.label<{ $main: string }>`
 const GoalProgress = styled.div<{ $completed: boolean }>`
   display: flex;
   align-items: center;
-  font-size: 14px;
+  font-size: 0.875rem;
   color: ${({ $completed }) => ($completed ? '#099f55' : 'black')};
   font-weight: 500;
   gap: 4px;

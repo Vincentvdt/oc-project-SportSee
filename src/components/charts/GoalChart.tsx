@@ -7,19 +7,19 @@ interface GoalChartProps {
 
 const ChartWrapper = styled.div`
   background: #fff;
-  border-radius: 1rem;
-  padding: 1rem;
+  border-radius: 16px;
+  padding: 16px;
   position: relative;
 `
 
 const ChartTitle = styled.h3`
   color: rgb(32, 37, 58);
   text-align: left;
-  font-size: 15px;
-  margin: 0 1rem;
+  font-size: 0.9375rem;
+  margin: 0 16px;
   font-style: normal;
   font-weight: 500;
-  line-height: 1.5rem;
+  line-height: 24px;
   position: relative;
 `
 
@@ -27,21 +27,21 @@ const CenterLabel = styled.div`
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, calc(-50% + 0.5rem));
+  transform: translate(-50%, calc(-50% + 8px));
   display: flex;
   flex-direction: column;
   align-items: center;
 
   font-weight: bold;
-  font-size: 32px;
+  font-size: 2rem;
   color: #282d30;
 
   font-style: normal;
   span {
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 500;
     color: #74798c;
-    margin-top: 0.25rem;
+    margin-top: 4px;
   }
 `
 

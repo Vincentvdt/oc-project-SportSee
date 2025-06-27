@@ -3,14 +3,14 @@ import logoSVG from '/logo-name.svg'
 
 const HeaderContainer = styled.header`
   display: flex;
-  padding: 1.5rem 2.5rem;
+  padding: 24px 40px;
   align-items: center;
-  gap: 120px;
+  gap: 7.5rem;
 `
 const LogoWrapper = styled.button`
   background: none;
   border: none;
-  height: 1.5rem;
+  height: 24px;
   flex-shrink: 0;
 `
 
@@ -18,17 +18,17 @@ const NavWrapper = styled.nav`
   ul {
     display: flex;
     align-items: center;
-    gap: 24px;
+    gap: 1.5rem;
 
     a {
       font-weight: 700;
       text-transform: uppercase;
       display: flex;
-      padding: 0.5rem;
+      padding: 8px;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      gap: 8px;
+      gap: 0.5rem;
       color: #282d30;
 
       &:hover {
