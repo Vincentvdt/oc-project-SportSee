@@ -1,87 +1,86 @@
-import ChartContainer from './ChartContainer.tsx'
-import { RadialBar, RadialBarChart } from 'recharts'
 import styled from 'styled-components'
-
-const PercentageText = styled.span`
-  width: 95px;
-  flex-shrink: 0;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  color: #282d30;
-  text-align: center;
-  font-size: 26px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 26px;
-
-  span {
-    color: #74798c;
-    font-size: 16px;
-    font-weight: 500;
-  }
-`
-
-const RadialBackground = styled.div`
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  width: 159px;
-  height: 159px;
-  background: #fff;
-`
-
-const Title = styled.p`
-  color: #20253a;
-  font-size: 15px;
-  font-weight: 500;
-  line-height: 24px;
-
-  @media (max-width: 1024px) {
-    display: none;
-  }
-`
+import { PolarAngleAxis, RadialBar, RadialBarChart, ResponsiveContainer } from 'recharts'
 
 interface GoalChartProps {
-  data: number
+  data: number | null
 }
 
+const ChartWrapper = styled.div`
+  background: #fff;
+  border-radius: 20px;
+  padding: 16px;
+  position: relative;
+`
+
+const ChartTitle = styled.h3`
+  color: rgb(32, 37, 58);
+  text-align: left;
+  font-size: 15px;
+  margin: 0 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  position: relative;
+`
+
+const CenterLabel = styled.div`
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, calc(-50% + 8px));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  font-weight: bold;
+  font-size: 32px;
+  color: #282d30;
+
+  font-style: normal;
+  span {
+    font-size: 14px;
+    font-weight: 500;
+    color: #74798c;
+    margin-top: 2px;
+  }
+`
+
 const GoalChart = ({ data }: GoalChartProps) => {
-  const scoreAngle = data * 360
-  const chartData = [{ score: Number(data) }]
+  if (data === null || data === undefined) return null
+
+  const clamped = Math.max(0, Math.min(data, 1))
+  const percent = Math.round(clamped * 100)
+
+  const chartData = [
+    { value: percent, fill: '#ff0000' },
+    { value: 100 - percent, fill: 'transparent' },
+  ]
+
   return (
-    <ChartContainer
-      width={258}
-      height={263}
-      color={'#FBFBFB'}
-      position={'relative'}
-      title={<Title>Score</Title>}
-      titlePosition={'absolute'}
-      titlePos={{ top: 24, left: 30 }}
-      subElement={
-        <>
-          <RadialBackground />
-          <PercentageText>
-            {data * 100}% <br />
-            <span>de votre objectif</span>
-          </PercentageText>
-        </>
-      }
-    >
-      <RadialBarChart
-        barSize={10}
-        startAngle={90}
-        endAngle={90 + scoreAngle}
-        innerRadius={80}
-        outerRadius={140}
-        data={chartData}
-      >
-        <RadialBar dataKey="score" fill={'#FF0000'} cornerRadius={5} />
-      </RadialBarChart>
-    </ChartContainer>
+    <ChartWrapper>
+      <ChartTitle>Score</ChartTitle>
+      <ResponsiveContainer width="100%" aspect={1} height="100%">
+        <RadialBarChart
+          style={{ transition: '150ms ease' }}
+          innerRadius={100}
+          outerRadius={116}
+          data={chartData}
+          startAngle={90}
+          endAngle={450}
+        >
+          <RadialBar
+            dataKey="value"
+            background
+            cornerRadius={8}
+            data={[{ value: percent, fill: '#ff2e00' }]}
+          />
+          <PolarAngleAxis type="number" domain={[0, 100]} tick={false} />
+        </RadialBarChart>
+      </ResponsiveContainer>
+      <CenterLabel>
+        {percent}%<span>de votre objectif</span>
+      </CenterLabel>
+    </ChartWrapper>
   )
 }
 

@@ -7,6 +7,7 @@ import DailyGoal from '@/components/DailyGoal.tsx'
 import type { UserData } from '@api/types.ts'
 import AverageSessionChart from '@/components/charts/AverageSessionChart.tsx'
 import DailyActivityChart from '@/components/charts/DailyActivityChart.tsx'
+import GoalChart from '@/components/charts/GoalChart.tsx'
 
 const DashboardContainer = styled.section`
   display: flex;
@@ -42,6 +43,7 @@ const Dashboard = ({ user }: DashboardProps) => {
         <ChartsContainer>
           <DailyActivityChart data={user.activity} />
           <ChartsGridContainer>
+            <GoalChart data={user.score || user.todayScore || null} />
             <AverageSessionChart data={user.averageSessions} />
           </ChartsGridContainer>
         </ChartsContainer>
