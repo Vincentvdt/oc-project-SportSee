@@ -3,10 +3,10 @@ import styled from 'styled-components'
 const FooterContainer = styled.footer`
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 1.25rem;
   align-self: stretch;
-  padding: 24px 40px;
-  font-size: 14px;
+  padding: 1.5rem 2.5rem;
+  font-size: 0.875rem;
 `
 const Copyright = styled.p`
   color: #979797;
@@ -18,11 +18,11 @@ const Copyright = styled.p`
 const MandatoryLinks = styled.ul`
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 0.25rem;
 
   > svg {
-    width: 12px;
-    height: 12px;
+    width: 0.75rem;
+    height: 0.75rem;
     aspect-ratio: 1/1;
     color: #979797;
   }
@@ -32,7 +32,7 @@ const MandatoryLinks = styled.ul`
 
     font-style: normal;
     font-weight: 500;
-    line-height: 24px;
+    line-height: 1.5rem;
 
     &:hover {
       text-decoration: underline;

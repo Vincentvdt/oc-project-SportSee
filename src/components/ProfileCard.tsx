@@ -46,7 +46,7 @@ const InfoSection = styled.section`
   flex-direction: column;
   gap: 16px;
   flex: 1 1 0;
-  min-width: 0; /* key for text ellipsis! */
+  min-width: 0;
   justify-content: space-between;
 `
 

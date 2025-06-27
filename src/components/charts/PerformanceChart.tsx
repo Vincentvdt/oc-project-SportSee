@@ -16,7 +16,6 @@ const ChartWrapper = styled.div`
   position: relative;
 `
 
-// Type for the recharts tooltip payload
 interface TooltipPayload {
   value: number
   payload: PerformanceEntry & { kindLabel?: string }

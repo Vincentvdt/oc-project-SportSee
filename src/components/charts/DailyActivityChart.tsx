@@ -27,7 +27,6 @@ const CustomTooltip = ({
   if (active && payload && payload.length > 0) {
     const data = payload[0].payload
 
-    // French date "7 juil.24"
     let dateLabel = data.day
     if (typeof data.day === 'string') {
       const date = new Date(data.day)
@@ -77,22 +76,22 @@ const CustomTooltip = ({
 
 const ChartWrapper = styled.div`
   background: #fff;
-  border-radius: 20px;
-  padding: 16px;
+  border-radius: 1.25rem;
+  padding: 1rem;
   align-self: stretch;
-  height: 320px;
-  box-sizing: border-box; /* Important for padding math */
+  height: 20rem;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
 `
 const ChartTitle = styled.h3`
   color: rgba(0, 0, 0, 0.85);
   text-align: left;
-  font-size: 15px;
-  margin: 0 16px;
+  font-size: 0.9375rem;
+  margin: 0 1rem;
   font-style: normal;
   font-weight: 500;
-  line-height: 24px;
+  line-height: 1.5rem;
   position: relative;
 `
 interface DailyActivityChartProps {

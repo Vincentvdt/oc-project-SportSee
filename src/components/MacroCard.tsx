@@ -33,9 +33,7 @@ const MacroList = styled.ul`
   padding: 0;
 `
 
-const MacroListItem = styled.li`
-  /* nothing extra needed here, all handled by MacroItemContainer */
-`
+const MacroListItem = styled.li``
 const macroStyles = {
   kCal: { Icon: EnergyIcon, bg: '#FF00001A' },
   Proteines: { Icon: ChickenIcon, bg: '#4AB8FF1A' },
