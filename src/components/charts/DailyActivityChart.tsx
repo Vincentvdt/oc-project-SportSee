@@ -66,7 +66,7 @@ const ChartWrapper = styled.div`
   background: #fff;
   border-radius: 20px;
   padding: 16px;
-  width: 835px;
+  align-self: stretch;
   height: 320px;
   box-sizing: border-box; /* Important for padding math */
   display: flex;

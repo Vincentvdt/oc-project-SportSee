@@ -17,20 +17,36 @@ const DashboardContainer = styled.section`
   gap: 32px;
   flex: 1 0 0;
 `
+const DashboardCharts = styled.div`
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  flex: 1 0 0;
+  align-self: stretch;
+`
 
 const ChartsContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 32px;
+  gap: 24px;
 `
 
 const ChartsGridContainer = styled.div`
   display: grid;
-
+  gap: 24px;
   align-self: stretch;
   grid-template-rows: repeat(1, minmax(0, 1fr));
   grid-template-columns: repeat(3, minmax(0, 1fr));
+`
+
+const DashboardAside = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  flex: 1 0 0;
+  align-self: stretch;
 `
 
 interface DashboardProps {
@@ -41,7 +57,7 @@ const Dashboard = ({ user }: DashboardProps) => {
   return (
     <DashboardContainer>
       <DashboardHeader name={user.firstName} />
-      <div>
+      <DashboardCharts>
         <ChartsContainer>
           <DailyActivityChart data={user.activity} />
           <ChartsGridContainer>
@@ -50,12 +66,12 @@ const Dashboard = ({ user }: DashboardProps) => {
             <AverageSessionChart data={user.averageSessions} />
           </ChartsGridContainer>
         </ChartsContainer>
-        <div>
+        <DashboardAside>
           <ProfileCard user={user} onEdit={() => console.log('Edit clicked')} />
           <MacroCard macros={user.keyData} />
           <DailyGoal goals={user.goals} />
-        </div>
-      </div>
+        </DashboardAside>
+      </DashboardCharts>
     </DashboardContainer>
   )
 }
