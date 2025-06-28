@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { Pencil2Icon } from '@radix-ui/react-icons'
-import type { UserData } from '../../api/types'
+import type { UserData } from '@api/_types.ts'
 
 export interface UserProfile {
   user: UserData
