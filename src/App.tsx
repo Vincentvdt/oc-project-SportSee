@@ -31,17 +31,49 @@ const DashboardOuter = styled.div`
   overflow-x: hidden;
 `
 
+const StateWrapper = styled.section<{ $error?: boolean }>`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  font-size: 2rem;
+  color: #1e1f24;
+  background: ${({ $error }) => ($error ? '#ffffffb0' : 'unset')};
+  border: ${({ $error }) => ($error ? '1px solid #d8d9e0' : 'unset')};
+  border-radius: 16px;
+  margin: 0 auto;
+  padding: 32px;
+  place-self: center;
+
+  span {
+    font-size: 1rem;
+    color: #681710;
+    line-height: 29px;
+
+    a {
+      color: #e50000;
+      text-decoration: underline;
+    }
+  }
+`
+
 const App = () => {
   const {
     data: userData,
     isPending,
     isError,
+    error,
   } = useQuery<UserData>({
     queryKey: ['user', 12],
     queryFn: fetchUserData,
+    retry: 1,
   })
 
-  if (isError) return <div>Error</div>
+  const isLocalhost =
+    window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+  const isPort3000 = window.location.port === '3000' || window.location.port === ''
 
   return (
     <>
@@ -49,7 +81,33 @@ const App = () => {
       <Layout>
         <Sidebar picture={userData?.picture} firstName={userData?.firstName} loading={isPending} />
         {isPending ? (
-          <div>Chargement ...</div>
+          <StateWrapper>Chargement en cours… </StateWrapper>
+        ) : isError ? (
+          <StateWrapper $error={isError}>
+            Erreur de chargement.
+            <br />
+            {isLocalhost && !isPort3000 && (
+              <span>
+                👀 You’re running locally, but not on port 3000. <br />
+                Please see the{' '}
+                <a
+                  href="https://github.com/Vincentvdt/oc-project-SportSee"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Getting Started
+                </a>{' '}
+                guide to use Vercel dev, or try the{' '}
+                <a href="https://your-demo-url-here" target="_blank" rel="noopener noreferrer">
+                  Live Demo
+                </a>{' '}
+                if it’s online. (No offline backup, sorry! 😅)
+              </span>
+            )}
+            <span style={{ fontSize: 12 }}>
+              {(error as Error)?.message || 'Essayez de recharger la page.'} <br />
+            </span>
+          </StateWrapper>
         ) : (
           <DashboardOuter>
             <Dashboard user={userData} />
