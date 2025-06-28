@@ -7,7 +7,7 @@ import Dashboard from '@/components/Dashboard/Dashboard'
 import Footer from '@/components/Footer'
 import { useQuery } from '@tanstack/react-query'
 import { fetchUserData } from '@/hooks/user'
-import type { UserData } from '@api/_types.ts'
+import type { UserData } from '@api/_types'
 
 const Layout = styled.main`
   display: flex;

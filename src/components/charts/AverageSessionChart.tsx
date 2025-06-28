@@ -1,5 +1,5 @@
 import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
-import type { AverageSession } from '@api/_types.ts'
+import type { AverageSession } from '@api/_types'
 import styled from 'styled-components'
 
 const renderCustomAxisTick = ({
