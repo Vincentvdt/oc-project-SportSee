@@ -1,4 +1,4 @@
-import type { ActivitySession } from '@api/_types.ts'
+import type { ActivitySession } from '@api/_types.mts'
 import {
   Bar,
   BarChart,

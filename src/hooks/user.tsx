@@ -1,4 +1,4 @@
-import type { UserData } from '@api/_types.ts'
+import type { UserData } from '@api/_types.mts'
 
 export const fetchUserData = async (): Promise<UserData> => {
   const res = await fetch('/api/users/12')

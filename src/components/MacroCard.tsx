@@ -3,7 +3,7 @@ import ChickenIcon from '@/assets/icons/chicken.svg?react'
 import EnergyIcon from '@/assets/icons/energy.svg?react'
 import AppleIcon from '@/assets/icons/apple.svg?react'
 import FatIcon from '@/assets/icons/fat-icon.svg?react'
-import type { MacroData } from '@api/_types.ts'
+import type { MacroData } from '@api/_types.mts'
 
 const MacroCardContainer = styled.section`
   display: flex;

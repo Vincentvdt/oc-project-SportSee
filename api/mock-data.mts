@@ -6,7 +6,7 @@ import type {
   UserPerformance,
   UserData,
   UserGoal,
-} from './_types'
+} from './_types.mjs'
 
 export const USER_MAIN_DATA: UserMainData[] = [
   {
