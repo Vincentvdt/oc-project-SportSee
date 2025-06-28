@@ -27,16 +27,13 @@ const CustomTooltip = ({
   if (active && payload && payload.length > 0) {
     const data = payload[0]!.payload
 
-    let dateLabel = data.day
-    if (typeof data.day === 'string') {
-      const date = new Date(data.day)
-      dateLabel =
-        date.getDate() +
-        ' ' +
-        date.toLocaleString('fr-FR', { month: 'short' }) +
-        ' ' +
-        String(date.getFullYear()).slice(-2)
-    }
+    const date = new Date(data.day)
+    const dateLabel =
+      date.getDate() +
+      ' ' +
+      date.toLocaleString('fr-FR', { month: 'short' }) +
+      ' ' +
+      String(date.getFullYear()).slice(-2)
 
     return (
       <div
