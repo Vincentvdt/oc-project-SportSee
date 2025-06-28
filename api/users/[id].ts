@@ -1,6 +1,7 @@
+import type { VercelRequest, VercelResponse } from '@vercel/node'
 import USERS_DATA from '../mock-data'
 
-export default function handler(req: any, res: any) {
+export default function handler(req: VercelRequest, res: VercelResponse) {
   const id = Number(req.query.id)
   const user = USERS_DATA.find((u) => u.id === id)
   if (!user) {
