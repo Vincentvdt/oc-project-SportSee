@@ -5,7 +5,7 @@ import YogaIcon from '@/assets/icons/yoga.svg?react'
 import SwimmingIcon from '@/assets/icons/swimming.svg?react'
 import CyclingIcon from '@/assets/icons/cycling.svg?react'
 import WorkoutIcon from '@/assets/icons/workout.svg?react'
-import type { Goal } from '@api/_types.mts'
+import type { Goal } from '@api/_types.ts'
 
 interface DailyGoalProps {
   goals: Goal[]
