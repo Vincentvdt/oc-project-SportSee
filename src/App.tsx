@@ -1,12 +1,12 @@
 import './App.css'
 
-import Sidebar from '@/components/Sidebar.tsx'
-import Header from '@/components/Header.tsx'
+import Sidebar from '@/components/Sidebar'
+import Header from '@/components/Header'
 import styled from 'styled-components'
-import Dashboard from '@/components/Dashboard/Dashboard.tsx'
-import Footer from '@/components/Footer.tsx'
+import Dashboard from '@/components/Dashboard/Dashboard'
+import Footer from '@/components/Footer'
 import { useQuery } from '@tanstack/react-query'
-import { fetchUserData } from '@/hooks/user.tsx'
+import { fetchUserData } from '@/hooks/user'
 import type { UserData } from '@api/_types.ts'
 
 const Layout = styled.main`

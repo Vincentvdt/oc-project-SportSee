@@ -1,15 +1,15 @@
-import DashboardHeader from '@/components/Dashboard/DashboardHeader.tsx'
+import DashboardHeader from '@/components/Dashboard/DashboardHeader'
 import styled from 'styled-components'
 
-import ProfileCard from '@/components/ProfileCard.tsx'
-import MacroCard from '@/components/MacroCard.tsx'
-import DailyGoal from '@/components/DailyGoal.tsx'
+import ProfileCard from '@/components/ProfileCard'
+import MacroCard from '@/components/MacroCard'
+import DailyGoal from '@/components/DailyGoal'
 import type { UserData } from '@api/_types.ts'
-import AverageSessionChart from '@/components/charts/AverageSessionChart.tsx'
-import DailyActivityChart from '@/components/charts/DailyActivityChart.tsx'
-import GoalChart from '@/components/charts/GoalChart.tsx'
-import PerformanceChart from '@/components/charts/PerformanceChart.tsx'
-import MealPrepCard from '@/components/MealPrepCard.tsx'
+import AverageSessionChart from '@/components/charts/AverageSessionChart'
+import DailyActivityChart from '@/components/charts/DailyActivityChart'
+import GoalChart from '@/components/charts/GoalChart'
+import PerformanceChart from '@/components/charts/PerformanceChart'
+import MealPrepCard from '@/components/MealPrepCard'
 
 const DashboardContainer = styled.section`
   max-width: 1440px;
