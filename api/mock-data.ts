@@ -6,7 +6,7 @@ import type {
   UserPerformance,
   UserData,
   UserGoal,
-} from './_types.ts'
+} from './_types'
 
 export const USER_MAIN_DATA: UserMainData[] = [
   {

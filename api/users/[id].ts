@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node'
-import USERS_DATA from '../mock-data.ts'
+import USERS_DATA from '../mock-data'
 
 export default function handler(req: VercelRequest, res: VercelResponse) {
   const id = Number(req.query.id)
