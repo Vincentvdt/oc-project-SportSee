@@ -147,7 +147,7 @@ const Sidebar = () => {
           <GearIconWrapper aria-label="Paramètres">
             <GearIcon aria-hidden="true" />
           </GearIconWrapper>
-          <ProfilePicture />
+          <ProfilePicture rounded />
         </SideBarFooter>
       )}
     </SidebarWrapper>
