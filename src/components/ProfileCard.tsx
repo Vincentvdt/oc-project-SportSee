@@ -2,12 +2,7 @@ import styled from 'styled-components'
 import { Pencil2Icon } from '@radix-ui/react-icons'
 import type { UserData } from '@api/_types'
 
-export interface UserProfile {
-  user: UserData
-  onEdit?: () => void
-}
-
-const Card = styled.article`
+const Card = styled.article<StyledGridOrder>`
   display: flex;
   flex-direction: row;
   padding: 32px 24px;
@@ -16,9 +11,14 @@ const Card = styled.article`
   background: #fff;
   border-radius: 16px;
   box-shadow: 0 2px 12px rgba(32, 32, 56, 0.06);
-  max-width: 100%;
   min-width: 0;
   overflow: hidden;
+
+  @media (max-width: 600px) {
+    ${({ $mobileOrder }) => $mobileOrder !== undefined && `order: ${$mobileOrder};`}
+  }
+
+  ${({ $order }) => $order !== undefined && `order: ${$order};`};
 `
 
 const AvatarContainer = styled.figure`
@@ -127,9 +127,23 @@ const DataGroup = styled.div`
   }
 `
 
-const ProfileCard = ({ user, onEdit }: UserProfile) => {
+export interface GridOrder {
+  order?: number
+  mobileOrder?: number
+}
+
+export interface StyledGridOrder {
+  $order?: number
+  $mobileOrder?: number
+}
+export interface UserProfile extends GridOrder {
+  user: UserData
+  onEdit?: () => void
+}
+
+const ProfileCard = ({ user, onEdit, order, mobileOrder }: UserProfile) => {
   return (
-    <Card>
+    <Card $order={order} $mobileOrder={mobileOrder}>
       <InfoSection>
         <Header>
           <h3 title={`${user.firstName} ${user.lastName}`}>

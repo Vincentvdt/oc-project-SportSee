@@ -6,10 +6,7 @@ import SwimmingIcon from '@/assets/icons/swimming.svg?react'
 import CyclingIcon from '@/assets/icons/cycling.svg?react'
 import WorkoutIcon from '@/assets/icons/workout.svg?react'
 import type { Goal } from '@api/_types'
-
-interface DailyGoalProps {
-  goals: Goal[]
-}
+import type { GridOrder, StyledGridOrder } from '@/components/ProfileCard'
 
 const goalTheme = {
   workout: {
@@ -38,7 +35,7 @@ const goalTheme = {
   },
 } as const
 
-const Card = styled.section`
+const Card = styled.section<StyledGridOrder>`
   display: flex;
   padding: 32px 24px;
   flex-direction: column;
@@ -48,6 +45,10 @@ const Card = styled.section`
   background: #fff;
   border-radius: 16px;
   box-shadow: 0 2px 12px rgba(32, 32, 56, 0.06);
+  @media (max-width: 600px) {
+    ${({ $mobileOrder }) => $mobileOrder !== undefined && `order: ${$mobileOrder};`}
+  }
+  ${({ $order }) => $order !== undefined && `order: ${$order};`}
 `
 
 const CardHeader = styled.header`
@@ -234,7 +235,11 @@ const GoalProgress = styled.div<{ $completed: boolean }>`
   gap: 4px;
 `
 
-const DailyGoal = ({ goals }: DailyGoalProps) => {
+interface DailyGoalProps extends GridOrder {
+  goals: Goal[]
+}
+
+const DailyGoal = ({ goals, order, mobileOrder }: DailyGoalProps) => {
   const [userGoals, setUserGoals] = useState(goals)
 
   const handleToggle = useCallback((idx: number) => {
@@ -255,7 +260,7 @@ const DailyGoal = ({ goals }: DailyGoalProps) => {
   const totalGoals = userGoals.length
 
   return (
-    <Card aria-label="Objectifs quotidiens">
+    <Card aria-label="Objectifs quotidiens" $order={order} $mobileOrder={mobileOrder}>
       <CardHeader>
         <div>
           <h3>Objectifs du jour</h3>

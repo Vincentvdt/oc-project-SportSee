@@ -16,9 +16,9 @@ const Layout = styled.main`
   box-sizing: border-box;
   justify-content: flex-start;
 
-  @media (max-width: 768px) {
+  @media (max-width: 600px) {
     flex-direction: column;
-    padding: 16px;
+    padding: unset;
   }
 `
 const DashboardOuter = styled.div`

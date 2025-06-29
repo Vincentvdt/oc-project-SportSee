@@ -4,6 +4,8 @@ import SwimmingIcon from '@/assets/icons/swimming.svg?react'
 import CyclingIcon from '@/assets/icons/cycling.svg?react'
 import WorkoutIcon from '@/assets/icons/workout.svg?react'
 import { GearIcon } from '@radix-ui/react-icons'
+import ProfilePicture from '@/components/ProfilePicture'
+import useMediaQuery from '@/hooks/useMediaQuery'
 
 const HeaderIcon = styled.button`
   display: flex;
@@ -34,6 +36,11 @@ const HeaderIcon = styled.button`
   &:hover svg path {
     fill: #ff0000;
   }
+
+  @media (max-width: 600px) {
+    width: 100%;
+    padding: 40px 0;
+  }
 `
 
 const SidebarWrapper = styled.aside`
@@ -49,11 +56,18 @@ const SidebarWrapper = styled.aside`
   justify-content: space-between;
   align-items: center;
 
-  @media (max-width: 768px) {
+  nav {
+    width: 100%;
+  }
+
+  @media (max-width: 600px) {
     flex-direction: row;
-    width: auto;
-    height: auto;
-    border-radius: 16px;
+    min-width: unset;
+    max-width: unset;
+    height: unset;
+    width: unset;
+    padding: unset;
+    border-radius: unset;
   }
 
   ul {
@@ -61,6 +75,16 @@ const SidebarWrapper = styled.aside`
     flex-direction: column;
     align-items: center;
     gap: 2.5rem;
+
+    @media (max-width: 600px) {
+      flex-direction: row;
+      justify-content: space-between;
+      gap: unset;
+
+      li {
+        flex: 1 0 0;
+      }
+    }
   }
 `
 const SideBarFooter = styled.div`
@@ -91,27 +115,6 @@ const GearIconWrapper = styled.button`
   }
 `
 
-const ProfilPictureWrapper = styled.button`
-  width: 40px;
-  height: 40px;
-  aspect-ratio: 1/1;
-  border-radius: 40px;
-  overflow: hidden;
-  border: none;
-  cursor: pointer;
-
-  img {
-    width: 100%;
-    height: 100%;
-  }
-`
-
-interface SidebarProps {
-  picture?: string
-  firstName?: string
-  loading: boolean
-}
-
 const navIcons = [
   { Icon: YogaIcon, label: 'Yoga' },
   { Icon: SwimmingIcon, label: 'Natation' },
@@ -119,7 +122,8 @@ const navIcons = [
   { Icon: WorkoutIcon, label: 'Musculation' },
 ] as const
 
-const Sidebar = ({ picture, loading, firstName }: SidebarProps) => {
+const Sidebar = () => {
+  const isMobile = useMediaQuery('(max-width: 600px)')
   return (
     <SidebarWrapper>
       <nav>
@@ -133,16 +137,14 @@ const Sidebar = ({ picture, loading, firstName }: SidebarProps) => {
           ))}
         </ul>
       </nav>
-      <SideBarFooter>
-        <GearIconWrapper aria-label="Paramètres">
-          <GearIcon aria-hidden="true" />
-        </GearIconWrapper>
-        {!loading && picture && (
-          <ProfilPictureWrapper aria-label="Profil">
-            <img src={`/${picture}`} alt={`Photo de profil de ${firstName}`} />
-          </ProfilPictureWrapper>
-        )}
-      </SideBarFooter>
+      {!isMobile && (
+        <SideBarFooter>
+          <GearIconWrapper aria-label="Paramètres">
+            <GearIcon aria-hidden="true" />
+          </GearIconWrapper>
+          <ProfilePicture />
+        </SideBarFooter>
+      )}
     </SidebarWrapper>
   )
 }

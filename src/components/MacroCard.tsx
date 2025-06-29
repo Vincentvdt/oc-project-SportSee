@@ -4,8 +4,9 @@ import EnergyIcon from '@/assets/icons/energy.svg?react'
 import AppleIcon from '@/assets/icons/apple.svg?react'
 import FatIcon from '@/assets/icons/fat-icon.svg?react'
 import type { MacroData } from '@api/_types'
+import type { GridOrder, StyledGridOrder } from '@/components/ProfileCard'
 
-const MacroCardContainer = styled.section`
+const MacroCardContainer = styled.section<StyledGridOrder>`
   display: flex;
   flex-direction: column;
   padding: 32px 24px;
@@ -14,6 +15,10 @@ const MacroCardContainer = styled.section`
   border-radius: 16px;
   box-shadow: 0 2px 12px rgba(32, 32, 56, 0.06);
   align-self: stretch;
+  @media (max-width: 600px) {
+    ${({ $mobileOrder }) => $mobileOrder !== undefined && `order: ${$mobileOrder};`}
+  }
+  ${({ $order }) => $order !== undefined && `order: ${$order};`}
 `
 
 const CardTitle = styled.h3`
@@ -106,12 +111,12 @@ const MacroItem = ({ quantity, unit, macro }: MacroData) => {
   )
 }
 
-interface MacroCardProps {
+interface MacroCardProps extends GridOrder {
   macros: MacroData[]
 }
 
-const MacroCard = ({ macros }: MacroCardProps) => (
-  <MacroCardContainer>
+const MacroCard = ({ macros, order, mobileOrder }: MacroCardProps) => (
+  <MacroCardContainer $order={order} $mobileOrder={mobileOrder}>
     <CardTitle>Macros</CardTitle>
     <MacroList>
       {macros.map((item) => (

@@ -15,20 +15,14 @@ const DashboardContainer = styled.section`
   max-width: 1440px;
   width: 100%;
   margin-right: auto;
-  padding: 0 2.5rem;
+  padding: 0 40px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 2rem;
 
-  @media (max-width: 1440px) {
-    max-width: 100vw;
-    margin-left: 16px;
-    padding: 0 1rem;
-  }
-  @media (max-width: 768px) {
-    margin-left: 0;
-    padding: 0;
+  @media (max-width: 600px) {
+    padding: 40px 24px;
   }
 `
 
@@ -49,6 +43,11 @@ const ChartsContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 1.5rem;
+  order: 1;
+
+  @media (max-width: 600px) {
+    order: 2;
+  }
 `
 
 const ChartsGridContainer = styled.div`
@@ -64,13 +63,18 @@ const DashboardAside = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 1rem;
-
+  order: 2;
   align-self: stretch;
+
+  @media (max-width: 600px) {
+    order: 1;
+  }
 `
 
 interface DashboardProps {
   user: UserData
 }
+
 const Dashboard = ({ user }: DashboardProps) => {
   return (
     <DashboardContainer>
@@ -86,9 +90,9 @@ const Dashboard = ({ user }: DashboardProps) => {
           <MealPrepCard />
         </ChartsContainer>
         <DashboardAside>
-          <ProfileCard user={user} />
-          <MacroCard macros={user.keyData} />
-          <DailyGoal goals={user.goals} />
+          <ProfileCard user={user} order={1} mobileOrder={1} />
+          <MacroCard macros={user.keyData} order={2} mobileOrder={3} />
+          <DailyGoal goals={user.goals} order={3} mobileOrder={2} />
         </DashboardAside>
       </DashboardCharts>
     </DashboardContainer>
