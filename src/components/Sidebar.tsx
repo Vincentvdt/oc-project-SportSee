@@ -60,6 +60,11 @@ const SidebarWrapper = styled.aside`
     width: 100%;
   }
 
+  @media (max-width: 1240px) {
+    width: 60px;
+    padding: 32px 8px;
+  }
+
   @media (max-width: 600px) {
     flex-direction: row;
     min-width: unset;

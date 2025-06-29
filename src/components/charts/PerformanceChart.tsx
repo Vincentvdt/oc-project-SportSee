@@ -54,7 +54,7 @@ interface PerformanceChartProps {
 }
 
 const PerformanceChart = ({ data }: PerformanceChartProps) => {
-  const isMobile = useMediaQuery('(max-width: 600px')
+  const isMobile = useMediaQuery('(max-width: 600px)')
   const aspectRatio = isMobile ? 2 : 1
 
   const chartData: (PerformanceEntry & { kindLabel: string })[] = data.data.map((d) => ({

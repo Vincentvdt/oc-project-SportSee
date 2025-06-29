@@ -16,6 +16,10 @@ const Layout = styled.main`
   box-sizing: border-box;
   justify-content: flex-start;
 
+  @media (max-width: 1240px) {
+    padding: 0 24px;
+  }
+
   @media (max-width: 600px) {
     flex-direction: column;
     padding: unset;
