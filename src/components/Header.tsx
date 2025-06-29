@@ -14,6 +14,11 @@ const HeaderContainer = styled.header`
   background: #fff;
   width: 100%;
 
+  @media (max-width: 1240px) {
+    gap: 4rem;
+    padding: 24px 32px;
+  }
+
   @media (max-width: 600px) {
     width: 100%;
     padding: 32px 24px;
@@ -92,7 +97,7 @@ const BurgerNavBackdrop = styled.div`
 `
 
 const Header = () => {
-  const isMobile = useMediaQuery('(max-width: 600px')
+  const isMobile = useMediaQuery('(max-width: 600px)')
   const [open, setOpen] = useState(false)
 
   return (

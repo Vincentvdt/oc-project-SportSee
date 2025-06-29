@@ -102,7 +102,7 @@ interface DailyActivityChartProps {
 }
 
 const DailyActivityChart = ({ data }: DailyActivityChartProps) => {
-  const isMobile = useMediaQuery('(max-width: 600px')
+  const isMobile = useMediaQuery('(max-width: 600px)')
   const aspectRatio = 2
   const LegendAlign = isMobile ? 'left' : 'right'
 

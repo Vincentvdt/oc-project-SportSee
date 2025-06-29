@@ -47,7 +47,7 @@ const CenterLabel = styled.div`
 `
 
 const GoalChart = ({ data }: GoalChartProps) => {
-  const isMobile = useMediaQuery('(max-width: 600px')
+  const isMobile = useMediaQuery('(max-width: 600px)')
   const aspectRatio = isMobile ? 2 : 1
 
   const clamped = Math.max(0, Math.min(data!, 1))
