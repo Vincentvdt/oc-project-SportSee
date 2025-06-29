@@ -12,6 +12,7 @@ const HeaderContainer = styled.header`
   gap: 7.5rem;
   position: relative;
   background: #fff;
+  width: 100%;
 
   @media (max-width: 600px) {
     width: 100%;
