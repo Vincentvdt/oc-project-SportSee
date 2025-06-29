@@ -18,6 +18,11 @@ const HeaderContainer = styled.header`
     padding: 24px 32px;
   }
 
+  @media (max-width: 1240px) {
+    gap: 4rem;
+    padding: 24px 32px;
+  }
+
   @media (max-width: 600px) {
     width: 100%;
     padding: 32px 24px;

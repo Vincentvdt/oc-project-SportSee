@@ -106,8 +106,8 @@ interface DailyActivityChartProps {
 
 const DailyActivityChart = ({ data }: DailyActivityChartProps) => {
   const isTablet = useMediaQuery('(max-width: 1240px)')
-
   const LegendAlign = isTablet ? 'left' : 'right'
+
 
   return (
     <ChartWrapper role="img" aria-label="Activité quotidienne">
