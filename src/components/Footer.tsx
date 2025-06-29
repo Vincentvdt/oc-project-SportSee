@@ -1,5 +1,5 @@
-import { DotFilledIcon } from '@radix-ui/react-icons'
 import styled from 'styled-components'
+
 const FooterContainer = styled.footer`
   display: flex;
   align-items: center;
@@ -8,61 +8,85 @@ const FooterContainer = styled.footer`
   padding: 24px 40px;
   font-size: 0.875rem;
   border-top: 1px solid #e5e5e5;
+
+  @media (max-width: 1240px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
 `
+
 const Copyright = styled.p`
   color: #979797;
-
-  font-style: normal;
   font-weight: 500;
   line-height: 24px;
+  margin: 0;
 `
+
 const MandatoryLinks = styled.ul`
   display: flex;
   align-items: center;
   gap: 0.25rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 
-  > svg {
-    width: 12px;
-    height: 12px;
-    aspect-ratio: 1/1;
-    color: #979797;
+  @media (max-width: 1240px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
   }
+`
+const LinkItem = styled.li`
+  display: flex;
+  align-items: center;
+`
 
-  > li a {
-    color: #979797;
+const Link = styled.a`
+  color: #979797;
+  font-weight: 500;
+  line-height: 24px;
+  text-decoration: none;
+  font-style: normal;
 
-    font-style: normal;
-    font-weight: 500;
-    line-height: 24px;
-
-    &:hover {
-      text-decoration: underline;
-    }
+  &:hover {
+    text-decoration: underline;
+  }
+`
+const Dot = styled.span`
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #979797;
+  margin: 0 6px;
+  @media (max-width: 1240px) {
+    display: none;
   }
 `
 
 const Footer = () => {
+  const links = [
+    { label: 'Mentions légales', href: '#' },
+    { label: 'Confidentialité', href: '#' },
+    { label: 'CGU', href: '#' },
+    { label: 'Politique de cookies', href: '#' }
+  ]
   return (
     <FooterContainer>
-      <Copyright>© 2025 SportSee — Bouge mieux, vis plus fort. Tous droits réservés.</Copyright>
-
-      <MandatoryLinks>
-        <li>
-          <a href="#">Mentions légales</a>
-        </li>
-        <DotFilledIcon aria-hidden="true" />
-        <li>
-          <a href="#">Confidentialité</a>
-        </li>
-        <DotFilledIcon aria-hidden="true" />
-        <li>
-          <a href="#">CGU</a>
-        </li>
-        <DotFilledIcon aria-hidden="true" />
-        <li>
-          <a href="#">Politique de cookies</a>
-        </li>
-      </MandatoryLinks>
+      <Copyright>
+        © 2025 SportSee — Bouge mieux, vis plus fort. Tous droits réservés.
+      </Copyright>
+      <nav aria-label="Mentions et politique">
+        <MandatoryLinks>
+          {links.map((link, index) => (
+            <LinkItem key={link.label}>
+              <Link href={link.href}>{link.label}</Link>
+              {index !== links.length - 1 && <Dot aria-hidden />}
+            </LinkItem>
+          ))}
+        </MandatoryLinks>
+      </nav>
     </FooterContainer>
   )
 }

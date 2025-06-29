@@ -13,6 +13,7 @@ const HeaderContainer = styled.header`
   position: relative;
   background: #fff;
   width: 100%;
+  border-bottom: 1px solid #e5e5e5;
   @media (max-width: 1240px) {
     gap: 4rem;
     padding: 24px 32px;
@@ -135,7 +136,7 @@ const Header = () => {
           <BurgerButton aria-label="Ouvrir le menu" onClick={() => setOpen(true)} tabIndex={0}>
             <HamburgerMenuIcon width={26} height={26} color="#FF0000" />
           </BurgerButton>
-          <ProfilePicture />
+          <ProfilePicture rounded />
         </>
       )}
 

@@ -22,7 +22,7 @@ const Layout = styled.main`
 
   @media (max-width: 600px) {
     flex-direction: column;
-    padding: 16px 0;
+    padding: 0;
   }
 `
 const DashboardOuter = styled.div`
