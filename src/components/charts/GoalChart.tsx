@@ -48,7 +48,7 @@ const CenterLabel = styled.div`
 
 const GoalChart = ({ data }: GoalChartProps) => {
   const isMobile = useMediaQuery('(max-width: 600px)')
-  const aspectRatio = isMobile ? 2 : 1
+  const aspectRatio = isMobile ? 1.6 : 1
 
   const clamped = Math.max(0, Math.min(data!, 1))
   const percent = Math.round(clamped * 100)
@@ -61,7 +61,7 @@ const GoalChart = ({ data }: GoalChartProps) => {
   return (
     <ChartWrapper role="img" aria-label="Score de l'objectif">
       <ChartTitle>Score</ChartTitle>
-      <ResponsiveContainer width="100%" aspect={aspectRatio} height="100%">
+      <ResponsiveContainer width="100%" aspect={aspectRatio}>
         <RadialBarChart
           style={{ transition: '150ms ease' }}
           innerRadius={100}
