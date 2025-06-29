@@ -79,7 +79,7 @@ const App = () => {
     <>
       <Header />
       <Layout>
-        <Sidebar picture={userData?.picture} firstName={userData?.firstName} loading={isPending} />
+        <Sidebar />
         {isPending ? (
           <StateWrapper>Chargement en cours… </StateWrapper>
         ) : isError ? (
