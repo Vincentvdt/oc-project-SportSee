@@ -112,7 +112,7 @@ const DailyActivityChart = ({ data }: DailyActivityChartProps) => {
   return (
     <ChartWrapper role="img" aria-label="Activité quotidienne">
       <ChartTitle>Activité quotidienne</ChartTitle>
-      <ResponsiveContainer width="100%" maxHeight={320}>
+      <ResponsiveContainer width="100%" aspect={2} maxHeight={320}>
         <BarChart data={data} margin={{ right: 16, left: 16, top: 16, bottom: 32 }}>
           <CartesianGrid vertical={false} />
           <XAxis
