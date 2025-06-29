@@ -8,6 +8,7 @@ import {
   ResponsiveContainer,
   Tooltip,
 } from 'recharts'
+import useMediaQuery from '@/hooks/useMediaQuery'
 
 const ChartWrapper = styled.div`
   background: #282d30;
@@ -53,6 +54,9 @@ interface PerformanceChartProps {
 }
 
 const PerformanceChart = ({ data }: PerformanceChartProps) => {
+  const isMobile = useMediaQuery('(max-width: 600px')
+  const aspectRatio = isMobile ? 2 : 1
+
   const chartData: (PerformanceEntry & { kindLabel: string })[] = data.data.map((d) => ({
     ...d,
     kindLabel: data.kind[d.kind] || 'Inconnu',
@@ -60,7 +64,7 @@ const PerformanceChart = ({ data }: PerformanceChartProps) => {
 
   return (
     <ChartWrapper role="img" aria-label="Performance">
-      <ResponsiveContainer width="100%">
+      <ResponsiveContainer width="100%" aspect={aspectRatio}>
         <RadarChart
           data={chartData}
           outerRadius="75%"

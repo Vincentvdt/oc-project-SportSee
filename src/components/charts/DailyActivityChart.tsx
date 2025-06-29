@@ -10,6 +10,7 @@ import {
   YAxis,
 } from 'recharts'
 import styled from 'styled-components'
+import useMediaQuery from '@/hooks/useMediaQuery'
 
 const CustomTooltip = ({
   active,
@@ -80,6 +81,11 @@ const ChartWrapper = styled.div`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 600px) {
+    background: #f0f0f0;
+    gap: 32px;
+  }
 `
 const ChartTitle = styled.h3`
   color: rgba(0, 0, 0, 0.85);
@@ -96,10 +102,14 @@ interface DailyActivityChartProps {
 }
 
 const DailyActivityChart = ({ data }: DailyActivityChartProps) => {
+  const isMobile = useMediaQuery('(max-width: 600px')
+  const aspectRatio = 2
+  const LegendAlign = isMobile ? 'left' : 'right'
+
   return (
     <ChartWrapper role="img" aria-label="Activité quotidienne">
       <ChartTitle>Activité quotidienne</ChartTitle>
-      <ResponsiveContainer width="100%" height={260}>
+      <ResponsiveContainer width="100%" aspect={aspectRatio}>
         <BarChart data={data} margin={{ right: 16, left: 16, top: 16, bottom: 32 }}>
           <CartesianGrid vertical={false} />
           <XAxis
@@ -114,7 +124,7 @@ const DailyActivityChart = ({ data }: DailyActivityChartProps) => {
             content={<CustomTooltip />}
             cursor={{ fill: '#fde2e4', opacity: 1 }}
           />
-          <Legend align="right" verticalAlign="top" wrapperStyle={{ top: -16 }} />
+          <Legend align={LegendAlign} verticalAlign="top" wrapperStyle={{ top: -16 }} />
           <Bar
             dataKey="kilogram"
             name="Poids (kg)"

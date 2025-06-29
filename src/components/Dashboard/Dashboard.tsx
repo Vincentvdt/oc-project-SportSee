@@ -56,6 +56,10 @@ const ChartsGridContainer = styled.div`
   align-self: stretch;
   grid-template-rows: repeat(1, minmax(0, 1fr));
   grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
 `
 
 const DashboardAside = styled.div`

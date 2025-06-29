@@ -1,6 +1,7 @@
 import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import type { AverageSession } from '@api/_types'
 import styled from 'styled-components'
+import useMediaQuery from '@/hooks/useMediaQuery'
 
 const renderCustomAxisTick = ({
   x,
@@ -45,8 +46,8 @@ const ChartWrapper = styled.div`
   background: red;
   border-radius: 16px;
   padding: 16px;
-  height: 100%;
-  width: 100%;
+  @media (max-width: 600px) {
+  }
 `
 
 const ChartTitle = styled.h3`
@@ -65,10 +66,13 @@ interface AverageSessionChartProps {
 }
 
 const AverageSessionChart = ({ data }: AverageSessionChartProps) => {
+  const isMobile = useMediaQuery('(max-width: 600px')
+  const aspectRatio = isMobile ? 2 : 1
+
   return (
     <ChartWrapper role="img" aria-label="Durée moyenne des sessions">
       <ChartTitle>Durée moyenne des sessions</ChartTitle>
-      <ResponsiveContainer width="100%" aspect={1}>
+      <ResponsiveContainer width="100%" aspect={aspectRatio}>
         <LineChart data={data} margin={{ right: 16, left: 16, top: 16 }}>
           <Line
             type="monotone"

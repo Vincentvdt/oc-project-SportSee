@@ -40,6 +40,12 @@ const MealItem = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
+
+  @media (max-width: 600px) {
+    background: rgba(227, 209, 194, 0.31);
+    padding: 16px 8px;
+    border-radius: 16px;
+  }
 `
 
 const IconBox = styled.div`
@@ -74,6 +80,11 @@ const Info = styled.div`
     font-size: 0.875rem;
     font-weight: 500;
   }
+
+  @media (max-width: 600px) {
+    text-align: left;
+    line-height: 16px;
+  }
 `
 
 const MealPrepCard = () => (
@@ -88,7 +99,7 @@ const MealPrepCard = () => (
         </IconBox>
         <Info>
           <span>Salade quinoa</span>
-          <span>350kCal • 15g prot • 10min</span>
+          <span>350kCal 15g prot 10min</span>
         </Info>
       </MealItem>
       <MealItem>
@@ -97,7 +108,7 @@ const MealPrepCard = () => (
         </IconBox>
         <Info>
           <span>Pâtes aux légumes</span>
-          <span>600kCal • 25g prot • 25min</span>
+          <span>600kCal 25g prot 25min</span>
         </Info>
       </MealItem>
       <MealItem>
@@ -106,7 +117,7 @@ const MealPrepCard = () => (
         </IconBox>
         <Info>
           <span>Smoothie protéiné</span>
-          <span>250kCal • 20g prot • 5min</span>
+          <span>250kCal 20g prot 5min</span>
         </Info>
       </MealItem>
     </CardGrid>

@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { PolarAngleAxis, RadialBar, RadialBarChart, ResponsiveContainer } from 'recharts'
+import useMediaQuery from '@/hooks/useMediaQuery'
 
 interface GoalChartProps {
   data: number | null
@@ -10,8 +11,6 @@ const ChartWrapper = styled.div`
   border-radius: 16px;
   padding: 16px;
   position: relative;
-  height: 100%;
-  width: 100%;
 `
 
 const ChartTitle = styled.h3`
@@ -48,9 +47,10 @@ const CenterLabel = styled.div`
 `
 
 const GoalChart = ({ data }: GoalChartProps) => {
-  if (data === null || data === undefined) return null
+  const isMobile = useMediaQuery('(max-width: 600px')
+  const aspectRatio = isMobile ? 2 : 1
 
-  const clamped = Math.max(0, Math.min(data, 1))
+  const clamped = Math.max(0, Math.min(data!, 1))
   const percent = Math.round(clamped * 100)
 
   const chartData = [
@@ -61,7 +61,7 @@ const GoalChart = ({ data }: GoalChartProps) => {
   return (
     <ChartWrapper role="img" aria-label="Score de l'objectif">
       <ChartTitle>Score</ChartTitle>
-      <ResponsiveContainer width="100%" aspect={1} height="100%">
+      <ResponsiveContainer width="100%" aspect={aspectRatio} height="100%">
         <RadialBarChart
           style={{ transition: '150ms ease' }}
           innerRadius={100}
