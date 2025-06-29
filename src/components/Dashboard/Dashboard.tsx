@@ -21,6 +21,10 @@ const DashboardContainer = styled.section`
   align-items: flex-start;
   gap: 2rem;
 
+  @media (max-width: 1240px) {
+    padding: 0 32px;
+  }
+
   @media (max-width: 600px) {
     padding: 40px 24px;
   }
@@ -32,6 +36,9 @@ const DashboardCharts = styled.div`
   grid-template-columns: 3fr 1fr;
   align-items: stretch; /* << KEY!! both columns get full height of the tallest child */
   min-height: 0;
+  @media (max-width: 1240px) {
+    grid-template-columns: 2fr 1fr;
+  }
   @media (max-width: 900px) {
     grid-template-columns: 1fr;
     align-items: start;
@@ -56,6 +63,10 @@ const ChartsGridContainer = styled.div`
   align-self: stretch;
   grid-template-rows: repeat(1, minmax(0, 1fr));
   grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  @media (max-width: 1240px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 
   @media (max-width: 600px) {
     grid-template-columns: 1fr;

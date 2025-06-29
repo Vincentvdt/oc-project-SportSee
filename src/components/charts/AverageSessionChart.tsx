@@ -43,11 +43,9 @@ const CustomTooltip = ({
 }
 
 const ChartWrapper = styled.div`
-  background: red;
+  background: #ff0000;
   border-radius: 16px;
   padding: 16px;
-  @media (max-width: 600px) {
-  }
 `
 
 const ChartTitle = styled.h3`
@@ -66,7 +64,7 @@ interface AverageSessionChartProps {
 }
 
 const AverageSessionChart = ({ data }: AverageSessionChartProps) => {
-  const isMobile = useMediaQuery('(max-width: 600px')
+  const isMobile = useMediaQuery('(max-width: 600px)')
   const aspectRatio = isMobile ? 2 : 1
 
   return (
