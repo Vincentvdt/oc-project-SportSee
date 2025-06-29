@@ -82,9 +82,12 @@ const ChartWrapper = styled.div`
   display: flex;
   flex-direction: column;
 
+  @media (max-width: 1240px) {
+    gap: 32px;
+  }
+
   @media (max-width: 600px) {
     background: #f0f0f0;
-    gap: 32px;
   }
 `
 const ChartTitle = styled.h3`
@@ -102,14 +105,14 @@ interface DailyActivityChartProps {
 }
 
 const DailyActivityChart = ({ data }: DailyActivityChartProps) => {
-  const isMobile = useMediaQuery('(max-width: 600px)')
-  const aspectRatio = 2
-  const LegendAlign = isMobile ? 'left' : 'right'
+  const isTablet = useMediaQuery('(max-width: 1240px)')
+  const LegendAlign = isTablet ? 'left' : 'right'
+
 
   return (
     <ChartWrapper role="img" aria-label="Activité quotidienne">
       <ChartTitle>Activité quotidienne</ChartTitle>
-      <ResponsiveContainer width="100%" aspect={aspectRatio}>
+      <ResponsiveContainer width="100%" aspect={2} maxHeight={320}>
         <BarChart data={data} margin={{ right: 16, left: 16, top: 16, bottom: 32 }}>
           <CartesianGrid vertical={false} />
           <XAxis

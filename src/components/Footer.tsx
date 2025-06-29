@@ -8,7 +8,6 @@ const FooterContainer = styled.footer`
   padding: 24px 40px;
   font-size: 0.875rem;
   border-top: 1px solid #e5e5e5;
-  margin-top: 24px;
 `
 const Copyright = styled.p`
   color: #979797;

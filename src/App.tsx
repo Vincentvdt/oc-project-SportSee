@@ -11,18 +11,18 @@ import type { UserData } from '@api/_types'
 
 const Layout = styled.main`
   display: flex;
-  padding: 0 40px;
+  padding: 24px 40px;
   width: 100vw;
   box-sizing: border-box;
   justify-content: flex-start;
 
   @media (max-width: 1240px) {
-    padding: 0 24px;
+    padding: 24px;
   }
 
   @media (max-width: 600px) {
     flex-direction: column;
-    padding: unset;
+    padding: 16px 0;
   }
 `
 const DashboardOuter = styled.div`
@@ -33,6 +33,10 @@ const DashboardOuter = styled.div`
   min-width: 0;
   overflow-y: auto;
   overflow-x: hidden;
+
+  @media (max-width: 600px) {
+    overflow-y: unset;
+  }
 `
 
 const StateWrapper = styled.section<{ $error?: boolean }>`
