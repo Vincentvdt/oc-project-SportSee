@@ -1,129 +1,81 @@
-import styled from 'styled-components'
-import { Pencil2Icon } from '@radix-ui/react-icons'
 import type { UserData } from '@api/_types'
 
-const Card = styled.article<StyledGridOrder>`
+import Card, { CardTitle } from '@/components/Card'
+import ProfilePicture from '@/components/ProfilePicture'
+import { Pencil1Icon } from '@radix-ui/react-icons'
+import styled from 'styled-components'
+import useMediaQuery from '@/hooks/useMediaQuery'
+
+const Wrapper = styled.div`
   display: flex;
-  flex-direction: row;
-  padding: 32px 24px;
   align-items: flex-start;
-  gap: 1.5rem;
-  background: #fff;
-  border-radius: 16px;
-  box-shadow: 0 2px 12px rgba(32, 32, 56, 0.06);
+  gap: 16px;
+  align-self: stretch;
+  width: 100%;
   min-width: 0;
-  overflow: hidden;
-
-  @media (max-width: 600px) {
-    ${({ $mobileOrder }) => $mobileOrder !== undefined && `order: ${$mobileOrder};`}
-  }
-
-  ${({ $order }) => $order !== undefined && `order: ${$order};`};
 `
 
-const AvatarContainer = styled.figure`
-  flex-shrink: 0;
-  width: 112px;
-  height: 112px;
-  border-radius: 16px;
-  overflow: hidden;
-  margin: 0;
-  background: #f3f3f6;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-`
-
-const InfoSection = styled.section`
+const UserInfo = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  flex: 1 1 0;
+  align-items: flex-start;
+  gap: 11px;
+  flex: 1 0 0;
+  align-self: stretch;
   min-width: 0;
-  justify-content: space-between;
 `
 
-const Header = styled.header`
+const TitleSection = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 0.5rem;
-  min-width: 0;
+  align-self: stretch;
 
   h3 {
-    color: #1e1f24;
-    font-size: 1.5rem;
-    font-weight: 500;
-    margin: 0;
-    min-width: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    margin: unset;
+    line-height: 1;
   }
-
-  button {
-    border: none;
-    background: none;
-    width: 24px;
-    height: 24px;
-    padding: 0;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    transition: color 80ms ease-in-out;
-    color: #c1c1c1;
-    svg {
-      width: 100%;
-      height: 100%;
-    }
-
-    &:hover {
-      color: #62636c;
-    }
+  svg {
+    width: 16px;
+    height: 16px;
+    aspect-ratio: 1/1;
+    flex-shrink: 0;
+    color: #62636c;
   }
 `
 
-const Bio = styled.p`
+const Bio = styled.div`
   color: #62636c;
-  font-weight: 500;
+  font-size: 14px;
   text-align: left;
-  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  white-space: normal;
 `
 
 const DataGroup = styled.div`
   display: flex;
-  gap: 2rem;
-  min-width: 0;
+  align-items: flex-start;
+  gap: 32px;
+  align-self: stretch;
+`
 
-  > div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.25rem;
+const DataItem = styled.div`
+  display: flex;
+  font-size: 14px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
 
-    > span {
-      color: #1e1f24;
-      font-weight: 500;
-      text-align: center;
-    }
+  > span {
+    text-align: center;
+  }
 
-    > span:nth-child(2) {
-      color: #979797;
-      font-size: 0.875rem;
-      font-weight: 400;
-    }
+  > span:nth-child(2) {
+    color: #979797;
   }
 `
 
@@ -131,53 +83,42 @@ export interface GridOrder {
   order?: number
   mobileOrder?: number
 }
-
-export interface StyledGridOrder {
-  $order?: number
-  $mobileOrder?: number
-}
 export interface UserProfile extends GridOrder {
   user: UserData
-  onEdit?: () => void
 }
 
-const ProfileCard = ({ user, onEdit, order, mobileOrder }: UserProfile) => {
+const ProfileCard = ({ user, order, mobileOrder }: UserProfile) => {
+  const isMobile = useMediaQuery('(max-width: 600px')
+  const cardPadding = isMobile ? '0' : undefined
+
   return (
-    <Card $order={order} $mobileOrder={mobileOrder}>
-      <InfoSection>
-        <Header>
-          <h3 title={`${user.firstName} ${user.lastName}`}>
-            {user.firstName} {user.lastName.slice(0, 1)}.
-          </h3>
-          {onEdit && (
-            <button aria-label="Edit profile" onClick={onEdit}>
-              <Pencil2Icon aria-hidden="true" />
-            </button>
-          )}
-        </Header>
-        <Bio title={user.bio}>{user.bio}</Bio>
-        <DataGroup>
-          <div>
-            <span>{user.age}</span>
-            <span>Age</span>
-          </div>
-          <div>
-            <span>{user.gender}</span>
-            <span>Genre</span>
-          </div>
-          <div>
-            <span>{user.height}cm</span>
-            <span>Taille</span>
-          </div>
-          <div>
-            <span>{user.weight}kg</span>
-            <span>Poids</span>
-          </div>
-        </DataGroup>
-      </InfoSection>
-      <AvatarContainer>
-        <img src={user.picture} alt={`${user.firstName} profile`} />
-      </AvatarContainer>
+    <Card order={order} mobileOrder={mobileOrder} padding={cardPadding}>
+      <Wrapper>
+        <UserInfo>
+          <TitleSection>
+            <CardTitle>
+              {user.firstName} {user.lastName}
+            </CardTitle>
+            <Pencil1Icon />
+          </TitleSection>
+          <Bio>{user.bio}</Bio>
+          <DataGroup>
+            <DataItem>
+              <span>{user.height}cm</span>
+              <span>Taille</span>
+            </DataItem>
+            <DataItem>
+              <span>{user.weight}kg</span>
+              <span>Poids</span>
+            </DataItem>
+            <DataItem>
+              <span>{user.age}</span>
+              <span>Age</span>
+            </DataItem>
+          </DataGroup>
+        </UserInfo>
+        <ProfilePicture size={80} />
+      </Wrapper>
     </Card>
   )
 }

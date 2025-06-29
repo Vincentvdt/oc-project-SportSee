@@ -6,7 +6,8 @@ import SwimmingIcon from '@/assets/icons/swimming.svg?react'
 import CyclingIcon from '@/assets/icons/cycling.svg?react'
 import WorkoutIcon from '@/assets/icons/workout.svg?react'
 import type { Goal } from '@api/_types'
-import type { GridOrder, StyledGridOrder } from '@/components/ProfileCard'
+import type { GridOrder } from '@/components/ProfileCard'
+import Card, { CardTitle } from '@/components/Card'
 
 const goalTheme = {
   workout: {
@@ -35,42 +36,9 @@ const goalTheme = {
   },
 } as const
 
-const Card = styled.section<StyledGridOrder>`
-  display: flex;
-  padding: 32px 24px;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1.5rem;
-  align-self: stretch;
-  background: #fff;
-  border-radius: 16px;
-  box-shadow: 0 2px 12px rgba(32, 32, 56, 0.06);
-
-  @media (max-width: 600px) {
-    ${({ $mobileOrder }) => $mobileOrder !== undefined && `order: ${$mobileOrder};`}
-  }
-  ${({ $order }) => $order !== undefined && `order: ${$order};`}
-`
-
 const CardHeader = styled.header`
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  align-self: stretch;
-
-  > div {
-    display: flex;
-    gap: 0.5rem;
-  }
-
-  h3 {
-    color: #1e1f24;
-
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-  }
 
   svg {
     width: 24px;
@@ -261,18 +229,23 @@ const DailyGoal = ({ goals, order, mobileOrder }: DailyGoalProps) => {
   const totalGoals = userGoals.length
 
   return (
-    <Card aria-label="Objectifs quotidiens" $order={order} $mobileOrder={mobileOrder}>
-      <CardHeader>
-        <div>
-          <h3>Objectifs du jour</h3>
+    <Card
+      aria-label="Objectifs quotidiens"
+      order={order}
+      mobileOrder={mobileOrder}
+      title={
+        <CardHeader>
+          <CardTitle>
+            Objectifs du jour
+            <GoalProgress $completed={userGoals.every((goal) => goal.done)}>
+              {completedGoals}/{totalGoals}
+            </GoalProgress>
+          </CardTitle>
 
-          <GoalProgress $completed={userGoals.every((goal) => goal.done)}>
-            {completedGoals}/{totalGoals}
-          </GoalProgress>
-        </div>
-
-        <DotsHorizontalIcon />
-      </CardHeader>
+          <DotsHorizontalIcon />
+        </CardHeader>
+      }
+    >
       <GoalList>
         {userGoals.map((goal, idx) => {
           const { main, pastel, icon: MainIcon, progressIcon: ProgressIcon } = goalTheme[goal.type]

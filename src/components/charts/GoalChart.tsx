@@ -1,28 +1,11 @@
 import styled from 'styled-components'
 import { PolarAngleAxis, RadialBar, RadialBarChart, ResponsiveContainer } from 'recharts'
 import useMediaQuery from '@/hooks/useMediaQuery'
+import Card from '@/components/Card'
 
 interface GoalChartProps {
   data: number | null
 }
-
-const ChartWrapper = styled.div`
-  background: #fff;
-  border-radius: 16px;
-  padding: 16px;
-  position: relative;
-`
-
-const ChartTitle = styled.h3`
-  color: rgb(32, 37, 58);
-  text-align: left;
-  font-size: 0.9375rem;
-  margin: 0 16px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 24px;
-  position: relative;
-`
 
 const CenterLabel = styled.div`
   position: absolute;
@@ -49,6 +32,7 @@ const CenterLabel = styled.div`
 const GoalChart = ({ data }: GoalChartProps) => {
   const isMobile = useMediaQuery('(max-width: 600px)')
   const aspectRatio = isMobile ? 1.6 : 1
+  const padding = isMobile ? '24px' : undefined
 
   const clamped = Math.max(0, Math.min(data!, 1))
   const percent = Math.round(clamped * 100)
@@ -59,8 +43,7 @@ const GoalChart = ({ data }: GoalChartProps) => {
   ]
 
   return (
-    <ChartWrapper role="img" aria-label="Score de l'objectif">
-      <ChartTitle>Score</ChartTitle>
+    <Card aria-label="Score de l'objectif" title="Score" background={'#fbfbfb'} padding={padding}>
       <ResponsiveContainer width="100%" aspect={aspectRatio}>
         <RadialBarChart
           style={{ transition: '150ms ease' }}
@@ -82,7 +65,7 @@ const GoalChart = ({ data }: GoalChartProps) => {
       <CenterLabel>
         {percent}%<span>de votre objectif</span>
       </CenterLabel>
-    </ChartWrapper>
+    </Card>
   )
 }
 

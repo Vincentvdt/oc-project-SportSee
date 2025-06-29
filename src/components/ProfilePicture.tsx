@@ -3,16 +3,11 @@ import { useQuery } from '@tanstack/react-query'
 import type { UserData } from '@api/_types'
 import { fetchUserData } from '@/hooks/user'
 
-type ProfilePictureProps = {
-  size?: number
-}
-
-// --- Styled Components ---
-const PictureWrapper = styled.span<{ $size: number | string }>`
+const PictureWrapper = styled.span<{ $size: number | string; $rounded: boolean }>`
   display: inline-block;
   width: ${({ $size }) => (typeof $size === 'number' ? `${$size}px` : $size)};
   height: ${({ $size }) => (typeof $size === 'number' ? `${$size}px` : $size)};
-  border-radius: 50%;
+  border-radius: ${({ $rounded }) => ($rounded ? '50px' : '8px')};
   overflow: hidden;
   position: relative;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
@@ -28,7 +23,12 @@ const StyledImg = styled.img`
   display: block;
 `
 
-const ProfilePicture = ({ size = 40 }: ProfilePictureProps) => {
+type ProfilePictureProps = {
+  size?: number
+  rounded?: boolean
+}
+
+const ProfilePicture = ({ size = 40, rounded = false }: ProfilePictureProps) => {
   const { data: user, isPending } = useQuery<UserData>({
     queryKey: ['user', 12],
     queryFn: fetchUserData,
@@ -40,7 +40,7 @@ const ProfilePicture = ({ size = 40 }: ProfilePictureProps) => {
   return (
     <>
       {!isPending && user?.picture && (
-        <PictureWrapper aria-label={'Profil'} $size={size}>
+        <PictureWrapper aria-label={'Profil'} $size={size} $rounded={rounded}>
           <StyledImg src={user.picture} alt={alt} />
         </PictureWrapper>
       )}

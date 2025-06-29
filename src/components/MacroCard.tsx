@@ -4,30 +4,8 @@ import EnergyIcon from '@/assets/icons/energy.svg?react'
 import AppleIcon from '@/assets/icons/apple.svg?react'
 import FatIcon from '@/assets/icons/fat-icon.svg?react'
 import type { MacroData } from '@api/_types'
-import type { GridOrder, StyledGridOrder } from '@/components/ProfileCard'
-
-const MacroCardContainer = styled.section<StyledGridOrder>`
-  display: flex;
-  flex-direction: column;
-  padding: 32px 24px;
-  gap: 1rem;
-  background: #fff;
-  border-radius: 16px;
-  box-shadow: 0 2px 12px rgba(32, 32, 56, 0.06);
-  align-self: stretch;
-  @media (max-width: 600px) {
-    ${({ $mobileOrder }) => $mobileOrder !== undefined && `order: ${$mobileOrder};`}
-  }
-  ${({ $order }) => $order !== undefined && `order: ${$order};`}
-`
-
-const CardTitle = styled.h3`
-  color: #1e1f24;
-  font-size: 1rem;
-  font-weight: 500;
-  margin: 0;
-  text-align: left;
-`
+import type { GridOrder } from '@/components/ProfileCard'
+import Card from '@/components/Card'
 
 const MacroList = styled.ul`
   display: grid;
@@ -50,26 +28,29 @@ const macroStyles = {
 const MacroItemContainer = styled.article<{ $bg: string }>`
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1rem;
   padding: 16px;
   background: ${({ $bg }) => $bg};
   border-radius: 16px;
   flex: 1 0 0;
   min-width: 0;
+
+  @media (max-width: 1240px) {
+    flex-direction: column;
+  }
 `
 
 const MacroIconBox = styled.div`
   display: flex;
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   justify-content: center;
   align-items: center;
-  border-radius: 50%;
+  border-radius: 16px;
   background: #f9f9fb;
+  flex-shrink: 0;
 
   svg {
-    width: 24px;
-    height: 24px;
     display: block;
   }
 `
@@ -79,6 +60,10 @@ const MacroInfo = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+
+  @media (max-width: 1240px) {
+    align-items: center;
+  }
 
   > span:first-child {
     color: #1e1f24;
@@ -116,8 +101,7 @@ interface MacroCardProps extends GridOrder {
 }
 
 const MacroCard = ({ macros, order, mobileOrder }: MacroCardProps) => (
-  <MacroCardContainer $order={order} $mobileOrder={mobileOrder}>
-    <CardTitle>Macros</CardTitle>
+  <Card order={order} mobileOrder={mobileOrder} title="Macros">
     <MacroList>
       {macros.map((item) => (
         <MacroListItem key={item.macro}>
@@ -125,7 +109,7 @@ const MacroCard = ({ macros, order, mobileOrder }: MacroCardProps) => (
         </MacroListItem>
       ))}
     </MacroList>
-  </MacroCardContainer>
+  </Card>
 )
 
 export default MacroCard

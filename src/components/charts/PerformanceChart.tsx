@@ -1,5 +1,4 @@
 import type { Performance, PerformanceEntry } from '@api/_types'
-import styled from 'styled-components'
 import {
   PolarAngleAxis,
   PolarGrid,
@@ -9,15 +8,7 @@ import {
   Tooltip,
 } from 'recharts'
 import useMediaQuery from '@/hooks/useMediaQuery'
-
-const ChartWrapper = styled.div`
-  background: #282d30;
-  border-radius: 16px;
-  padding: 16px;
-  position: relative;
-  height: 100%;
-  width: 100%;
-`
+import Card from '@/components/Card'
 
 interface TooltipPayload {
   value: number
@@ -63,7 +54,7 @@ const PerformanceChart = ({ data }: PerformanceChartProps) => {
   }))
 
   return (
-    <ChartWrapper role="img" aria-label="Performance">
+    <Card aria-label="Performance" background={'#282D30'}>
       <ResponsiveContainer width="100%" aspect={aspectRatio}>
         <RadarChart
           data={chartData}
@@ -80,7 +71,7 @@ const PerformanceChart = ({ data }: PerformanceChartProps) => {
           <Radar dataKey="value" fill="#FF0101" fillOpacity={0.6} />
         </RadarChart>
       </ResponsiveContainer>
-    </ChartWrapper>
+    </Card>
   )
 }
 

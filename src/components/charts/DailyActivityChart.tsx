@@ -9,8 +9,8 @@ import {
   XAxis,
   YAxis,
 } from 'recharts'
-import styled from 'styled-components'
 import useMediaQuery from '@/hooks/useMediaQuery'
+import Card from '@/components/Card'
 
 const CustomTooltip = ({
   active,
@@ -72,48 +72,25 @@ const CustomTooltip = ({
   return null
 }
 
-const ChartWrapper = styled.div`
-  background: #fff;
-  border-radius: 24px;
-  padding: 1rem;
-  align-self: stretch;
-  width: 100%;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-
-  @media (max-width: 1240px) {
-    gap: 32px;
-  }
-
-  @media (max-width: 600px) {
-    background: #f0f0f0;
-  }
-`
-const ChartTitle = styled.h3`
-  color: rgba(0, 0, 0, 0.85);
-  text-align: left;
-  font-size: 0.9375rem;
-  margin: 0 1rem;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 1.5rem;
-  position: relative;
-`
 interface DailyActivityChartProps {
   data: ActivitySession[]
 }
 
 const DailyActivityChart = ({ data }: DailyActivityChartProps) => {
   const isTablet = useMediaQuery('(max-width: 1240px)')
+  const isMobile = useMediaQuery('(max-width: 600px)')
   const LegendAlign = isTablet ? 'left' : 'right'
-
+  const padding = isMobile ? '24px' : undefined
 
   return (
-    <ChartWrapper role="img" aria-label="Activité quotidienne">
-      <ChartTitle>Activité quotidienne</ChartTitle>
+    <Card
+      aria-label="Activité quotidienne"
+      title="Activité quotidienne"
+      background={'#fbfbfb'}
+      padding={padding}
+    >
       <ResponsiveContainer width="100%" aspect={2} maxHeight={320}>
-        <BarChart data={data} margin={{ right: 16, left: 16, top: 16, bottom: 32 }}>
+        <BarChart data={data}>
           <CartesianGrid vertical={false} />
           <XAxis
             dataKey="day"
@@ -127,7 +104,11 @@ const DailyActivityChart = ({ data }: DailyActivityChartProps) => {
             content={<CustomTooltip />}
             cursor={{ fill: '#fde2e4', opacity: 1 }}
           />
-          <Legend align={LegendAlign} verticalAlign="top" wrapperStyle={{ top: -16 }} />
+          <Legend
+            align={LegendAlign}
+            verticalAlign="top"
+            wrapperStyle={{ top: -8, fontSize: isMobile ? 14 : undefined }}
+          />
           <Bar
             dataKey="kilogram"
             name="Poids (kg)"
@@ -146,7 +127,7 @@ const DailyActivityChart = ({ data }: DailyActivityChartProps) => {
           />
         </BarChart>
       </ResponsiveContainer>
-    </ChartWrapper>
+    </Card>
   )
 }
 

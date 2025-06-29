@@ -1,7 +1,7 @@
 import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import type { AverageSession } from '@api/_types'
-import styled from 'styled-components'
 import useMediaQuery from '@/hooks/useMediaQuery'
+import Card from '@/components/Card'
 
 const renderCustomAxisTick = ({
   x,
@@ -42,23 +42,6 @@ const CustomTooltip = ({
   return null
 }
 
-const ChartWrapper = styled.div`
-  background: #ff0000;
-  border-radius: 16px;
-  padding: 16px;
-`
-
-const ChartTitle = styled.h3`
-  color: rgba(255, 255, 255, 0.85);
-  text-align: left;
-  font-size: 0.9375rem;
-  margin: 0 16px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 24px;
-  position: relative;
-`
-
 interface AverageSessionChartProps {
   data: AverageSession[]
 }
@@ -66,10 +49,16 @@ interface AverageSessionChartProps {
 const AverageSessionChart = ({ data }: AverageSessionChartProps) => {
   const isMobile = useMediaQuery('(max-width: 600px)')
   const aspectRatio = isMobile ? 2 : 1
+  const padding = isMobile ? '24px' : undefined
 
   return (
-    <ChartWrapper role="img" aria-label="Durée moyenne des sessions">
-      <ChartTitle>Durée moyenne des sessions</ChartTitle>
+    <Card
+      aria-label="Durée moyenne des sessions"
+      title="Durée moyenne des sessions"
+      background={'#FF0000'}
+      titleColor={'#FFFFFF'}
+      padding={padding}
+    >
       <ResponsiveContainer width="100%" aspect={aspectRatio}>
         <LineChart data={data} margin={{ right: 16, left: 16, top: 16 }}>
           <Line
@@ -101,7 +90,7 @@ const AverageSessionChart = ({ data }: AverageSessionChartProps) => {
           />
         </LineChart>
       </ResponsiveContainer>
-    </ChartWrapper>
+    </Card>
   )
 }
 
