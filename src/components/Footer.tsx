@@ -18,6 +18,7 @@ const FooterContainer = styled.footer`
 
 const Copyright = styled.p`
   color: #979797;
+  text-align: left;
   font-weight: 500;
   line-height: 24px;
   margin: 0;
@@ -70,13 +71,11 @@ const Footer = () => {
     { label: 'Mentions légales', href: '#' },
     { label: 'Confidentialité', href: '#' },
     { label: 'CGU', href: '#' },
-    { label: 'Politique de cookies', href: '#' }
+    { label: 'Politique de cookies', href: '#' },
   ]
   return (
     <FooterContainer>
-      <Copyright>
-        © 2025 SportSee — Bouge mieux, vis plus fort. Tous droits réservés.
-      </Copyright>
+      <Copyright>© 2025 SportSee — Bouge mieux, vis plus fort. Tous droits réservés.</Copyright>
       <nav aria-label="Mentions et politique">
         <MandatoryLinks>
           {links.map((link, index) => (
