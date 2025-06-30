@@ -73,6 +73,8 @@ const SidebarWrapper = styled.aside`
     width: unset;
     padding: unset;
     border-radius: unset;
+    border-bottom: 1px solid #e5e5e5;
+    margin-bottom: 16px;
   }
 
   ul {
